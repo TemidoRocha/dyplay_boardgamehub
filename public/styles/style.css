@@ -2,13 +2,22 @@
   box-sizing: border-box; }
 
 body {
-  min-width: 100%;
   width: 100%;
-  padding: 0;
-  margin: 0;
   font-family: sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 2; }
+
+.bodyIndex {
+  margin: 0 10%;
+  padding-bottom: 5%;
+  align-content: center; }
+  .bodyIndex .imageSignUp {
+    display: flex;
+    align-content: center; }
+  .bodyIndex img {
+    width: 30%;
+    justify-self: flex-end;
+    margin: 0 auto; }
 
 a {
   color: inherit;
@@ -110,7 +119,9 @@ textarea {
   resize: vertical; }
 
 footer {
+  bottom: 0em;
   display: flex;
+  align-content: flex-end;
   flex-direction: row;
   justify-content: space-between;
   background-color: grey;

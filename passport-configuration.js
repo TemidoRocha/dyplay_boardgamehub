@@ -20,25 +20,8 @@ passport.deserializeUser((id, callback) => {
 		});
 });
 
-const multer = require('multer');
-const cloudinary = require('cloudinary');
-const multerStorageCloudinary = require('multer-storage-cloudinary');
+const uploader = require('./multer-configure.js');
 
-cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_API_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-	resource_type: 'raw'
-});
-
-const storage = multerStorageCloudinary({
-	cloudinary,
-	folder: 'projeto 2',
-	resource_type: 'raw',
-	allowedFormats: ['jpg', 'png', 'mov', 'mp4']
-});
-
-const uploader = multer({ storage });
 passport.use(
 	'sign-up',
 	new LocalStrategy(
@@ -70,7 +53,7 @@ passport.use(
 );
 
 passport.use(
-	'local-sign-in',
+	'sign-in',
 	new LocalStrategy({ usernameField: 'email' }, (email, password, callback) => {
 		let user;
 		User.findOne({
