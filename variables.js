@@ -1,5 +1,5 @@
 'use strict';
-const gameList = require
+  
 
 const gameList = [
   'Dungeons and Dragons',

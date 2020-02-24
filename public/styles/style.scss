@@ -95,6 +95,22 @@ footer {
 	}
 }
 
+.signUpMain {
+	display: flex;
+	flex-direction: column;
+	.imageSignUp {
+		max-width: 300px;
+		align-self: center;
+	}
+	.signUpName {
+		display: flex;
+		flex-direction: column;
+	}
+	form {
+		flex-direction: row;
+	}
+}
+
 textarea {
 	min-height: 8em;
 	resize: vertical;
