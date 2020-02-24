@@ -35,7 +35,7 @@ router.get('/single/:id/edit', (req, res, next) => {
   Event.findById(req.params.id)
     .populate('user')
     .then(singleEvent => {
-      singleEvent.total = gameList;//in order to pass the total value of the list
+      singleEvent.total = gameList; //in order to pass the total value of the list
       res.render('encounter/edit', singleEvent);
     })
     .catch(error => {
@@ -69,7 +69,6 @@ router.post('/create', (req, res, next) => {
 
 //delete event
 router.post('/single/:id/delete', (req, res, next) => {
-  console.log(req.params.id);
   Event.findByIdAndRemove(req.params.id)
     .then(() => res.redirect('/encounter'))
     .catch(error => {
@@ -98,7 +97,8 @@ router.post('/single/:id/edit', (req, res, next) => {
 
 //insert the comment on the event. the id come on the query
 router.post('/single/addComment', (req, res, next) => {
-  const { player, comment } = req.body;
+  const player = req.user.name;
+  const { comment } = req.body;
   Event.findByIdAndUpdate(
     {
       _id: req.query.event_id
@@ -118,10 +118,11 @@ router.post('/single/addComment', (req, res, next) => {
     });
 });
 
-//delete the comment on the event
+//delete the comment on the event, it is coming back
 router.post('/single/:id/deleteComment', (req, res, next) => {
-  Event.findByIdAndRemove(req.params.id)
-    .then(() => res.redirect('encounter/index'))
+  console.log('Mys name is manuel' + req.params.id);
+  Event.update({}, { $pull: { comments: { _id: req.params.id } } }, { multi: true })
+    .then(() => res.redirect('/encounter'))
     .catch(error => {
       console.log(error);
       next(error);
