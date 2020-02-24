@@ -46,9 +46,6 @@ nav {
   nav a:first-child,
   nav button:first-child {
     margin-right: auto; }
-  nav a button,
-  nav button button {
-    margin: 100px; }
   nav a img,
   nav button img {
     height: 80px;
