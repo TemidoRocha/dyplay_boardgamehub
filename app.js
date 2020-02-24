@@ -19,7 +19,7 @@ const encounterRouter = require('./routes/encounter');
 const channelsRouter = require('./routes/channels');
 
 const app = express();
-
+//TODO - Configure multer and everything you need to upload files
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

@@ -107,11 +107,25 @@ button,
 	}
 	.gameYouPlay {
 		flex-direction: column;
+		margin: 0 20%;
+	}
+	.listGamesSignUp {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		.formInline {
+			padding: 0 0.8em;
+		}
 	}
 	.inputPicture {
 		align-self: flex-start;
 		display: flex;
 		flex-direction: column;
+	}
+	.mapSignUp {
+		margin: 50px;
+		max-width: 850px;
+		align-self: center;
 	}
 }
 
@@ -126,7 +140,6 @@ footer {
 	justify-content: space-between;
 	background-color: grey;
 	position: absolute;
-	bottom: 0;
 	width: 100%;
 	height: 30px;
 
