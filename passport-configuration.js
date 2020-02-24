@@ -33,7 +33,7 @@ cloudinary.config({
 
 const storage = multerStorageCloudinary({
 	cloudinary,
-	folder: 'jan20',
+	folder: 'projeto 2',
 	resource_type: 'raw',
 	allowedFormats: ['jpg', 'png', 'mov', 'mp4']
 });
