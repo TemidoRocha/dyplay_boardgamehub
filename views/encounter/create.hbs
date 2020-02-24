@@ -3,6 +3,7 @@
 </header>
 
 <form action="/encounter/create" method="POST"class='formEdit'>
+  <button type="submit" class="btn btn-primary"> Submit </button>
   <div class="form-group">
     <label for="eventName"> Event Name </label>
     <input type="text" name='eventName' id='eventName' placeholder="insert the event name" required class="form-control">
@@ -32,8 +33,6 @@
       <option value="{{item}}">{{item}}</option>
       {{/each}}
   </div>
-
-
 
   <button type="submit" class="btn btn-primary"> Submit </button>
   

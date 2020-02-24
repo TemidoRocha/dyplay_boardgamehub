@@ -2,14 +2,14 @@
 <ul class="list-group-flush">
   <li class="list-group-item"><p>eventName: {{eventName}}</p></li>
   <li class="list-group-item"><p>host: {{host}}</p></li>
-  <li class="list-group-item"><p>location: {{location}}</p></li>
+  <li class="list-group-item"><p>location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}}</p></li>
   <li class="list-group-item"><p>date: {{date}}</p></li>
   <li class="list-group-item"><p>numberOfPlayer: {{numberOfPlayer}}</p></li>
   <li class="list-group-item"><p>waitingList: {{ waitingList}}</p></li>
   <li class="list-group-item"><p>game: {{gameList}}</p></li>
   <li class="list-group-item"></li><br></li>
-  <li class="list-group-item"><a href="/encounter/{{ _id }}/edit" class="btn btn-outline-success"> edit </a></li>
-  <li class="list-group-item"><form action="/encounter/single/{{ _id }}/delete" method="POST"><button class="btn btn-outline-danger"> delete </button></form></li>
+  <li class="list-group-item"><a href="/encounter/single/{{ _id }}/edit" class="btn btn-outline-success"> edit event </a></li>
+  <li class="list-group-item"><form action="/encounter/single/{{ _id }}/delete" method="POST"><button class="btn btn-outline-danger"> delete event </button></form></li>
 </ul>
 
 
@@ -21,7 +21,7 @@
             <div>
               <p class="card-text">{{this.comment}}</p>
               <h6 class="card-subtitle mb-2 text-muted">{{this.player}}</h6>
-              <form action="/encounter/single/{{ id }}/deleteReview" method="POST"><button class="btn btn-outline-danger"> delete {{id}} </button></form>
+              <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="btn btn-outline-danger"> delete comment </button></form>
             </div>
       {{/each}}
     </div>
@@ -29,12 +29,7 @@
 
 
   <form action="/encounter/single/addComment?event_id={{ _id }}" method="post">
-  <h5 class="form-text text-muted"> Add a Comment </h5>
-    <div class="form-group">
-      <label for="player" class='text-secondary'>Player:</label>
-      <input type="text" name="player" class="form-control"/>
-    </div>
-
+  <h5 class="form-text text-muted"> Add a Comment {{user.name}}</h5>
    <div class="form-group">
       <label for="comment" class='text-secondary'>Comment:</label>
       <textarea type="text" name="comment" class="form-control"></textarea>
