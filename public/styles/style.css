@@ -9,13 +9,12 @@ button,
   border-radius: 1em;
   margin-bottom: 1em;
   font: inherit;
-  color: inherit;
+  color: black;
   background-color: transparent; }
 
 body {
-  width: 100%;
+  height: 100%;
   font-family: sans-serif;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 2; }
 
 .bodyIndex {
@@ -23,11 +22,9 @@ body {
   padding-bottom: 5%;
   align-content: center; }
   .bodyIndex .imageSignUp {
-    display: flex;
-    align-content: center; }
+    display: flex; }
   .bodyIndex img {
     width: 30%;
-    justify-self: flex-end;
     margin: 0 auto; }
 
 a {
@@ -39,21 +36,29 @@ nav {
   align-items: center;
   position: relative;
   background-color: lightgray;
-  width: 100%; }
-  nav a:not(:last-child),
-  nav button:not(:last-child) {
-    margin-right: 3em; }
-  nav a:first-child,
-  nav button:first-child {
-    margin-right: auto; }
-  nav a button,
-  nav button button {
-    margin: 100px; }
-  nav a img,
-  nav button img {
-    height: 80px;
-    width: 150px;
+  width: 100%;
+  padding: 0 50px; }
+  nav a,
+  nav button {
+    display: flex;
+    margin-right: 2em;
     margin: auto; }
+    nav a:not(:last-child),
+    nav button:not(:last-child) {
+      margin: 0 50px; }
+    nav a:not(:first-child),
+    nav button:not(:first-child) {
+      margin: 1em;
+      padding: 0px; }
+    nav a:first-child,
+    nav button:first-child {
+      margin-right: auto; }
+    nav a img,
+    nav button img {
+      align-self: flex-start;
+      height: 80px;
+      width: 150px;
+      margin: auto; }
 
 h1,
 h2,
