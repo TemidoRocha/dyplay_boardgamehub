@@ -27,7 +27,10 @@
 
   <div class="form-group">
     <label for="gameList"> Select your Game </label>
-    <input type="text" name='gameList' id='gameList' required class="form-control">
+    <select type="text" name='gameList' id='gameList' required class="form-control">
+      {{#each gameList as |item|}}
+      <option value="{{item}}">{{item}}</option>
+      {{/each}}
   </div>
 
   
