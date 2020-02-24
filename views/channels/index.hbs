@@ -1,4 +1,10 @@
 <h1>
   this is the Page showing all the channels
-  
-</h1>
+  </h1>
+
+  {{#each data}}
+  <a href="/channels/{{_id}}">{{name}}</a>
+  {{timestamp}}
+  <br>
+  {{/each}}
+
