@@ -1,3 +1,12 @@
-<h1>
-  Create a chennel view!
-</h1>
+ 
+<h1>Create a New Channel</h1>
+
+<form method="POST" enctype="multipart/form-data">
+  <label for="input-name">Channel Name</label>
+  <input type="text" name="name" id="input-name" placeholder="Channel Name">
+  <label for="desciption">Desciption</label>
+  <textarea name="description" id="description" placeholder=" Desciption of the channel"></textarea>
+  <label for="image">Image</label>
+  <input type="file" name="image" id="image" accept="image/*" multiple />
+  <button>Create Channel</button>
+</form>
