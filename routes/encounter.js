@@ -32,7 +32,16 @@ router.get('/single/:id', (req, res, next) => {
 });
 
 router.get('/single/:id/edit', (req, res, next) => {
-  res.render('encounter/edit');
+  Event.findById(req.params.id)
+    .populate('user')
+    .then(singleEvent => {
+      singleEvent.total = gameList;//in order to pass the total value of the list
+      res.render('encounter/edit', singleEvent);
+    })
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
 });
 
 //post methods
@@ -47,7 +56,11 @@ router.post('/create', (req, res, next) => {
     numberOfPlayer,
     gameList
   })
-    .then(encounter => res.redirect('encounter/single', encounter))
+    .then(encounter => {
+      console.log(encounter);
+
+      res.render('encounter/single', encounter);
+    })
     .catch(error => {
       console.log(error);
       next(error);
@@ -58,7 +71,25 @@ router.post('/create', (req, res, next) => {
 router.post('/single/:id/delete', (req, res, next) => {
   console.log(req.params.id);
   Event.findByIdAndRemove(req.params.id)
-    .then(() => res.redirect('/'))
+    .then(() => res.redirect('/encounter'))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
+//edit event
+router.post('/single/:id/edit', (req, res, next) => {
+  const id = req.params.id;
+  const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
+  Event.findByIdAndUpdate(
+    id,
+    { eventName, latitude, longitude, date, numberOfPlayer, gameList },
+    { runValidators: true }
+  )
+    .then(event => {
+      Event.findById(event._id).then(event => res.render('encounter/single', event));
+    })
     .catch(error => {
       console.log(error);
       next(error);
@@ -81,6 +112,16 @@ router.post('/single/addComment', (req, res, next) => {
         res.render('encounter/single', encounter);
       })
     )
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
+//delete the comment on the event
+router.post('/single/:id/deleteComment', (req, res, next) => {
+  Event.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect('encounter/index'))
     .catch(error => {
       console.log(error);
       next(error);
