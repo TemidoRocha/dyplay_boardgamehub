@@ -54,10 +54,33 @@ router.post('/create', (req, res, next) => {
     });
 });
 
-router.post('/:id/delete', (req, res, next) => {
+//delete event
+router.post('/single/:id/delete', (req, res, next) => {
   console.log(req.params.id);
   Event.findByIdAndRemove(req.params.id)
     .then(() => res.redirect('/'))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
+//insert the comment on the event. the id come on the query
+router.post('/single/addComment', (req, res, next) => {
+  const { player, comment } = req.body;
+  Event.findByIdAndUpdate(
+    {
+      _id: req.query.event_id
+    },
+    {
+      $push: { comments: { player, comment } }
+    }
+  )
+    .then(encounter =>
+      Event.findById(encounter._id).then(encounter => {
+        res.render('encounter/single', encounter);
+      })
+    )
     .catch(error => {
       console.log(error);
       next(error);
