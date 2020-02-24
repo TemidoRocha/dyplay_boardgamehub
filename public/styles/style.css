@@ -95,7 +95,8 @@ footer {
   .signUpMain .signUpName {
     display: flex;
     flex-direction: column; }
-  .signUpMain .formMain {
+  .signUpMain .formMain,
+  .signUpMain .gameYouPlay {
     align-items: center;
     justify-content: space-evenly;
     display: flex;
