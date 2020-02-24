@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const Channelschema = new mongoose.Schema({
+const Postschema = new mongoose.Schema({
   name: {
     type: String,
     unique: true,
@@ -11,6 +11,11 @@ const Channelschema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    required: true
+  },
+  channel: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Channel',
     required: true
   },
   desciption: {
@@ -22,4 +27,4 @@ const Channelschema = new mongoose.Schema({
   timestamp: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Channel', Channelschema);
+module.exports = mongoose.model('Post', Postschema);
