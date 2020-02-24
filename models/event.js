@@ -5,7 +5,7 @@ const gameList = require('./../variables');
 
 const schema = new mongoose.Schema(
   {
-    gameName: {
+    eventName: {
       type: String
     },
     host: {
@@ -26,7 +26,6 @@ const schema = new mongoose.Schema(
         }
       ]
     },
-    hour: String,
     date: {
       type: Date,
       min: new Date()

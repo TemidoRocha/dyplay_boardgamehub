@@ -1,1 +1,38 @@
-<p>let create</p>
+<header class='formEdit'>
+  <h2>Add new Event</h2>
+</header>
+
+<form action="/encounter/create" method="POST"class='formEdit'>
+  <div class="form-group">
+    <label for="eventName"> Event Name </label>
+    <input type="text" name='eventName' id='eventName' placeholder="insert the event name" required class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="Latitude Longitude"> Location </label>
+    <input type="number" placeholder="Latitude" name="latitude" step="any" class="form-control">
+    <br>
+    <input type="number" placeholder="Longitude" name="longitude" step="any" class="form-control">
+  </div>
+  
+  <div class="form-group">
+    <label for="eventDate"> Event Date </label>
+    <input type="datetime-local" name='eventDate' id='eventDate' required class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="playerNumber"> Number of Players </label>
+    <input type="number" name='playerNumber' id='playerNumber' min="2" required value="2" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="gameSelection"> Select your Game </label>
+    <input type="text" name='gameSelection' id='gameSelection' required class="form-control">
+  </div>
+
+  
+
+
+  <button type="submit" class="btn btn-primary"> Submit </button>
+  
+</form>

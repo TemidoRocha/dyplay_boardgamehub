@@ -9,9 +9,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/create', (req, res, next) => {
-  res.render('create', { title: 'Hello Manuel!' });
+  res.render('encounter/create', { title: 'Hello Manuel!' });
 });
 
+router.get('/single', (req, res, next) => {
+  res.render('encounter/single');
+});
 
+router.get('/single/edit', (req, res, next) => {
+  res.render('encounter/edit');
+});
 
 module.exports = router;
