@@ -1,1 +1,17 @@
-<p>Welcome to {{title}}</p>
+<ul class="list-group-flush">
+
+{{#each encounters}}
+<a href="/encounter/single/{{ _id }}">
+<div style="margin-bottom: 2em;">
+<li class="list-group-item"> eventName: {{eventName}}</li>
+<li class="list-group-item">host: {{host}}</li>
+<li class="list-group-item">location: {{location}}</li>
+<li class="list-group-item">date: {{date}}</li>
+<li class="list-group-item">numberOfPlayer: {{numberOfPlayer}}</li>
+<li class="list-group-item">waitingList: {{ waitingList}}</li>
+<li class="list-group-item">game: {{gameList}}</li>
+<li class="list-group-item">comments: {{ comments }}</li>
+
+</div></a>
+{{/each}}
+</ul>

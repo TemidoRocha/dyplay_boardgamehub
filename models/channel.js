@@ -13,7 +13,7 @@ const Channelschema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  desciption: {
+  description: {
     type: String
   },
   picture: {

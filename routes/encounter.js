@@ -5,24 +5,33 @@ const router = new Router();
 const routeGuard = require('./../middleware/route-guard');
 
 const Event = require('./../models/event');
+const gameList = require('./../variables');
 
 //get methods
 
 router.get('/', (req, res, next) => {
   Event.find()
-    .then(encounters => res.render('encounter', { encounters }))
+    .then(encounters => {
+      res.render('encounter/index', { encounters });
+    })
     .catch(error => next(error));
 });
 
 router.get('/create', (req, res, next) => {
-  res.render('encounter/create', { title: 'Hello Manuel!' });
+  res.render('encounter/create', { gameList });
 });
 
-router.get('/single', (req, res, next) => {
-  res.render('encounter/single');
+router.get('/single/:id', (req, res, next) => {
+  const id = req.params.id;
+  Event.findById(id)
+    .then(singleEvent => res.render('encounter/single', singleEvent))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
 });
 
-router.get('/single/edit', (req, res, next) => {
+router.get('/single/:id/edit', (req, res, next) => {
   res.render('encounter/edit');
 });
 
@@ -39,6 +48,16 @@ router.post('/create', (req, res, next) => {
     gameList
   })
     .then(encounter => res.redirect('encounter/single', encounter))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  console.log(req.params.id);
+  Event.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect('/'))
     .catch(error => {
       console.log(error);
       next(error);
