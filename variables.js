@@ -1,5 +1,4 @@
 'use strict';
-  
 
 const gameList = [
   'Dungeons and Dragons',

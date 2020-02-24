@@ -74,10 +74,20 @@ footer {
   background-color: grey; }
   footer img {
     width: 20px; }
-    footer img a {
-      margin-left: 100px; }
     footer img:last-child {
       margin-right: 0.5em; }
+
+.signUpMain {
+  display: flex;
+  flex-direction: column; }
+  .signUpMain .imageSignUp {
+    max-width: 300px;
+    align-self: center; }
+  .signUpMain .signUpName {
+    display: flex;
+    flex-direction: column; }
+  .signUpMain form {
+    flex-direction: row; }
 
 textarea {
   min-height: 8em;

@@ -18,6 +18,10 @@ const schema = new mongoose.Schema(
     passwordHash: {
       type: String
     },
+    role: {
+      type: String,
+      enum: ['admin', 'player', 'guest']
+    },
     location: {
       type: {
         type: String,
