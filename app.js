@@ -17,9 +17,10 @@ const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const encounterRouter = require('./routes/encounter');
 const channelsRouter = require('./routes/channels');
-
+const hbs = require('hbs');
 const app = express();
 //TODO - Configure multer and everything you need to upload files
+hbs.registerPartials(join(__dirname, 'views/partials'));
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

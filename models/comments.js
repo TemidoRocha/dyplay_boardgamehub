@@ -3,11 +3,6 @@
 const mongoose = require('mongoose');
 
 const Commentschema = new mongoose.Schema({
-  name: {
-    type: String,
-    unique: true,
-    require: true
-  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -23,7 +18,7 @@ const Commentschema = new mongoose.Schema({
     ref: 'Post',
     required: true
   },
-  comment: {
+  content: {
     type: String
   },
   timestamp: { type: Date, default: Date.now }
