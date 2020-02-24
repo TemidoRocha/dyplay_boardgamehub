@@ -10,8 +10,8 @@ const schema = new mongoose.Schema(
     },
     host: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+      ref: 'User'
+      //  required: true
     },
     location: {
       type: {
@@ -33,10 +33,11 @@ const schema = new mongoose.Schema(
     numberOfPlayer: {
       type: Number,
       required: true,
-      min: 1
+      min: 2
     },
     waitingList: {
-      type: String
+      type: Number,
+      default: 0
     },
     gameList: {
       type: String,
