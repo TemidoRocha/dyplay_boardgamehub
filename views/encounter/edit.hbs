@@ -1,1 +1,37 @@
-<h1>here we will edit each single encounter</h1>
+<header class='formEdit'>
+  <h2>Edit Event</h2>
+</header>
+
+<form action="/encounter/single/{{ _id }}/edit" method="POST"class='formEdit'>
+  <h3>Host: {{host.name}}</h3>
+  <button type="submit" class="btn btn-primary"> Submit </button>
+  <div class="form-group">
+    <label for="eventName"> Event Name </label>
+    <input type="text" name='eventName' id='eventName' value="{{eventName}}" required class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="Latitude Longitude"> Location </label>
+    <input type="number" value="{{location.coordinates.[1]}}" name="latitude" step="any" class="form-control">
+    <br>
+    <input type="number" value="{{ location.coordinates.[0]}}" name="longitude" step="any" class="form-control">
+  </div>
+  
+  <div class="form-group">
+    <label for="date"> Event Date </label>
+    <input type="datetime-local" name='date' id='date' required class="form-control" value="date">
+  </div>
+
+  <div class="form-group">
+    <label for="numberOfPlayer"> Number of Players </label>
+    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="{{numberOfPlayer}}" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="gameList"> Select your Game </label>
+    <select type="text" name='gameList' id='gameList' required class="form-control">
+      {{#each total as |item|}}
+      <option value="{{item}}">{{item}}</option>
+      {{/each}}
+  </div>
+</form>

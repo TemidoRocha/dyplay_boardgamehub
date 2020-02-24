@@ -2,13 +2,13 @@
 <ul class="list-group-flush">
   <li class="list-group-item"><p>eventName: {{eventName}}</p></li>
   <li class="list-group-item"><p>host: {{host}}</p></li>
-  <li class="list-group-item"><p>location: {{location}}</p></li>
+  <li class="list-group-item"><p>location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}}</p></li>
   <li class="list-group-item"><p>date: {{date}}</p></li>
   <li class="list-group-item"><p>numberOfPlayer: {{numberOfPlayer}}</p></li>
   <li class="list-group-item"><p>waitingList: {{ waitingList}}</p></li>
   <li class="list-group-item"><p>game: {{gameList}}</p></li>
   <li class="list-group-item"></li><br></li>
-  <li class="list-group-item"><a href="/encounter/{{ _id }}/edit" class="btn btn-outline-success"> edit </a></li>
+  <li class="list-group-item"><a href="/encounter/single/{{ _id }}/edit" class="btn btn-outline-success"> edit </a></li>
   <li class="list-group-item"><form action="/encounter/single/{{ _id }}/delete" method="POST"><button class="btn btn-outline-danger"> delete </button></form></li>
 </ul>
 
