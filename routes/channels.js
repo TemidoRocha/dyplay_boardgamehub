@@ -53,7 +53,13 @@ router.post('/:channel_id/:post:id/edit', (req, res, next) => {
 
 // channel routes
 router.get('/', (req, res, next) => {
-  res.render('channels');
+  Channel.find()
+    .then(data => {
+      res.render('channels', { data });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 router.get('/create', (req, res, next) => {
@@ -62,16 +68,17 @@ router.get('/create', (req, res, next) => {
 
 router.post('/create', uploader.single('picture'), (req, res, next) => {
   const author = req.user._id;
-  const { name, desciption } = req.body;
-  const { url } = req.files;
+  console.log(author);
+  const { name, description } = req.body;
+  const { url } = req.file;
   Channel.create({
     name,
-    desciption,
+    description,
     picture: url,
     author
   })
     .then(channel => {
-      res.redirect(`/channel/${channel._id}`);
+      res.redirect(`/channels/${channel._id}`);
     })
     .catch(error => {
       next(error);
@@ -79,9 +86,15 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
 });
 
 router.get('/:channel_id', (req, res, next) => {
-  const { id } = req.body;
-
-  res.render('channels/singleview');
+  const { channel_id } = req.params;
+  Channel.findById(channel_id)
+    .then(data => {
+      console.log(channel_id);
+      res.render(`channels/singleview`, { data });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 router.get('/:channel_id/edit', (req, res, next) => {
   const { id } = req.body;

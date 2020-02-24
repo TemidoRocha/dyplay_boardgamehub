@@ -9,6 +9,18 @@ $grey: hsla(0, 0, 75%, 0.5);
 	}
 }
 
+input,
+textarea,
+button,
+.btn {
+	border: 1px solid $grey;
+	border-radius: 1em;
+	margin-bottom: 1em;
+	font: inherit;
+	color: inherit;
+	background-color: transparent;
+}
+
 body {
 	width: 100%;
 	font-family: sans-serif;
@@ -44,14 +56,13 @@ nav {
 	width: 100%;
 	a,
 	button {
-		border: 0;
-		margin-right: 2em;
 		&:not(:last-child) {
 			margin-right: 3em;
 		}
 		&:first-child {
 			margin-right: auto;
 		}
+
 		img {
 			height: 80px;
 			width: 150px;
@@ -79,19 +90,6 @@ img {
 form {
 	display: flex;
 	flex-direction: column;
-}
-
-input,
-textarea,
-button,
-.btn {
-	padding: 1em;
-	border: 1px solid $grey;
-	border-radius: 0;
-	margin-bottom: 1em;
-	font: inherit;
-	color: inherit;
-	background-color: transparent;
 }
 
 .signUpMain {
@@ -141,19 +139,27 @@ button,
 	}
 }
 
+.signInMain {
+	margin: 0 20%;
+}
+
 textarea {
 	min-height: 8em;
 	resize: vertical;
 }
 
+.imageSignIn {
+	max-width: 300px;
+	align-self: center;
+	margin: 0 auto;
+}
+
 footer {
-	bottom: 0em;
 	display: flex;
-	align-content: flex-end;
 	flex-direction: row;
 	justify-content: space-between;
 	background-color: grey;
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 30px;
 
