@@ -3,7 +3,7 @@
 
 body {
   max-width: 100%;
-  padding: 0 1em;
+  padding: 0;
   margin: 0 auto;
   font-family: sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17,14 +17,15 @@ nav {
   display: flex;
   align-items: center;
   position: relative;
-  background-color: lightgray; }
+  background-color: lightgray;
+  width: 100%; }
   nav a,
   nav button {
-    padding: 1em 0;
-    border: 0; }
+    border: 0;
+    margin-right: 2em; }
     nav a:not(:last-child),
     nav button:not(:last-child) {
-      margin-right: 1em; }
+      margin-right: 3em; }
     nav a:first-child,
     nav button:first-child {
       margin-right: auto; }
@@ -73,6 +74,10 @@ footer {
   background-color: grey; }
   footer img {
     width: 20px; }
+    footer img a {
+      margin-left: 100px; }
+    footer img:last-child {
+      margin-right: 0.5em; }
 
 textarea {
   min-height: 8em;

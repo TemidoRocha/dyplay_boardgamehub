@@ -11,7 +11,7 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 body {
 	max-width: 100%;
-	padding: 0 1em;
+	padding: 0;
 	margin: 0 auto;
 	font-family: sans-serif;
 	font-family: $font-sans;
@@ -28,12 +28,13 @@ nav {
 	align-items: center;
 	position: relative;
 	background-color: lightgray;
+	width: 100%;
 	a,
 	button {
-		padding: 1em 0;
 		border: 0;
+		margin-right: 2em;
 		&:not(:last-child) {
-			margin-right: 1em;
+			margin-right: 3em;
 		}
 		&:first-child {
 			margin-right: auto;
@@ -87,6 +88,9 @@ footer {
 	background-color: grey;
 
 	img {
+		&:last-child {
+			margin-right: 0.5em;
+		}
 		width: 20px;
 	}
 }
