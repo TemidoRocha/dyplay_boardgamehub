@@ -18,7 +18,7 @@ const Postschema = new mongoose.Schema({
     ref: 'Channel',
     required: true
   },
-  desciption: {
+  description: {
     type: String
   },
   picture: {

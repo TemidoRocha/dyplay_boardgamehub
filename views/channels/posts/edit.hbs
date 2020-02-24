@@ -2,3 +2,12 @@
 This page is to edit a post!!
 
 </h1>
+<form method="POST" enctype="multipart/form-data">
+  <label for="input-title">Post Title</label>
+  <input type="text" name="title" id="input-title" placeholder="Post Title">
+  <label for="description">Desciption</label>
+  <textarea name="description" id="description" placeholder=" Desciption of the post"></textarea>
+  <label for="picture">Picture</label>
+  <input type="file" name="picture" id="picture" accept="image/*" multiple />
+  <button>Create Post</button>
+</form>

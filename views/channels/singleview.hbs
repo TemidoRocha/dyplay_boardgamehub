@@ -2,8 +2,16 @@
   Channel single view
 </h1>
 
-{{#each data}}
+{{#each channel}}
 {{name}}
 {{description}}
 <img src="{{picture}}" alt="{{name}}">
+{{/each}}
+
+
+<h1> In here will come the posts from this Channel</h1>
+
+
+{{#each posts}}
+<a href="/channels/{{channel._id}}/{{_id}}">{{title}}</a>
 {{/each}}

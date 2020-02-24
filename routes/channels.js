@@ -6,40 +6,83 @@ const router = new Router();
 const Post = require('./../models/post');
 
 const Channel = require('./../models/channel');
+const Comments = require('./../models/comments');
 const uploader = require('./../multer-configure.js');
 
-// posts routes
+//comments routes
 
-router.get('/:channel_id/create_post', (req, res, next) => {
-  const { id } = req.body;
-  res.render('channels/post/create');
-});
-router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, next) => {
-  const { title, content } = req.body;
-  const { channel_id } = req.params;
+router.post('/:channel_id/:post_id/comment', (req, res, next) => {
+  const { channel_id, post_id } = req.params;
+  const { content } = req.body;
 
-  const { url } = req.files;
-
-  const author = req.user._id;
-
-  Post.create({
-    title,
-    content,
-    channel: channel_id,
-    author,
-    photos: url
-  })
+  Post.findById(post_id)
     .then(post => {
-      res.redirect(`/channel/${post.channel}/post/${post._id}`);
+      if (!post) {
+        return Promise.reject(new Error('NOT_FOUND'));
+      } else {
+        return Comments.create({
+          channel: channel_id,
+          post: post_id,
+          author: req.user._id,
+          content
+        });
+      }
+    })
+    .then(() => {
+      res.redirect(`/channels/${channel_id}/${post_id}`);
     })
     .catch(error => {
       next(error);
     });
-  res.redirect('channels/:post_id/singlepost');
+});
+
+// posts routes
+
+router.get('/:channel_id/create_post', (req, res, next) => {
+  res.render('channels/posts/create');
+});
+
+router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, next) => {
+  const { title, description } = req.body;
+  const { channel_id } = req.params;
+
+  const { url } = req.file;
+
+  Post.create({
+    title,
+    description,
+    channel: channel_id,
+    author: req.user._id,
+    picture: url
+  })
+    .then(post => {
+      res.redirect(`${channel_id}/${post._id}`, post);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 router.get('/:channel_id/:post_id', (req, res, next) => {
-  const { id } = req.body;
-  res.render('channels/post/singlepost');
+  const { post_id } = req.params;
+
+  let post;
+  Post.findById(post_id)
+    .populate('channel author')
+    .then(document => {
+      post = document;
+      if (!document) {
+        return Promise.reject(new Error('NOT_FOUND'));
+      } else {
+        return Comments.find({ post: post_id }).populate('author');
+      }
+    })
+    .then(comments => {
+      console.log(post);
+      res.render('channels/posts/singlepost', { post, comments });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 router.get('/:channel_id/:post:id/edit', (req, res, next) => {
@@ -68,7 +111,7 @@ router.get('/create', (req, res, next) => {
 
 router.post('/create', uploader.single('picture'), (req, res, next) => {
   const author = req.user._id;
-  console.log(author);
+
   const { name, description } = req.body;
   const { url } = req.file;
   Channel.create({
@@ -87,14 +130,39 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
 
 router.get('/:channel_id', (req, res, next) => {
   const { channel_id } = req.params;
+  let channel;
   Channel.findById(channel_id)
-    .then(data => {
-      console.log(channel_id);
-      res.render(`channels/singleview`, { data });
+    .then(document => {
+      if (!document) {
+        next(new Error('NOT_FOUND'));
+      } else {
+        channel = document;
+        return Post.find({ channel: channel_id })
+          .populate('channels author')
+          .limit(50);
+      }
+    })
+    .then(posts => {
+      res.render('channels/singleview', { channel, posts });
     })
     .catch(error => {
       next(error);
     });
+  //   .then(data => {
+  //     console.log(channel_id);
+  //     res.render(`channels/singleview`, { data });
+  //   })
+  //   .catch(error => {
+  //     next(error);
+  //   });
+  // Post.find()
+  // .then(posts => {
+
+  //     res.render(`channels/singleview`, { posts });
+  //   })
+  //   .catch(error => {
+  //     next(error);
+  //   });
 });
 router.get('/:channel_id/edit', (req, res, next) => {
   const { id } = req.body;
