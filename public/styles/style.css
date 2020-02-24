@@ -74,8 +74,6 @@ footer {
   background-color: grey; }
   footer img {
     width: 20px; }
-    footer img a {
-      margin-left: 100px; }
     footer img:last-child {
       margin-right: 0.5em; }
 
