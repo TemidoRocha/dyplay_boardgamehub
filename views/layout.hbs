@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/styles/style.css" />
-  </head>
-  <body>
-    <nav>
-      <a href="/">Home</a>
-      {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
-        <form action="/authentication/sign-out" method="POST">
-          <button>Sign Out</button>
-        </form>
-        {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
-        <a href="/authentication/sign-up">Sign Up</a>
-      {{/if}}
-    </nav>
-    {{{body}}}
-    <script src="/scripts/script.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/style.css" />
+</head>
+
+<body>
+  <nav>
+    <a href="/"><img src="/images/dy play one color.png" alt="Do you play logo" /></a>
+    {{#if user}}
+    <!-- <a href="/">{{user.name}}'s Profile</a> -->
+    <form action="/authentication/sign-out" method="POST">
+      <button>Sign Out</button>
+    </form>
+    {{else}}
+    <a href="/authentication/sign-in">Log In</a>
+    <a href="/authentication/sign-up">Sign Up</a>
+    {{/if}}
+  </nav>
+  {{{body}}}
+
+  <footer>
+    <div><a href="#">Copyright © 2020</a></div>
+    <div><a href="#">Contact us</a></div>
+    <div><a href="#">FAQ</a></div>
+    <div>Social Media: <a href="#"><img src="/images/1200px-Facebook_Icon_(Single_Path_-_Transparent__f_).svg.png"
+          alt="facebook logo"></a>
+      <a href="#"><img src="/images/Instagram_icon.png" alt="instagram logo"></a>
+    </div>
+
+  </footer>
+  <script src="/scripts/script.js"></script>
+
+</body>
+
 </html>
