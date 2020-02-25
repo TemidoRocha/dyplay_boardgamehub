@@ -17,11 +17,11 @@ router.get('/', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get('/create', (req, res, next) => {
+router.get('/create', routeGuard, (req, res, next) => {
   res.render('encounter/create', { gameList });
 });
 
-router.get('/single/:id', (req, res, next) => {
+router.get('/single/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Event.findById(id)
     .then(singleEvent => res.render('encounter/single', singleEvent))
@@ -31,7 +31,7 @@ router.get('/single/:id', (req, res, next) => {
     });
 });
 
-router.get('/single/:id/edit', (req, res, next) => {
+router.get('/single/:id/edit', routeGuard, (req, res, next) => {
   Event.findById(req.params.id)
     .populate('user')
     .then(singleEvent => {
@@ -45,7 +45,7 @@ router.get('/single/:id/edit', (req, res, next) => {
 });
 
 //post methods
-router.post('/create', (req, res, next) => {
+router.post('/create', routeGuard, (req, res, next) => {
   const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
   Event.create({
     eventName,
@@ -68,7 +68,7 @@ router.post('/create', (req, res, next) => {
 });
 
 //delete event
-router.post('/single/:id/delete', (req, res, next) => {
+router.post('/single/:id/delete', routeGuard, (req, res, next) => {
   Event.findByIdAndRemove(req.params.id)
     .then(() => res.redirect('/encounter'))
     .catch(error => {
@@ -78,7 +78,7 @@ router.post('/single/:id/delete', (req, res, next) => {
 });
 
 //edit event
-router.post('/single/:id/edit', (req, res, next) => {
+router.post('/single/:id/edit', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
   Event.findByIdAndUpdate(
@@ -96,7 +96,7 @@ router.post('/single/:id/edit', (req, res, next) => {
 });
 
 //insert the comment on the event. the id come on the query
-router.post('/single/addComment', (req, res, next) => {
+router.post('/single/addComment', routeGuard, (req, res, next) => {
   const player = req.user.name;
   const { comment } = req.body;
   Event.findByIdAndUpdate(
@@ -119,8 +119,7 @@ router.post('/single/addComment', (req, res, next) => {
 });
 
 //delete the comment on the event, it is coming back
-router.post('/single/:id/deleteComment', (req, res, next) => {
-  console.log('Mys name is manuel' + req.params.id);
+router.post('/single/:id/deleteComment', routeGuard, (req, res, next) => {
   Event.update({}, { $pull: { comments: { _id: req.params.id } } }, { multi: true })
     .then(() => res.redirect('/encounter'))
     .catch(error => {
