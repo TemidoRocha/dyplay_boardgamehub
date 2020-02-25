@@ -12,7 +12,10 @@ const uploader = require('./../multer-configure.js');
 //comments routes
 router.get('/:channel_id/delete', (req, res, next) => {
   const { channel_id } = req.params;
-  Channel.findByIdAndDelete(channel_id)
+  Channel.findOneAndDelete({
+    _id: channel_id,
+    author: req.user._id
+  })
     .then(() => {
       res.redirect('/channels');
     })
@@ -47,7 +50,10 @@ router.post('/:channel_id/:post_id/comment', (req, res, next) => {
 router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
   const { comment_id, channel_id, post_id } = req.params;
 
-  Comments.findByIdAndDelete(comment_id)
+  Comments.findByIdAndDelete({
+    _id: comment_id,
+    author: req.user._id
+  })
     .then(() => {
       res.redirect(`/channels/${channel_id}/${post_id}`);
     })
@@ -66,7 +72,11 @@ router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, n
   const { title, description } = req.body;
   const { channel_id } = req.params;
 
-  const { url } = req.file;
+  let url;
+
+  if (req.file) {
+    url = req.file.url;
+  }
 
   Post.create({
     title,
@@ -103,7 +113,11 @@ router.get('/:channel_id/edit', (req, res, next) => {
 router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) => {
   const { channel_id } = req.params;
   const { name, description } = req.body;
-  const { url } = req.file;
+  let url;
+
+  if (req.file) {
+    url = req.file.url;
+  }
   Channel.findOneAndUpdate(
     {
       _id: channel_id,
@@ -126,7 +140,10 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
 router.get('/:channel_id/:post_id/delete', (req, res, next) => {
   const { post_id, channel_id } = req.params;
 
-  Post.findByIdAndDelete(post_id)
+  Post.findOneAndDelete({
+    _id: post_id,
+    author: req.user._id
+  })
     .then(() => {
       res.redirect(`/channels/${channel_id}`);
     })
@@ -157,7 +174,11 @@ router.get('/:channel_id/:post_id/edit', (req, res, next) => {
 router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res, next) => {
   const { channel_id, post_id } = req.params;
   const { title, description } = req.body;
-  const { url } = req.file;
+  let url;
+
+  if (req.file) {
+    url = req.file.url;
+  }
 
   Post.findOneAndUpdate(
     {
@@ -218,10 +239,10 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
   const author = req.user._id;
 
   const { name, description } = req.body;
-  let { url } = '';
+  let url;
 
   if (req.file) {
-    url = req.file;
+    url = req.file.url;
   }
 
   Channel.create({
