@@ -7,12 +7,13 @@
 
 <aside class= "channelDesc">
 {{#with channel}}
+<aside style="background-image:url({{picture}})">
 {{name}}
 {{#if picture}}
 <img class="channelImg" src="{{picture}}" alt="{{name}}">
 {{/if}}
 {{description}}
-
+</aside>
 {{/with}}
 {{#if sameUser}}
 <a href="/channels/{{_id}}/delete"><button>DELETE Channel</button></a>

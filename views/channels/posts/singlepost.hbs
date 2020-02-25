@@ -6,11 +6,13 @@
 
 <div class="channel">
 {{#with post}}
+<aside style="background-image:url({{picture}})">
 {{title}}
 {{description}}
 {{#if picture}}
 <img class="channelImg" src="{{picture}}" alt="{{title}}">
 {{/if}}
+</aside>
 {{/with}}
 {{#if sameUser}}
 <a href="/channels/{{post.channel._id}}/{{post._id}}/delete"><button>DELETE POST</button></a>
