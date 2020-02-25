@@ -1,4 +1,13 @@
 <div id="sample-map"></div>
+<div class="LatLng">
+  <div>
+    Latitude:<br> <input type="number" value=lat step=0.00000000000001 name="lat" id="lat">
+  </div>
+  <div>
+    Longitude:<br><input type="number" value=lng step=0.000000000000001 name="lng" id="lng">
+  </div>
+</div>
+
 
 <script>
   const $sampleMap = document.getElementById('sample-map');
@@ -46,7 +55,6 @@
             lat: value.latitude,
             lng: value.longitude
           },
-
           map
         });
       })
@@ -69,6 +77,10 @@
         lng: event.latLng.lng()
       };
 
+      $lat.value = position.lat
+      $lng.value = position.lng
+
+
       if (pin) {
         pin.setMap(null);
       }
@@ -79,8 +91,8 @@
     });
   }
 </script>
-<input type="number" value=0 step=0.0000001 name="lat" id="lat">
-<input type="number" value=0 step=0.0000001 name="lng" id="lng">
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
   defer></script>

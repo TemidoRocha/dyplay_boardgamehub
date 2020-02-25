@@ -9,7 +9,6 @@ router.get('/sign-in', (req, res, next) => {
 	res.render('sign-in');
 });
 
-
 router.post(
 	'/sign-in',
 	passport.authenticate('sign-in', {

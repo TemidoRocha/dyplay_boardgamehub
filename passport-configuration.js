@@ -32,6 +32,8 @@ passport.use(
 		(req, a, b, callback) => {
 			const { name, password, email, lat, lng } = req.body;
 			const location = { coordinates: [lat, lng] };
+			console.log(req.body.lat);
+
 			bcryptjs
 				.hash(password, 10)
 				.then(hash => {
