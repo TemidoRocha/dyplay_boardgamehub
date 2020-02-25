@@ -14,7 +14,7 @@ button,
   background-color: transparent; }
 
 body {
-  background-color: black;
+  background-color: lightgray;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -44,7 +44,7 @@ a {
 nav {
   display: flex;
   align-items: center;
-  background-color: lightgray;
+  background-color: lightblue;
   width: 100%;
   padding: 0 50px; }
   nav a,
@@ -148,7 +148,8 @@ footer {
   width: 100%;
   align-self: flex-end;
   justify-content: space-between;
-  background-color: grey;
+  background-color: inherit;
+  padding: 0 20px;
   height: 30px;
   margin-top: auto; }
   footer img {
