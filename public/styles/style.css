@@ -162,4 +162,35 @@ footer {
     footer img:last-child {
       margin-right: 0.5em; }
 
+.sectionComments {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  margin: 2em; }
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  align-items: top; }
+
+.channelDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.5em; }
+
+.channelProp {
+  margin: 1em;
+  padding: 1em;
+  border: 2px solid grey;
+  border-radius: 15px; }
+
+.channelImg {
+  width: 50px; }
+
 /*# sourceMappingURL=style.css.map */

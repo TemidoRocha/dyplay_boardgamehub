@@ -1,24 +1,51 @@
 <h1>
   Channel single view
 </h1>
+
+<section class="sectionComments">
+  <div class="channel">
+
+<aside class= "channelDesc">
+{{#with channel}}
+{{name}}
+{{#if picture}}
+<img class="channelImg" src="{{picture}}" alt="{{name}}">
+{{/if}}
+{{description}}
+
+{{/with}}
 {{#if sameUser}}
 <a href="/channels/{{_id}}/delete"><button>DELETE Channel</button></a>
 <a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
 {{/if}}
-
-{{#with channel}}
-{{name}}
-{{description}}
-{{#if picture}}
-<img src="{{picture}}" alt="{{name}}">
-{{/if}}
-{{/with}}
-
+</aside>
 
 <h1> In here will come the posts from this Channel</h1>
 
 
 {{#each posts}}
+<aside class="channelProp">
 <a href="/channels/{{channel._id}}/{{_id}}">{{title}}</a>
+</aside>
 {{/each}}
+
+</div>
+<div>
+  <aside>
 <a href="/channels/{{channel._id}}/create_post"><button>Create a new Post</button></a>
+<h3>Trending channels</h3>
+<a href="#">Trending channel 1</a><br>
+<a href="#">Trending channel 2</a><br>
+<a href="#">Trending channel 3</a><br>
+<a href="#">Trending channel 4</a><br>
+<h4>Online Now</h4>
+<a href="#">Online player 1</a><br>
+<a href="#">Online player 2</a><br>
+<a href="#">Online player 3</a><br>
+
+
+
+
+  </aside>
+</div>
+</section>

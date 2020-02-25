@@ -1,22 +1,21 @@
 <h1>
   This is the single post view
 </h1>
-
-{{#if sameUser}}
-<a href="/channels/{{post.channel._id}}/{{post._id}}/delete"><button>DELETE POST</button></a>
-<a href="/channels/{{post.channel._id}}/{{post._id}}/edit"><Button>Edit Post</Button></a>
-{{/if}}
+<section class="sectionComments">
 
 
+<div class="channel">
 {{#with post}}
 {{title}}
 {{description}}
 {{#if picture}}
-<img src="{{picture}}" alt="{{title}}">
+<img class="channelImg" src="{{picture}}" alt="{{title}}">
 {{/if}}
 {{/with}}
-
-
+{{#if sameUser}}
+<a href="/channels/{{post.channel._id}}/{{post._id}}/delete"><button>DELETE POST</button></a>
+<a href="/channels/{{post.channel._id}}/{{post._id}}/edit"><Button>Edit Post</Button></a>
+{{/if}}
   <h4>Comments</h4>
   {{#each comments}}
     {{>comment}}
@@ -24,3 +23,16 @@
   {{/each}}
   <h4>Add a Comment</h4>
   {{> commentform}}
+</div>
+<aside>
+  <h3>Trending channels</h3>
+<a href="#">Trending channel 1</a><br>
+<a href="#">Trending channel 2</a><br>
+<a href="#">Trending channel 3</a><br>
+<a href="#">Trending channel 4</a><br>
+<h4>Online Now</h4>
+<a href="#">Online player 1</a><br>
+<a href="#">Online player 2</a><br>
+<a href="#">Online player 3</a><br>
+</aside>
+</section>
