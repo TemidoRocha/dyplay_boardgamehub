@@ -1,10 +1,11 @@
 <h1>
   This is the single post view
 </h1>
-{{#with post}}
+{{#if sameUser}}
 <a href="/channels/{{channel._id}}/{{_id}}/delete"><button>DELETE POST</button></a>
+{{/if}}
 
-
+{{#with post}}
 {{title}}
 {{description}}
 {{#if picture}}

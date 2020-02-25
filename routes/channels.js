@@ -200,6 +200,8 @@ router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res,
 });
 router.get('/:channel_id/:post_id', (req, res, next) => {
   const { post_id } = req.params;
+  const user = req.user._id;
+  let sameUser;
 
   let post;
   Post.findById(post_id)
@@ -213,8 +215,9 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
       }
     })
     .then(comments => {
-      console.log(post);
-      res.render('channels/posts/singlepost', { post, comments });
+      user.toString() == post.author._id.toString() ? (sameUser = true) : (sameUser = false);
+
+      res.render('channels/posts/singlepost', { post, comments, sameUser });
     })
     .catch(error => {
       next(error);
@@ -261,6 +264,8 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
 
 router.get('/:channel_id', (req, res, next) => {
   const { channel_id } = req.params;
+  const user = req.user._id;
+  let sameUser;
   let channel;
   Channel.findById(channel_id)
     .then(document => {
@@ -274,7 +279,9 @@ router.get('/:channel_id', (req, res, next) => {
       }
     })
     .then(posts => {
-      res.render('channels/singleview', { channel, posts });
+      user.toString() == channel.author.toString() ? (sameUser = true) : (sameUser = false);
+
+      res.render('channels/singleview', { channel, posts, sameUser });
     })
     .catch(error => {
       next(error);

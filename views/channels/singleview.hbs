@@ -1,10 +1,12 @@
 <h1>
   Channel single view
 </h1>
-
-{{#with channel}}
+{{#if sameUser}}
 <a href="/channels/{{_id}}/delete"><button>DELETE Channel</button></a>
 <a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
+{{/if}}
+
+{{#with channel}}
 {{name}}
 {{description}}
 {{#if picture}}
