@@ -11,7 +11,9 @@ const gameList = require('./../variables');
 
 router.get('/', (req, res, next) => {
   Event.find()
+    .populate('host')
     .then(encounters => {
+      console.log(encounters);
       res.render('encounter/index', { encounters });
     })
     .catch(error => next(error));
@@ -24,6 +26,7 @@ router.get('/create', routeGuard, (req, res, next) => {
 router.get('/single/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Event.findById(id)
+    .populate('host')
     .then(singleEvent => res.render('encounter/single', singleEvent))
     .catch(error => {
       console.log(error);
@@ -33,7 +36,7 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
 
 router.get('/single/:id/edit', routeGuard, (req, res, next) => {
   Event.findById(req.params.id)
-    .populate('user')
+    .populate('host')
     .then(singleEvent => {
       singleEvent.total = gameList; //in order to pass the total value of the list
       res.render('encounter/edit', singleEvent);
@@ -49,6 +52,7 @@ router.post('/create', routeGuard, (req, res, next) => {
   const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
   Event.create({
     eventName,
+    host: req.user._id,
     location: {
       coordinates: [longitude, latitude]
     },
@@ -56,11 +60,7 @@ router.post('/create', routeGuard, (req, res, next) => {
     numberOfPlayer,
     gameList
   })
-    .then(encounter => {
-      console.log(encounter);
-
-      res.render('encounter/single', encounter);
-    })
+    .then(() => res.redirect('/encounter'))
     .catch(error => {
       console.log(error);
       next(error);
