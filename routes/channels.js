@@ -62,6 +62,24 @@ router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, n
       next(error);
     });
 });
+router.get('/:channel_id/edit', (req, res, next) => {
+  const { channel_id } = req.params;
+  Channel.findOne({
+    _id: channel_id,
+    author: req.user._id
+  })
+    .then(data => {
+      if (data) {
+        res.render(`channels/edit`, { data });
+      } else {
+        next(new Error('NOT_FOUND'));
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+
+});
 router.get('/:channel_id/:post_id', (req, res, next) => {
   const { post_id } = req.params;
 
@@ -85,14 +103,14 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
     });
 });
 
-router.get('/:channel_id/:post:id/edit', (req, res, next) => {
-  const { id } = req.body;
-  res.render('channels/post/edit');
-});
-router.post('/:channel_id/:post:id/edit', (req, res, next) => {
-  const { id } = req.body;
-  res.redirect('channels/:post_id/singlepost');
-});
+// router.get('/:channel_id/:post:id/edit', (req, res, next) => {
+//   const { id } = req.body;
+//   res.render('channels/post/edit');
+// });
+// router.post('/:channel_id/:post:id/edit', (req, res, next) => {
+//   const { id } = req.body;
+//   res.redirect('channels/:post_id/singlepost');
+// });
 
 // channel routes
 router.get('/', (req, res, next) => {
@@ -128,6 +146,7 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
     });
 });
 
+
 router.get('/:channel_id', (req, res, next) => {
   const { channel_id } = req.params;
   let channel;
@@ -148,26 +167,9 @@ router.get('/:channel_id', (req, res, next) => {
     .catch(error => {
       next(error);
     });
-  //   .then(data => {
-  //     console.log(channel_id);
-  //     res.render(`channels/singleview`, { data });
-  //   })
-  //   .catch(error => {
-  //     next(error);
-  //   });
-  // Post.find()
-  // .then(posts => {
 
-  //     res.render(`channels/singleview`, { posts });
-  //   })
-  //   .catch(error => {
-  //     next(error);
-  //   });
 });
-router.get('/:channel_id/edit', (req, res, next) => {
-  const { id } = req.body;
-  res.render('channels/edit');
-});
+
 
 router.get('/:channel_id/edit', (req, res, next) => {
   const { id } = req.body;
