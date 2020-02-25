@@ -13,13 +13,14 @@ input,
 textarea,
 button,
 .btn {
-	border: 1px solid $grey;
+	border: 2px solid $grey;
 	border-radius: 1em;
 	margin-bottom: 1em;
-	padding-left: 1em;
+	padding: 0 1em;
 	font: inherit;
 	color: black;
-	background-color: transparent;
+	font-weight: bolder;
+	background-color: inherit;
 }
 
 body {
