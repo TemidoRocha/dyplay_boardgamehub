@@ -30,7 +30,7 @@ passport.use(
 			passReqToCallback: true
 		},
 		(req, a, b, callback) => {
-			const { name, password, email, lat, lng } = req.body;
+			const { name, password, email, lat, lng, games, picture } = req.body;
 			const location = { coordinates: [lat, lng] };
 			console.log(req.body.lat);
 
@@ -40,7 +40,9 @@ passport.use(
 					return User.create({
 						name,
 						email,
+						picture,
 						location,
+						games,
 						passwordHash: hash
 					});
 				})

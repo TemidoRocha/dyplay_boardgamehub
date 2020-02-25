@@ -24,7 +24,6 @@ button,
 }
 
 body {
-	background-color: lightgray;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -193,12 +192,11 @@ footer {
 	position: relative;
 	display: flex;
 	width: 100%;
-	align-self: flex-end;
 	justify-content: space-between;
 	background-color: inherit;
 	padding: 0 20px;
 	height: 30px;
-	margin-top: auto;
+	bottom: 0;
 
 	img {
 		&:last-child {
