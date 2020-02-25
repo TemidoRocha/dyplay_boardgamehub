@@ -11,10 +11,7 @@
   </div>
 
   <div class="form-group">
-    <label for="Latitude Longitude"> Location </label>
-    <input type="number" value="{{location.coordinates.[1]}}" name="latitude" step="any" class="form-control">
-    <br>
-    <input type="number" value="{{ location.coordinates.[0]}}" name="longitude" step="any" class="form-control">
+    {{>map}}
   </div>
   
   <div class="form-group">

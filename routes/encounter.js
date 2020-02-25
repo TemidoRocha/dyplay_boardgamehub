@@ -123,10 +123,18 @@ router.post('/single/:id/delete', routeGuard, (req, res, next) => {
 //edit event
 router.post('/single/:id/edit', routeGuard, (req, res, next) => {
   const id = req.params.id;
-  const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
+  const { eventName, lat, lng, date, numberOfPlayer, gameList } = req.body;
   Event.findByIdAndUpdate(
     id,
-    { eventName, latitude, longitude, date, numberOfPlayer, gameList },
+    {
+      eventName,
+      location: {
+        coordinates: [lat, lng]
+      },
+      date,
+      numberOfPlayer,
+      gameList
+    },
     { runValidators: true }
   )
     .then(event => {
@@ -162,14 +170,16 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
 
 //delete player from event
 router.post('/single/:id/deletePlayer', routeGuard, (req, res, next) => {
-  Event.findByIdAndUpdate(
+  Event.update(
     {
       _id: req.params.id
     },
     { $pull: { waitingList: req.user.id } },
-    { new: true }
+    { multi: true }
   )
-    .then(() => res.redirect('/encounter'))
+    .then(encounter => {
+      res.redirect(`/encounter/single/${req.params.id}`);
+    })
     .catch(error => {
       console.log(error);
       next(error);
