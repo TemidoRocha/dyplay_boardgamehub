@@ -1,19 +1,20 @@
 <h1>
   This is the single post view
 </h1>
+{{#with post}}
+<a href="/channels/{{channel._id}}/{{_id}}/delete"><button>DELETE POST</button></a>
 
 
-
-{{#each post}}
 {{title}}
 {{description}}
 <img src="{{picture}}" alt="{{title}}">
-{{/each}}
+{{/with}}
 
 
   <h4>Comments</h4>
   {{#each comments}}
     {{>comment}}
+    <a href="/channels/{{channel._id}}/{{post._id}}/{{_id}}/delete"><button>DELETE COMMENT</button></a>
   {{/each}}
   <h4>Add a Comment</h4>
   {{> commentform}}

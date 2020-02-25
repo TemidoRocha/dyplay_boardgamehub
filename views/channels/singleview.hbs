@@ -1,12 +1,14 @@
 <h1>
   Channel single view
 </h1>
-<a href="/channels/{{channel._id}}/edit"><Button>Edit channel</Button></a>
-{{#each channel}}
+
+{{#with channel}}
+<a href="/channels/{{_id}}/delete"><button>DELETE Channel</button></a>
+<a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
 {{name}}
 {{description}}
 <img src="{{picture}}" alt="{{name}}">
-{{/each}}
+{{/with}}
 
 
 <h1> In here will come the posts from this Channel</h1>

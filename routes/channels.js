@@ -10,7 +10,16 @@ const Comments = require('./../models/comments');
 const uploader = require('./../multer-configure.js');
 
 //comments routes
-
+router.get('/:channel_id/delete', (req, res, next) => {
+  const { channel_id } = req.params;
+  Channel.findByIdAndDelete(channel_id)
+    .then(() => {
+      res.redirect('/channels');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 router.post('/:channel_id/:post_id/comment', (req, res, next) => {
   const { channel_id, post_id } = req.params;
   const { content } = req.body;
@@ -28,6 +37,17 @@ router.post('/:channel_id/:post_id/comment', (req, res, next) => {
         });
       }
     })
+    .then(() => {
+      res.redirect(`/channels/${channel_id}/${post_id}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
+  const { comment_id, channel_id, post_id } = req.params;
+
+  Comments.findByIdAndDelete(comment_id)
     .then(() => {
       res.redirect(`/channels/${channel_id}/${post_id}`);
     })
@@ -101,7 +121,17 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
       next(error);
     });
 });
+router.get('/:channel_id/:post_id/delete', (req, res, next) => {
+  const { post_id, channel_id } = req.params;
 
+  Post.findByIdAndDelete(post_id)
+    .then(() => {
+      res.redirect(`/channels/${channel_id}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 router.get('/:channel_id/:post_id', (req, res, next) => {
   const { post_id } = req.params;
 
@@ -144,9 +174,28 @@ router.get('/:channel_id/:post_id/edit', (req, res, next) => {
     });
 });
 
-router.post('/:channel_id/:post:id/edit', (req, res, next) => {
-  const { id } = req.body;
-  res.redirect('channels/:post_id/singlepost');
+router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res, next) => {
+  const { channel_id, post_id } = req.params;
+  const { title, description } = req.body;
+  const { url } = req.file;
+
+  Post.findOneAndUpdate(
+    {
+      _id: post_id,
+      author: req.user._id
+    },
+    {
+      title,
+      description,
+      picture: url
+    }
+  )
+    .then(() => {
+      res.redirect(`/channel/${channel_id}/${post_id}`);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 // channel routes
