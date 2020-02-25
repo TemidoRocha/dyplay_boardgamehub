@@ -8,10 +8,14 @@
 
 <li class="list-group-item"> eventName: {{eventName}}</li>
 <li class="list-group-item">host: {{host.name}}</li>
-<li class="list-group-item">location: {{location}}</li>
+<li class="list-group-item">location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}}</li>
 <li class="list-group-item">date: {{date}}</li>
 <li class="list-group-item">numberOfPlayer: {{numberOfPlayer}}</li>
-<li class="list-group-item">waitingList: {{ waitingList}}</li>
+<li class="list-group-item">waitingList: 
+  <br>
+  {{#each waitingList}}
+  {{ name }} <br>
+  {{/each}}</li>
 <li class="list-group-item">game: {{gameList}}</li>
 
 </div>
