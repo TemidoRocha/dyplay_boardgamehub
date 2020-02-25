@@ -76,7 +76,7 @@ router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, n
     picture: url
   })
     .then(post => {
-      res.redirect(`${channel_id}/${post._id}`, post);
+      res.redirect(`/channels/${channel_id}/${post._id}`);
     })
     .catch(error => {
       next(error);
@@ -99,6 +99,7 @@ router.get('/:channel_id/edit', (req, res, next) => {
       next(error);
     });
 });
+
 router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) => {
   const { channel_id } = req.params;
   const { name, description } = req.body;
@@ -121,34 +122,13 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
       next(error);
     });
 });
+
 router.get('/:channel_id/:post_id/delete', (req, res, next) => {
   const { post_id, channel_id } = req.params;
 
   Post.findByIdAndDelete(post_id)
     .then(() => {
       res.redirect(`/channels/${channel_id}`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-router.get('/:channel_id/:post_id', (req, res, next) => {
-  const { post_id } = req.params;
-
-  let post;
-  Post.findById(post_id)
-    .populate('channel author')
-    .then(document => {
-      post = document;
-      if (!document) {
-        return Promise.reject(new Error('NOT_FOUND'));
-      } else {
-        return Comments.find({ post: post_id }).populate('author');
-      }
-    })
-    .then(comments => {
-      console.log(post);
-      res.render('channels/posts/singlepost', { post, comments });
     })
     .catch(error => {
       next(error);
@@ -197,7 +177,28 @@ router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res,
       next(error);
     });
 });
+router.get('/:channel_id/:post_id', (req, res, next) => {
+  const { post_id } = req.params;
 
+  let post;
+  Post.findById(post_id)
+    .populate('channel author')
+    .then(document => {
+      post = document;
+      if (!document) {
+        return Promise.reject(new Error('NOT_FOUND'));
+      } else {
+        return Comments.find({ post: post_id }).populate('author');
+      }
+    })
+    .then(comments => {
+      console.log(post);
+      res.render('channels/posts/singlepost', { post, comments });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 // channel routes
 router.get('/', (req, res, next) => {
   Channel.find()
@@ -217,7 +218,12 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
   const author = req.user._id;
 
   const { name, description } = req.body;
-  const { url } = req.file;
+  let { url } = '';
+
+  if (req.file) {
+    url = req.file;
+  }
+
   Channel.create({
     name,
     description,
