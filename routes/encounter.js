@@ -91,12 +91,12 @@ router.get('/single/:id/join', routeGuard, (req, res, next) => {
 //post methods
 //create event
 router.post('/create', routeGuard, (req, res, next) => {
-  const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
+  const { eventName, lat, lng, date, numberOfPlayer, gameList } = req.body;
   Event.create({
     eventName,
     host: req.user._id,
     location: {
-      coordinates: [longitude, latitude]
+      coordinates: [lat, lng]
     },
     date,
     numberOfPlayer,
