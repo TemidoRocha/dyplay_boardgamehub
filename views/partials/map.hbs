@@ -1,0 +1,84 @@
+<div id="sample-map"></div>
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+
+  const locateUser = () => {
+    return new Promise((resolve, reject) => {
+
+      const successHandler = position => {
+        const data = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        resolve(data);
+      };
+
+      const errorHandler = error => {
+        reject(error);
+      };
+
+      navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+    });
+  };
+
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: { lat: 38.75, lng: -9.15 },
+      zoom: 12
+    });
+
+
+
+    const path = [];
+
+    for (let position of path) {
+      new window.google.maps.Marker({ position, map });
+    }
+
+    locateUser()
+      .then(value => {
+        const infoWindow = new window.google.maps.InfoWindow({
+          content: 'You are here!',
+          position: {
+            lat: value.latitude,
+            lng: value.longitude
+          },
+          map
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    let pin;
+
+    const marker = new window.google.maps.Marker({
+      position: {
+        lat: value.latitude,
+        lng: value.longitude
+      },
+      map
+    });
+
+    map.addListener('click', event => {
+
+      const position = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      };
+
+      if (pin) {
+        pin.setMap(null);
+      }
+
+      pin = new window.google.maps.Marker({
+        position,
+        map
+      });
+    });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
+  defer></script>
