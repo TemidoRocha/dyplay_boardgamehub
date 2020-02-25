@@ -28,7 +28,10 @@
       zoom: 12
     });
 
-
+    const marker = new window.google.maps.Marker({
+      position: {},
+      map
+    });
 
     const path = [];
 
@@ -52,14 +55,6 @@
       });
 
     let pin;
-
-    const marker = new window.google.maps.Marker({
-      position: {
-        lat: value.latitude,
-        lng: value.longitude
-      },
-      map
-    });
 
     map.addListener('click', event => {
 
