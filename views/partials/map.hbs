@@ -1,15 +1,27 @@
 <div id="sample-map"></div>
+<div class="LatLng">
+  <div>
+    Latitude:<br> <input type="number" value=lat step=0.00000000000001 name="lat" id="lat">
+  </div>
+  <div>
+    Longitude:<br><input type="number" value=lng step=0.000000000000001 name="lng" id="lng">
+  </div>
+</div>
+
 
 <script>
   const $sampleMap = document.getElementById('sample-map');
+  const $lat = document.getElementById("lat");
+  const $lng = document.getElementById("lng");
+
 
   const locateUser = () => {
     return new Promise((resolve, reject) => {
 
       const successHandler = position => {
         const data = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
         };
         resolve(data);
       };
@@ -28,10 +40,6 @@
       zoom: 12
     });
 
-    const marker = new window.google.maps.Marker({
-      position: {},
-      map
-    });
 
     const path = [];
 
@@ -47,13 +55,18 @@
             lat: value.latitude,
             lng: value.longitude
           },
-
           map
         });
       })
       .catch(error => {
         console.error(error);
       });
+
+    const marker = new window.google.maps.Marker({
+      position: {
+      },
+      map
+    });
 
     let pin;
 
@@ -64,10 +77,13 @@
         lng: event.latLng.lng()
       };
 
+      $lat.value = position.lat
+      $lng.value = position.lng
+
+
       if (pin) {
         pin.setMap(null);
       }
-
       pin = new window.google.maps.Marker({
         position,
         map
@@ -75,6 +91,8 @@
     });
   }
 </script>
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
   defer></script>

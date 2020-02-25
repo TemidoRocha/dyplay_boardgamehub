@@ -127,6 +127,12 @@ form {
     max-width: 850px;
     align-self: center; }
 
+.LatLng {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around; }
+
 #sample-map {
   width: 500px;
   height: 500px; }

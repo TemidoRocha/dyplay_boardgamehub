@@ -31,7 +31,6 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
     .populate('host waitingList')
     .then(singleEvent => {
       singleEvent.players = singleEvent.waitingList.splice(singleEvent.numberOfPlayer);
-      console.log(singleEvent + 'single event');
       res.render('encounter/single', singleEvent);
     })
     .catch(error => {
@@ -64,6 +63,24 @@ router.get('/single/:id/join', routeGuard, (req, res, next) => {
       $push: { waitingList: req.user._id }
     }
   )
+    // Event.findByIdAndUpdate(req.params.id)
+    //   .then(event => {
+    //     if (
+    //       event.waitingList.find(x => {
+    //         console.log(x, req.params.id);
+    //         x = req.params.id;
+    //       })
+    //     ) {
+    //       Event.findByIdAndUpdate(
+    //         {
+    //           _id: req.params.id
+    //         },
+    //         {
+    //           $push: { waitingList: req.user._id }
+    //         }
+    //       );
+    //     }
+    //   })
     .then(encounter => res.redirect('/encounter'))
     .catch(error => {
       console.log(error);
@@ -137,6 +154,22 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
     { new: true }
   )
     .then(encounter => res.render('encounter/single', encounter))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
+//delete player from event
+router.post('/single/:id/deletePlayer', routeGuard, (req, res, next) => {
+  Event.findByIdAndUpdate(
+    {
+      _id: req.params.id
+    },
+    { $pull: { waitingList: req.user.id } },
+    { new: true }
+  )
+    .then(() => res.redirect('/encounter'))
     .catch(error => {
       console.log(error);
       next(error);

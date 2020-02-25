@@ -5,10 +5,17 @@
   <li class="list-group-item">location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}} </li>
   <li class="list-group-item">date: {{date}} </li>
   <li class="list-group-item">numberOfPlayer: {{numberOfPlayer}} </li>
-  <li class="list-group-item">waitingList: 
+  <li class="list-group-item">Players List: 
     <br>
     {{#each waitingList}}
     {{ name }} <br>
+    <form action="/encounter/single/{{ id }}/deletePlayer" method="POST"><button class="btn btn-outline-danger"> delete player </button></form>
+    {{/each}}</li>  
+  <li class="list-group-item">Waiting List: 
+    <br>
+    {{#each players}}
+    {{ name }} <br>
+    <form action="/encounter/single/{{ id }}/deletePlayer" method="POST"><button class="btn btn-outline-danger"> delete player </button></form>
     {{/each}}</li>  
   <a href="/encounter/single/{{ _id }}/join" class="btn btn-outline-success"> Join Event </a></li>
   <li class="list-group-item">game: {{gameList}} </li>
@@ -19,7 +26,7 @@
 
 
 <section class='formEdit'>
-  <h4 class='text-secondary'>Reviews</h2>
+  <h4 class='text-secondary'>Comments</h2>
   <div class="card">
     <div class="card-body">
       {{#each comments}}
