@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   Event.find()
     .populate('host waitingList')
     .then(encounters => {
-      console.log(encounters);
+      // console.log(encounters);
       res.render('encounter/index', { encounters });
     })
     .catch(error => next(error));
@@ -29,7 +29,11 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Event.findById(id)
     .populate('host waitingList')
-    .then(singleEvent => res.render('encounter/single', singleEvent))
+    .then(singleEvent => {
+      singleEvent.players = singleEvent.waitingList.splice(singleEvent.numberOfPlayer);
+      console.log(singleEvent.players + 'single event');
+      res.render('encounter/single', singleEvent);
+    })
     .catch(error => {
       console.log(error);
       next(error);
@@ -132,7 +136,6 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
     },
     { new: true }
   )
-    .populate(waitingList)
     .then(encounter => res.render('encounter/single', encounter))
     .catch(error => {
       console.log(error);

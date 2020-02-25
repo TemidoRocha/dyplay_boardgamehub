@@ -7,8 +7,9 @@
 <a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
 {{name}}
 {{description}}
-if({{picture}})
+{{#if picture}}
 <img src="{{picture}}" alt="{{name}}">
+{{/if}}
 {{/with}}
 
 
