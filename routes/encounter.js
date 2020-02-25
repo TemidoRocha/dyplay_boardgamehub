@@ -31,7 +31,7 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
     .populate('host waitingList')
     .then(singleEvent => {
       singleEvent.players = singleEvent.waitingList.splice(singleEvent.numberOfPlayer);
-      console.log(singleEvent);
+      console.log(singleEvent + 'single event');
       res.render('encounter/single', singleEvent);
     })
     .catch(error => {
@@ -136,7 +136,6 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
     },
     { new: true }
   )
-    .populate(waitingList)
     .then(encounter => res.render('encounter/single', encounter))
     .catch(error => {
       console.log(error);
