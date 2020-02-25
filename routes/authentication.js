@@ -2,6 +2,7 @@
 
 const { Router } = require('express');
 const router = new Router();
+const uploader = require('./../multer-configure.js');
 
 const passport = require('passport');
 
@@ -23,6 +24,7 @@ router.get('/sign-up', (req, res, next) => {
 
 router.post(
 	'/sign-up',
+	uploader.single('picture'),
 	passport.authenticate('sign-up', {
 		successRedirect: '/',
 		failureRedirect: 'sign-up'
