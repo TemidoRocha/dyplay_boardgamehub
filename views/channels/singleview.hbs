@@ -7,6 +7,7 @@
 <a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
 {{name}}
 {{description}}
+if({{picture}})
 <img src="{{picture}}" alt="{{name}}">
 {{/with}}
 
@@ -17,3 +18,4 @@
 {{#each posts}}
 <a href="/channels/{{channel._id}}/{{_id}}">{{title}}</a>
 {{/each}}
+<a href="/channels/{{channel._id}}/create_post"><button>Create a new Post</button></a>

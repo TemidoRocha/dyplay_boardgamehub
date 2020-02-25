@@ -8,10 +8,10 @@ const Event = require('./../models/event');
 const gameList = require('./../variables');
 
 //get methods
-
+//encounter index
 router.get('/', (req, res, next) => {
   Event.find()
-    .populate('host')
+    .populate('host waitingList')
     .then(encounters => {
       console.log(encounters);
       res.render('encounter/index', { encounters });
@@ -19,14 +19,16 @@ router.get('/', (req, res, next) => {
     .catch(error => next(error));
 });
 
+//create event
 router.get('/create', routeGuard, (req, res, next) => {
   res.render('encounter/create', { gameList });
 });
 
+//show single event
 router.get('/single/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Event.findById(id)
-    .populate('host')
+    .populate('host waitingList')
     .then(singleEvent => res.render('encounter/single', singleEvent))
     .catch(error => {
       console.log(error);
@@ -34,6 +36,7 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
     });
 });
 
+//edit single event
 router.get('/single/:id/edit', routeGuard, (req, res, next) => {
   Event.findById(req.params.id)
     .populate('host')
@@ -47,7 +50,25 @@ router.get('/single/:id/edit', routeGuard, (req, res, next) => {
     });
 });
 
+//join the event
+router.get('/single/:id/join', routeGuard, (req, res, next) => {
+  Event.findByIdAndUpdate(
+    {
+      _id: req.params.id
+    },
+    {
+      $push: { waitingList: req.user._id }
+    }
+  )
+    .then(encounter => res.redirect('/encounter'))
+    .catch(error => {
+      console.log(error);
+      next(error);
+    });
+});
+
 //post methods
+//create event
 router.post('/create', routeGuard, (req, res, next) => {
   const { eventName, latitude, longitude, date, numberOfPlayer, gameList } = req.body;
   Event.create({
@@ -58,7 +79,8 @@ router.post('/create', routeGuard, (req, res, next) => {
     },
     date,
     numberOfPlayer,
-    gameList
+    gameList,
+    waitingList: [req.user._id]
   })
     .then(() => res.redirect('/encounter'))
     .catch(error => {
@@ -87,7 +109,9 @@ router.post('/single/:id/edit', routeGuard, (req, res, next) => {
     { runValidators: true }
   )
     .then(event => {
-      Event.findById(event._id).then(event => res.render('encounter/single', event));
+      Event.findById(event._id)
+        .populate('host')
+        .then(event => res.render('encounter/single', event));
     })
     .catch(error => {
       console.log(error);
@@ -105,13 +129,11 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
     },
     {
       $push: { comments: { player, comment } }
-    }
+    },
+    { new: true }
   )
-    .then(encounter =>
-      Event.findById(encounter._id).then(encounter => {
-        res.render('encounter/single', encounter);
-      })
-    )
+    .populate(waitingList)
+    .then(encounter => res.render('encounter/single', encounter))
     .catch(error => {
       console.log(error);
       next(error);

@@ -35,10 +35,12 @@ const schema = new mongoose.Schema(
       required: true,
       min: 2
     },
-    waitingList: {
-      type: Number,
-      default: 0
-    },
+    waitingList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
     gameList: {
       type: String,
       enum: gameList
