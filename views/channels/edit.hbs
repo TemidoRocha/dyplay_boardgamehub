@@ -3,13 +3,14 @@ This is the channel edit page
 
 </h1>
 
-
+{{#with data}}
 <form method="POST" enctype="multipart/form-data">
   <label for="input-name">Channel Name</label>
-  <input type="text" name="name" id="input-name" placeholder="Channel Name">
+  <input type="text" name="name" id="input-name" value="{{name}}">
   <label for="description">Desciption</label>
-  <textarea name="description" id="description" placeholder=" Desciption of the channel"></textarea>
+  <textarea name="description" id="description">{{description}}</textarea>
   <label for="picture">Picture</label>
   <input type="file" name="picture" id="picture" accept="image/*" multiple />
-  <button>Create Channel</button>
-</form>
+  <button>Edit Channel</button>
+</form>   
+{{/with}}

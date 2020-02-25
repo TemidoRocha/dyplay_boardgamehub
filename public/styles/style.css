@@ -5,22 +5,30 @@ input,
 textarea,
 button,
 .btn {
-  border: 1px solid rgba(191, 191, 191, 0.5);
+  border: 2px solid rgba(191, 191, 191, 0.5);
   border-radius: 1em;
   margin-bottom: 1em;
-  padding-left: 1em;
+  padding: 0 1em;
   font: inherit;
   color: black;
-  background-color: transparent; }
+  font-weight: bolder;
+  background-color: inherit; }
 
 body {
-  max-width: 100%;
-  height: max-content;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   font-family: sans-serif;
-  line-height: 2; }
+  line-height: 2;
+  position: relative; }
+
+.bodyMain {
+  background-color: white;
+  min-height: 700px; }
 
 .bodyIndex {
-  min-height: 730px;
+  align-self: center;
   margin: 0 10%;
   padding-bottom: 5%;
   align-content: center; }
@@ -35,11 +43,9 @@ a {
   text-decoration: none; }
 
 nav {
-  position: sticky;
-  top: 0;
   display: flex;
   align-items: center;
-  background-color: lightgray;
+  background-color: lightblue;
   width: 100%;
   padding: 0 50px; }
   nav a,
@@ -137,20 +143,16 @@ textarea {
   align-self: center;
   margin: 0 auto; }
 
-.form-group,
-.list-group-flush,
-.signInMain {
-  min-height: 560px; }
-
 footer {
-  position: sticky;
-  bottom: 0;
-  top: 100%;
+  position: relative;
   display: flex;
+  width: 100%;
   align-self: flex-end;
   justify-content: space-between;
-  background-color: grey;
-  height: 30px; }
+  background-color: inherit;
+  padding: 0 20px;
+  height: 30px;
+  margin-top: auto; }
   footer img {
     width: 20px; }
     footer img:last-child {
