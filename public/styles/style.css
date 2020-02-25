@@ -121,6 +121,10 @@ form {
     max-width: 850px;
     align-self: center; }
 
+#sample-map {
+  width: 500px;
+  height: 500px; }
+
 .signInMain {
   margin: 0 20%; }
 
