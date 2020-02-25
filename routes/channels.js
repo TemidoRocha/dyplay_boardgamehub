@@ -192,7 +192,7 @@ router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res,
     }
   )
     .then(() => {
-      res.redirect(`/channel/${channel_id}/${post_id}`);
+      res.redirect(`/channels/${channel_id}/${post_id}`);
     })
     .catch(error => {
       next(error);
