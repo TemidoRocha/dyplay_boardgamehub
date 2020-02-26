@@ -42,10 +42,8 @@
       },
     {{/each}}
   ];
-
     function initMap() {
-
-      const map = new window.google.maps.Map($sampleMap, {
+    const map = new window.google.maps.Map($sampleMap, {
         center: {
             lat: {{ user.location.coordinates.[0] }},
             lng: {{ user.location.coordinates.[1] }}

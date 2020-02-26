@@ -1,2 +1,40 @@
 <h1>User Profile</h1>
-<p>{{name}}</p>
+<p>Olá! Esses são os jogadores próximos a você:</p>
+<div id="sample-map"></div>
+
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+
+ const list = [
+{{#each data}}
+{
+ position: {
+ lat: {{location.coordinates.[0]}},
+  lng: {{location.coordinates.[1]}}
+ }
+},
+ {{/each}}
+ ]
+
+  
+  
+  console.log("LIST DEBUG",list);
+
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: {
+        lat: {{user.location.coordinates.[0]}},
+        lng: {{user.location.coordinates.[1]}}
+          },
+  zoom: 12
+      });
+      
+    for (let userPosition of list) {
+      new window.google.maps.Marker({ position: userPosition.position, map });
+    }
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async defer>
+</script>
