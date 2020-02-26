@@ -2,6 +2,7 @@
   <h2>Edit Event</h2>
 </header>
 
+
 <form action="/encounter/single/{{ _id }}/edit" method="POST"class='formEdit'>
   <h3>Host: {{host.name}}</h3>
   <button type="submit" class="btn btn-primary"> Submit </button>
@@ -32,3 +33,7 @@
       {{/each}}
   </div>
 </form>
+
+<aside>
+  {{>sidebar}}
+</aside>
