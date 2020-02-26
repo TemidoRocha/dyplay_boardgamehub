@@ -24,8 +24,10 @@ passport.use(
           } else {
             return User.create({
               googleId: profile.id,
-              name: profile.displayName
-              //profilePic: profile.photos[0].value
+              name: profile.displayName,
+              email: `${profile.displayName}@dyplay.com`,
+              location: { coordinates: [0, 0] },
+              picture: profile.photos[0].value
             });
           }
         })

@@ -17,11 +17,7 @@ const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const encounterRouter = require('./routes/encounter');
 const channelsRouter = require('./routes/channels');
-<<<<<<< HEAD
-
-=======
 const findFriendsRouter = require('./routes/findFriends');
->>>>>>> 7f67595888372d258ee170f72ab985b7207e942d
 const hbs = require('hbs');
 const app = express();
 //TODO - Configure multer and everything you need to upload files
@@ -61,12 +57,9 @@ app.use(
   })
 );
 
-<<<<<<< HEAD
 // Initiate passport middleware before mounting routers and after mounting express-session
 require('./passport-googleAuthentication');
 
-=======
->>>>>>> 7f67595888372d258ee170f72ab985b7207e942d
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bindUserToViewLocals);

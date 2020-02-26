@@ -24,7 +24,7 @@ router.get(
   '/google-callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('/sign-up');
+    res.redirect('/');
   }
 );
 
