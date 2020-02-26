@@ -22,6 +22,7 @@ const gameList = [
   'Pictionary',
   'Mikado',
   'Chess',
+  'Pandemic',
   'Other'
 ];
 
