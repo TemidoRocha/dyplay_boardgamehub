@@ -73,7 +73,13 @@ router.get('/:channel_id/create_post', (req, res, next) => {
     .limit(2)
     .then(documents => {
       postSide = documents;
-      res.render('channels/posts/create');
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      res.render('channels/posts/create', { postSide, eventsSide });
     });
 });
 
@@ -110,6 +116,12 @@ router.get('/:channel_id/edit', (req, res, next) => {
     .limit(2)
     .then(documents => {
       postSide = documents;
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
       return Channel.findOne({
         _id: channel_id,
         author: req.user._id
@@ -182,7 +194,13 @@ router.get('/:channel_id/:post_id/edit', (req, res, next) => {
     .limit(2)
     .then(documents => {
       postSide = documents;
-      return Post.findOne({
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      Post.findOne({
         _id: post_id,
         author: req.user._id
       });
@@ -239,7 +257,7 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
     .then(documents => {
       postSide = documents;
       return Event.find()
-        .sort({ timestamp: 'descending' })
+        .sort({ creationDate: 'descending' })
         .limit(3);
     })
     .then(something => {
@@ -273,7 +291,7 @@ router.get('/', (req, res, next) => {
     .then(documents => {
       postSide = documents;
       return Event.find()
-        .sort({ timestamp: 'descending' })
+        .sort({ creationDate: 'descending' })
         .limit(3);
     })
     .then(something => {
@@ -297,7 +315,7 @@ router.get('/create', (req, res, next) => {
     .then(documents => {
       postSide = documents;
       return Event.find()
-        .sort({ timestamp: 'descending' })
+        .sort({ creationDate: 'descending' })
         .limit(3);
     })
     .then(something => {
@@ -344,7 +362,7 @@ router.get('/:channel_id', (req, res, next) => {
     .then(documents => {
       postSide = documents;
       return Event.find()
-        .sort({ timestamp: 'descending' })
+        .sort({ creationDate: 'descending' })
         .limit(3);
     })
     .then(something => {

@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
     })
     .then(() => {
       return Event.find()
-        .sort({ timestamp: 'descending' })
+        .sort({ creationDate: 'descending' })
         .limit(3);
     })
     .then(document => {

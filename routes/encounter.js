@@ -3,35 +3,75 @@
 const { Router } = require('express');
 const router = new Router();
 const routeGuard = require('./../middleware/route-guard');
-
 const Event = require('./../models/event');
 const gameList = require('./../variables');
-
+const Post = require('./../models/post');
 //get methods
 //encounter index
 router.get('/', (req, res, next) => {
-  Event.find()
-    .populate('host waitingList')
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Event.find().populate('host waitingList');
+    })
     .then(encounters => {
       // console.log(encounters);
-      res.render('encounter/index', { encounters });
+      res.render('encounter/index', { encounters, postSide, eventsSide });
     })
     .catch(error => next(error));
 });
 
 //create event
 router.get('/create', routeGuard, (req, res, next) => {
-  res.render('encounter/create', { gameList });
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      res.render('encounter/create', { gameList, postSide, eventsSide });
+    });
 });
 
 //show single event
 router.get('/single/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
-  Event.findById(id)
-    .populate('host waitingList')
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Event.findById(id).populate('host waitingList');
+    })
     .then(singleEvent => {
       singleEvent.players = singleEvent.waitingList.splice(singleEvent.numberOfPlayer);
       res.render('encounter/single', singleEvent);
+      // postSide, eventsSide
     })
     .catch(error => {
       console.log(error);
@@ -41,12 +81,26 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
 
 //edit single event
 router.get('/single/:id/edit', routeGuard, (req, res, next) => {
-  Event.findById(req.params.id)
-    .populate('host')
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ creationDate: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Event.findById(req.params.id).populate('host');
+    })
     .then(singleEvent => {
       singleEvent.total = gameList; //in order to pass the total value of the list
       res.render('encounter/edit', singleEvent);
     })
+    // postSide, eventsSide
     .catch(error => {
       console.log(error);
       next(error);
