@@ -47,8 +47,8 @@
 
       const map = new window.google.maps.Map($sampleMap, {
         center: {
-            lat: list[0].lat, 
-            lng: list[0].lng
+            lat: {{ user.location.coordinates.[0] }},
+            lng: {{ user.location.coordinates.[1] }}
           },
         zoom: 12
       });
