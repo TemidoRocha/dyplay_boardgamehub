@@ -55,33 +55,26 @@ router.get('/single/:id/edit', routeGuard, (req, res, next) => {
 
 //join the event
 router.get('/single/:id/join', routeGuard, (req, res, next) => {
-  Event.findByIdAndUpdate(
-    {
-      _id: req.params.id
-    },
-    {
-      $push: { waitingList: req.user._id }
-    }
-  )
-    // Event.findByIdAndUpdate(req.params.id)
-    //   .then(event => {
-    //     if (
-    //       event.waitingList.find(x => {
-    //         console.log(x, req.params.id);
-    //         x = req.params.id;
-    //       })
-    //     ) {
-    //       Event.findByIdAndUpdate(
-    //         {
-    //           _id: req.params.id
-    //         },
-    //         {
-    //           $push: { waitingList: req.user._id }
-    //         }
-    //       );
-    //     }
-    //   })
-    .then(encounter => res.redirect('/encounter'))
+  //here we will verify if the user already joined and only allow it of he didn't
+  const eventId = req.params.id;
+  const userId = req.user._id;
+  Event.findById(eventId)
+    .then(event => {
+      const isTheUserJoined = event.waitingList.find(x => {
+        return x.toString() === userId.toString();
+      });
+      if (!isTheUserJoined) {
+        return Event.findByIdAndUpdate(
+          {
+            _id: eventId
+          },
+          {
+            $push: { waitingList: req.user._id }
+          }
+        );
+      }
+    })
+    .then(() => res.redirect(`/encounter/single/${eventId}`))
     .catch(error => {
       console.log(error);
       next(error);
