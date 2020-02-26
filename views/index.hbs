@@ -1,10 +1,7 @@
+
 {{#if user}}
-{{#each events}}
-<p>It will appear the map</p>
-{{eventName}}
-
-{{/each}}
-
+<h4> Location of All events </H4>
+<div id="sample-map"></div>
 
 {{else}}
 <div class="bodyIndex">
@@ -34,3 +31,30 @@
 <aside>
 {{>sidebar}}
 </aside>
+
+<script>
+    const $sampleMap = document.getElementById('sample-map');
+    const list = [
+    {{#each events}}
+      {
+        lat: {{ location.coordinates.[0] }},
+        lng: {{ location.coordinates.[1] }}
+      },
+    {{/each}}
+  ];
+
+    function initMap() {
+
+      const map = new window.google.maps.Map($sampleMap, {
+        center: {
+            lat: list[0].lat, 
+            lng: list[0].lng
+          },
+        zoom: 12
+      });
+    for (let locationEvent of list) {
+      new window.google.maps.Marker({ position: locationEvent, map });
+    }
+    }
+  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async defer></script>
