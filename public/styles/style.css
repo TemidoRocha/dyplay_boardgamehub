@@ -113,10 +113,10 @@ form {
     margin: 0 20%; }
   .signUpMain .listGamesSignUp {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center; }
+    flex-flow: row wrap; }
     .signUpMain .listGamesSignUp .formInline {
-      padding: 0 0.8em; }
+      margin: 1em;
+      justify-self: flex-start; }
   .signUpMain .inputPicture {
     align-self: flex-start;
     display: flex;
