@@ -2,7 +2,11 @@
 <ul class="list-group-flush">
   <li class="list-group-item">eventName: {{eventName}} </li>
   <li class="list-group-item">host: {{host.name}} </li>
-  <li class="list-group-item">location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}} </li>
+  <li class="list-group-item">Location:
+    <br>
+    <div id="sample-map"></div>
+  </li>
+
   <li class="list-group-item">date: {{date}} </li>
   <li class="list-group-item">numberOfPlayer: {{numberOfPlayer}} </li>
   
@@ -53,3 +57,28 @@
   </form>
 </section>
 
+
+<script>
+      const $sampleMap = document.getElementById('sample-map');
+
+
+      function initMap() {
+        const map = new window.google.maps.Map($sampleMap, {
+          center: {
+              lat: {{location.coordinates.[0]}}, 
+              lng: {{location.coordinates.[1]}}
+            },
+          zoom: 12
+        });
+
+        const marker = new window.google.maps.Marker({
+            position: {
+              lat: {{location.coordinates.[0]}}, 
+              lng: {{location.coordinates.[1]}}
+            },
+            map
+          });
+      }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
+  defer></script>
