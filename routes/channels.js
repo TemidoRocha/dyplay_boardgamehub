@@ -8,6 +8,7 @@ const Post = require('./../models/post');
 const Channel = require('./../models/channel');
 const Comments = require('./../models/comments');
 const uploader = require('./../multer-configure.js');
+const Event = require('./../models/event');
 
 //comments routes
 router.get('/:channel_id/delete', (req, res, next) => {
@@ -271,7 +272,21 @@ router.get('/:channel_id', (req, res, next) => {
   const user = req.user._id;
   let sameUser;
   let channel;
-  Channel.findById(channel_id)
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ timestamp: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Channel.findById(channel_id);
+    })
     .then(document => {
       if (!document) {
         next(new Error('NOT_FOUND'));
@@ -285,7 +300,7 @@ router.get('/:channel_id', (req, res, next) => {
     .then(posts => {
       user.toString() == channel.author.toString() ? (sameUser = true) : (sameUser = false);
 
-      res.render('channels/singleview', { channel, posts, sameUser });
+      res.render('channels/singleview', { channel, posts, sameUser, postSide, eventsSide });
     })
     .catch(error => {
       next(error);

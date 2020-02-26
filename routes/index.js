@@ -7,14 +7,14 @@ const Post = require('./../models/post');
 const Event = require('./../models/event');
 
 router.get('/', (req, res, next) => {
-  let posts;
+  let postSide;
   let events;
   let eventsSide;
   Post.find()
     .sort({ timestamp: 'descending' })
     .limit(2)
     .then(documents => {
-      posts = documents;
+      postSide = documents;
       return Event.find();
     })
     .then(document => {
@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
     })
     .then(document => {
       eventsSide = document;
-      res.render('index', { posts, events, eventsSide });
+      res.render('index', { postSide, events, eventsSide });
     })
     .catch(error => {
       next(error);
