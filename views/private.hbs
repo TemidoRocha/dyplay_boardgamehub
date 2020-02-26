@@ -3,4 +3,34 @@
 <span><strong>Name</strong>: {{user.name}}</span>
 <br />
 <span><strong>Email</strong>: {{user.email}}</span>
-<img src="{{user.picture}}" alt="">
+<img src="{{user.picture}}" height="30px" width="30px" alt="profile picture">
+<h1>
+  {{ user.location.coordinates.[1] }}
+</h1>
+
+
+
+<script>
+      const $sampleMap = document.getElementById('sample-map');
+
+
+      function initMap() {
+        const map = new window.google.maps.Map($sampleMap, {
+          center: {
+              lat: {{user.location.coordinates.[0]}}, 
+              lng: {{user.location.coordinates.[1]}}
+            },
+          zoom: 12
+        });
+
+        const marker = new window.google.maps.Marker({
+            position: {
+              lat: {{user.location.coordinates.[0]}}, 
+              lng: {{user.location.coordinates.[1]}}
+            },
+            map
+          });
+      }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
+  defer></script>

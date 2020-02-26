@@ -24,6 +24,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/private', routeGuard, (req, res, next) => {
+  console.log(req.user.location)
   res.render('private');
 });
 

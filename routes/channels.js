@@ -56,6 +56,7 @@ router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
   })
     .then(() => {
       res.redirect(`/channels/${channel_id}/${post_id}`);
+      
     })
     .catch(error => {
       next(error);
