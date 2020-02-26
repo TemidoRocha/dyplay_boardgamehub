@@ -14,11 +14,13 @@
 {{/if}}
 {{description}}
 </aside>
+
 {{/with}}
 {{#if sameUser}}
-<a href="/channels/{{_id}}/delete"><button>DELETE Channel</button></a>
-<a href="/channels/{{_id}}/edit"><Button>Edit channel</Button></a>
+<a href="/channels/{{channel._id}}/delete"><button>DELETE Channel</button></a>
+<a href="/channels/{{channel._id}}/edit"><Button>Edit channel</Button></a>
 {{/if}}
+
 </aside>
 
 <h1> In here will come the posts from this Channel</h1>

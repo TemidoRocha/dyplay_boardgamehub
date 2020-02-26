@@ -21,7 +21,9 @@
   <h4>Comments</h4>
   {{#each comments}}
     {{>comment}}
+    {{#if ../sameUser}}
     <a href="/channels/{{channel._id}}/{{post._id}}/{{_id}}/delete"><button>DELETE COMMENT</button></a>
+  {{/if}}
   {{/each}}
   <h4>Add a Comment</h4>
   {{> commentform}}

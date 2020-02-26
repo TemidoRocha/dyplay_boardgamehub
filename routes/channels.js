@@ -114,7 +114,8 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
   const { channel_id } = req.params;
   const { name, description } = req.body;
   let url;
-
+  const user = req.user._id;
+  let sameUser;
   if (req.file) {
     url = req.file.url;
   }
@@ -129,8 +130,11 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
       picture: url
     }
   )
-    .then(() => {
-      res.redirect(`/channels/${channel_id}`);
+    .then(channel => {
+      console.log(channel);
+      user.toString() == channel.author._id.toString() ? (sameUser = true) : (sameUser = false);
+      console.log(sameUser);
+      res.redirect(`/channels/${channel_id}`, channel, sameUser);
     })
     .catch(error => {
       next(error);
