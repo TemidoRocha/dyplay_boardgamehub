@@ -51,7 +51,7 @@ app.use(
 		},
 		store: new (connectMongo(expressSession))({
 			mongooseConnection: mongoose.connection,
-			ttl: 60 * 60 * 24
+			ttl: 60 * 60 * 24 * 1000
 		})
 	})
 );
