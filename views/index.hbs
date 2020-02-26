@@ -1,3 +1,11 @@
+{{#if user}}
+{{#each events}}
+{{name}}
+
+{{/each}}
+
+
+{{else}}
 <div class="bodyIndex">
   <div class="imageSignUp"><img src="/images/dy play one color.png" alt="logo"></div>
   <h2>Welcome to DYPlay</h2>
@@ -20,3 +28,4 @@
   </p>
 
 </div>
+{{/if}}
