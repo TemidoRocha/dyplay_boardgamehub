@@ -82,7 +82,7 @@ p {
     margin-bottom: 1rem; }
 
 img {
-  width: 100%;
+  width: 20%;
   max-width: 100%; }
 
 form {
@@ -122,8 +122,8 @@ form {
     display: flex;
     flex-direction: column; }
   .signUpMain .mapSignUp {
-    margin: 50px;
-    max-width: 850px;
+    margin: 0px;
+    max-width: 1200px;
     align-self: center; }
 
 .LatLng {
@@ -133,7 +133,7 @@ form {
   justify-content: space-around; }
 
 #sample-map {
-  width: 500px;
+  width: 1000px;
   height: 500px; }
 
 .signInMain {

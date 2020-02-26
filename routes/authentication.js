@@ -9,7 +9,6 @@ const passport = require('passport');
 
 router.get('/sign-in', (req, res, next) => {
   res.render('sign-in');
-  // console.log(user)
 });
 
 router.post(
