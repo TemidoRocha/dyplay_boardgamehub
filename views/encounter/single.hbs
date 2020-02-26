@@ -1,33 +1,33 @@
 
 <ul class="list-group-flush">
-  <li class="list-group-item">eventName: {{eventName}} </li>
-  <li class="list-group-item">host: {{host.name}} </li>
+  <li class="list-group-item">eventName: {{singleEvent.eventName}} </li>
+  <li class="list-group-item">host: {{singleEvent.host.name}} </li>
   <li class="list-group-item">Location:
     <br>
     <div id="sample-map"></div>
   </li>
 
-  <li class="list-group-item">date: {{date}} </li>
-  <li class="list-group-item">numberOfPlayer: {{numberOfPlayer}} </li>
+  <li class="list-group-item">date: {{singleEvent.date}} </li>
+  <li class="list-group-item">numberOfPlayer: {{singleEvent.numberOfPlayer}} </li>
   
   <li class="list-group-item">Players List: 
     <br>
-    {{#each waitingList}}
+    {{#each singleEvent.waitingList}}
     {{ name }} <br>
     {{/each}}</li>  
   <li class="list-group-item">Waiting List: 
     <br>
-    {{#each players}}
+    {{#each singleEvent.players}}
     {{ name }} <br>
     {{/each}}</li>  
 
-  <a href="/encounter/single/{{ _id }}/join" class="btn btn-outline-success"> Join Event </a></li>
-  <form action="/encounter/single/{{ _id }}/deletePlayer" method="POST"><button class="btn btn-outline-danger"> Leave Event </button></form>
+  <a href="/encounter/single/{{ singleEvent._id }}/join" class="btn btn-outline-success"> Join Event </a></li>
+  <form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button class="btn btn-outline-danger"> Leave Event </button></form>
 
-  <li class="list-group-item">game: {{gameList}} </li>
+  <li class="list-group-item">game: {{singleEvent.gameList}} </li>
   <li class="list-group-item"></li><br></li>
-  <li class="list-group-item"><a href="/encounter/single/{{ _id }}/edit" class="btn btn-outline-success"> edit event </a></li>
-  <li class="list-group-item"><form action="/encounter/single/{{ _id }}/delete" method="POST"><button class="btn btn-outline-danger"> delete event </button></form></li>
+  <li class="list-group-item"><a href="/encounter/single/{{ singleEvent._id }}/edit" class="btn btn-outline-success"> edit event </a></li>
+  <li class="list-group-item"><form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button class="btn btn-outline-danger"> delete event </button></form></li>
 </ul>
 
 
@@ -35,7 +35,7 @@
   <h4 class='text-secondary'>Comments</h4>
   <div class="card">
     <div class="card-body">
-      {{#each comments}}
+      {{#each singleEvent.comments}}
             <div>
               <p class="card-text">{{this.comment}}</p>
               <h6 class="card-subtitle mb-2 text-muted">{{this.player}}</h6>
@@ -46,11 +46,11 @@
   </div>
 
 
-  <form action="/encounter/single/addComment?event_id={{ _id }}" method="post">
+  <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
   <h5 class="form-text text-muted"> Add a Comment {{user.name}}</h5>
    <div class="form-group">
       <label for="comment" class='text-secondary'>Comment:</label>
-      <textarea type="text" name="comment" class="form-control"></textarea>
+      <textarea type="text" name="comment" class="form-control">Please write your comment here...</textarea>
     </div>
 
     <button type="submit" class="btn btn-outline-primary card-link">ADD</button>
@@ -66,15 +66,15 @@
     function initMap() {
       const map = new window.google.maps.Map($sampleMap, {
         center: {
-            lat: {{location.coordinates.[0]}}, 
-            lng: {{location.coordinates.[1]}}
+            lat: {{singleEvent.location.coordinates.[0]}}, 
+            lng: {{singleEvent.location.coordinates.[1]}}
           },
         zoom: 12
       });
       const marker = new window.google.maps.Marker({
           position: {
-            lat: {{location.coordinates.[0]}}, 
-            lng: {{location.coordinates.[1]}}
+            lat: {{singleEvent.location.coordinates.[0]}}, 
+            lng: {{singleEvent.location.coordinates.[1]}}
           },
           map
         });

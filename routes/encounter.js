@@ -70,8 +70,7 @@ router.get('/single/:id', routeGuard, (req, res, next) => {
     })
     .then(singleEvent => {
       singleEvent.players = singleEvent.waitingList.splice(singleEvent.numberOfPlayer);
-      res.render('encounter/single', singleEvent);
-      // postSide, eventsSide
+      res.render('encounter/single', { singleEvent, postSide, eventsSide });
     })
     .catch(error => {
       console.log(error);
@@ -98,9 +97,8 @@ router.get('/single/:id/edit', routeGuard, (req, res, next) => {
     })
     .then(singleEvent => {
       singleEvent.total = gameList; //in order to pass the total value of the list
-      res.render('encounter/edit', singleEvent);
+      res.render('encounter/edit', { singleEvent, postSide, eventsSide });
     })
-    // postSide, eventsSide
     .catch(error => {
       console.log(error);
       next(error);
@@ -185,9 +183,9 @@ router.post('/single/:id/edit', routeGuard, (req, res, next) => {
     { runValidators: true }
   )
     .then(event => {
-      Event.findById(event._id)
+      Event.findById(id)
         .populate('host')
-        .then(event => res.render('encounter/single', event));
+        .then(() => res.redirect(`/encounter/single/${id}`));
     })
     .catch(error => {
       console.log(error);
@@ -208,7 +206,7 @@ router.post('/single/addComment', routeGuard, (req, res, next) => {
     },
     { new: true }
   )
-    .then(encounter => res.render('encounter/single', encounter))
+    .then(() => res.redirect(`/encounter/single/${req.query.event_id}`))
     .catch(error => {
       console.log(error);
       next(error);

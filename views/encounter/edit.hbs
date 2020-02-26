@@ -4,11 +4,11 @@
 
 
 <form action="/encounter/single/{{ _id }}/edit" method="POST"class='formEdit'>
-  <h3>Host: {{host.name}}</h3>
+  <h3>Host: {{singleEvent.host.name}}</h3>
   <button type="submit" class="btn btn-primary"> Submit </button>
   <div class="form-group">
     <label for="eventName"> Event Name </label>
-    <input type="text" name='eventName' id='eventName' value="{{eventName}}" required class="form-control">
+    <input type="text" name='eventName' id='eventName' value="{{singleEvent.eventName}}" required class="form-control">
   </div>
 
   <div class="form-group">
@@ -22,13 +22,13 @@
 
   <div class="form-group">
     <label for="numberOfPlayer"> Number of Players </label>
-    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="{{numberOfPlayer}}" class="form-control">
+    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="{{singleEvent.numberOfPlayer}}" class="form-control">
   </div>
 
   <div class="form-group">
     <label for="gameList"> Select your Game </label>
     <select type="text" name='gameList' id='gameList' required class="form-control">
-      {{#each total as |item|}}
+      {{#each singleEvent.total as |item|}}
       <option value="{{item}}">{{item}}</option>
       {{/each}}
   </div>
