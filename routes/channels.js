@@ -66,7 +66,15 @@ router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
 // posts routes
 
 router.get('/:channel_id/create_post', (req, res, next) => {
-  res.render('channels/posts/create');
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      res.render('channels/posts/create');
+    });
 });
 
 router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, next) => {
@@ -95,13 +103,21 @@ router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, n
 });
 router.get('/:channel_id/edit', (req, res, next) => {
   const { channel_id } = req.params;
-  Channel.findOne({
-    _id: channel_id,
-    author: req.user._id
-  })
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Channel.findOne({
+        _id: channel_id,
+        author: req.user._id
+      });
+    })
     .then(data => {
       if (data) {
-        res.render(`channels/edit`, { data });
+        res.render(`channels/edit`, { data, postSide, eventsSide });
       } else {
         next(new Error('NOT_FOUND'));
       }
@@ -159,14 +175,21 @@ router.get('/:channel_id/:post_id/delete', (req, res, next) => {
 
 router.get('/:channel_id/:post_id/edit', (req, res, next) => {
   const { post_id } = req.params;
-
-  Post.findOne({
-    _id: post_id,
-    author: req.user._id
-  })
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Post.findOne({
+        _id: post_id,
+        author: req.user._id
+      });
+    })
     .then(post => {
       if (post) {
-        res.render('channels/posts/edit', { post });
+        res.render('channels/posts/edit', { post, postSide, eventsSide });
       } else {
         next(new Error('NOT_FOUND'));
       }
@@ -207,10 +230,22 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
   const { post_id } = req.params;
   const user = req.user._id;
   let sameUser;
-
   let post;
-  Post.findById(post_id)
-    .populate('channel author')
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ timestamp: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Post.findById(post_id).populate('channel author');
+    })
     .then(document => {
       post = document;
       if (!document) {
@@ -222,7 +257,7 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
     .then(comments => {
       user.toString() == post.author._id.toString() ? (sameUser = true) : (sameUser = false);
 
-      res.render('channels/posts/singlepost', { post, comments, sameUser });
+      res.render('channels/posts/singlepost', { post, comments, sameUser, postSide, eventsSide });
     })
     .catch(error => {
       next(error);
@@ -230,9 +265,23 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
 });
 // channel routes
 router.get('/', (req, res, next) => {
-  Channel.find()
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ timestamp: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+      return Channel.find();
+    })
     .then(data => {
-      res.render('channels', { data });
+      res.render('channels', { data, eventsSide, postSide });
     })
     .catch(error => {
       next(error);
@@ -240,7 +289,22 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/create', (req, res, next) => {
-  res.render('channels/create');
+  let postSide;
+  let eventsSide;
+  Post.find()
+    .sort({ timestamp: 'descending' })
+    .limit(2)
+    .then(documents => {
+      postSide = documents;
+      return Event.find()
+        .sort({ timestamp: 'descending' })
+        .limit(3);
+    })
+    .then(something => {
+      eventsSide = something;
+
+      res.render('channels/create', { postSide, eventsSide });
+    });
 });
 
 router.post('/create', uploader.single('picture'), (req, res, next) => {
