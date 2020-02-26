@@ -8,6 +8,8 @@ const Event = require('./../models/event');
 
 router.get('/', (req, res, next) => {
   let posts;
+  let events;
+  let eventsSide;
   Post.find()
     .sort({ timestamp: 'descending' })
     .limit(2)
@@ -15,8 +17,17 @@ router.get('/', (req, res, next) => {
       posts = documents;
       return Event.find();
     })
-    .then(events => {
-      res.render('index', { events, posts });
+    .then(document => {
+      events = document;
+    })
+    .then(() => {
+      return Event.find()
+        .sort({ timestamp: 'descending' })
+        .limit(3);
+    })
+    .then(document => {
+      eventsSide = document;
+      res.render('index', { posts, events, eventsSide });
     })
     .catch(error => {
       next(error);
