@@ -20,12 +20,12 @@
     <div class="gameYouPlay">
       <h2>Game You Play</h2>
       <div class="listGamesSignUp">
+        {{#each gameList as |item|}}
         <div class="formInline">
-          {{#each gameList as |item|}}
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="option1">
-            <label class="form-check-label" for="inlineCheckbox">{{item}}</label>
-          {{/each}}
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="option1">
+          <label class="form-check-label" for="inlineCheckbox">{{item}}</label>
         </div>
+        {{/each}}
       </div>
     </div>
     <div class="mapSignUp">
