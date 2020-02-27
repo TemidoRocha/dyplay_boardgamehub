@@ -1,4 +1,4 @@
-<section>
+<section class="content">
 
 {{#if user}}
 <h4> Location of All events </H4>
@@ -32,6 +32,8 @@
 <aside>
 {{>sidebar}}
 </aside>
+
+  </section>
 
 <script>
     const $sampleMap = document.getElementById('sample-map');
@@ -68,4 +70,4 @@
   </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
   defer></script>
-  </section>
+  

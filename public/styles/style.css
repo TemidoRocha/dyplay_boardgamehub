@@ -1,10 +1,16 @@
-*, *:before, *:after {
+* {
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
+.allcontent {
+  margin-top: 0px; }
+
 body {
-  z-index: 1; }
+  z-index: 1;
+  margin-top: 0; }
   body nav {
+    margin-top: 0;
+    z-index: 50;
     display: flex;
     flex-direction: row;
     align-items: left;
@@ -12,7 +18,10 @@ body {
     background-color: #cccccc;
     width: 100%;
     height: 60px;
-    position: fixed;
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
     border-radius: 0px 0px 30px 30px; }
     body nav img {
       height: 60px; }
@@ -87,16 +96,19 @@ body {
 .mapSignUp {
   margin: 0px;
   max-width: 1200px;
-  align-self: center; }
+  align-self: center;
+  z-index: 40; }
 
 .LatLng {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around; }
+  justify-content: space-around;
+  z-index: 41; }
 
 #sample-map {
   width: 1000px;
-  height: 500px; }
+  height: 500px;
+  z-index: 40; }
 
 /*# sourceMappingURL=style.css.map */
