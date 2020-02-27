@@ -18,9 +18,9 @@
     </div>
     <div>
       <h3>Game You Play</h3>
-      <div >
+      <div>
         {{#each gameList as |item|}}
-        <div >
+        <div>
           <input name="{{item}}" type="checkbox" id="inlineCheckbox">
           <label for="inlineCheckbox">{{item}}</label>
         </div>
@@ -31,9 +31,11 @@
       {{>map}}
     </div>
     <div>
-    <label for="inputDescription">About you:</label>
-    <textarea name="description" id="inputDescription" cols="30" rows="10"></textarea>
+      <label for="inputDescription">About you:</label>
+      <textarea name="description" id="inputDescription" cols="30" rows="10"></textarea>
     </div>
     <button>Sign Up</button>
   </form>
-  </div>
+
+  <a href="/authentication/google">Log In With Google</a>
+</div>
