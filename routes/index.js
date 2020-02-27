@@ -10,7 +10,6 @@ const User = require('./../models/user');
 const uploader = require('./../multer-configure.js');
 const passport = require('passport');
 
-
 router.get('/', (req, res, next) => {
   let postSide;
   let events;

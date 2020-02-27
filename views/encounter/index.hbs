@@ -3,18 +3,18 @@
 
 <section class="sectionComments">
 
-<div class="content">
+<div class="content background">
 {{#each encounters}}
-<a href="/encounter/single/{{ _id }}">
+<a href="/encounter/single/{{ _id }}" style="text-decoration: none">
 <aside class="channelProp">
-eventName: {{eventName}}</a>, date: {{date}} ,numberOfPlayer: {{numberOfPlayer}}
-</aside>
+{{eventName}}, {{date}} , number of player: {{numberOfPlayer}}
+</aside></a>
 {{/each}}
 </div>
 
 
 <aside class="asidebar">
-  <a href="/encounter/create" ><button>Create encounter</button></a>
+  <a href="/encounter/create" ><button class="asideBtn">Create encounter</button></a>
   {{>sidebar}}
 </aside>
 
