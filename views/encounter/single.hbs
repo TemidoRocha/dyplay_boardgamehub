@@ -4,7 +4,8 @@
 
 <div class="map">
 <h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
-<h2>{{singleEvent.date}}</h2><br>
+<h2>{{singleEvent.date}}</h2>
+<br>
 <div id="sample-map"></div>
 <br>
 
@@ -17,25 +18,19 @@
   <p>{{ name }}</p>
   {{/each}}  
 
-<a href="/encounter/single/{{ singleEvent._id }}/join" > Join Event </a>
+<div class="sectionComments">
+<a href="/encounter/single/{{ singleEvent._id }}/join"><button class="asideBtn">  Join Event </button></a>
+<a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> edit event </button></a>
 <form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button class="asideBtn"> Leave Event </button></form>
-
-
-<a href="/encounter/single/{{ singleEvent._id }}/edit" > edit event </a>
-<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button> delete event </button></form>
-
-
-
-
-  <h4>Comments</h4>
-    
-    {{#each singleEvent.comments}}
-      <p>{{this.comment}}</p>
-      <h6>{{this.player}}</h6>
-      <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button> delete comment </button></form>
-    {{/each}}
-
+<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button class="asideBtn"> delete event </button></form>
 </div>
+
+<h2>Comments</h2>
+  {{#each singleEvent.comments}}
+    <p>{{this.comment}}</p>
+    <h6>{{this.player}}</h6>
+    <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> delete comment </button></form>
+  {{/each}}
 
   <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
   <h5> Add a Comment {{user.name}}</h5>
@@ -44,15 +39,15 @@
   <button type="submit">ADD</button>
   </form>
 
-  <div>
+</div>  
 
- {{!-- end of the map class --}}
 
 <aside class="asidebar">
   {{>sidebar}}
 </aside>
 
 </section> 
+
 
   <script>
     const $sampleMap = document.getElementById('sample-map');
