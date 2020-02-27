@@ -18,6 +18,7 @@ const authenticationRouter = require('./routes/authentication');
 const encounterRouter = require('./routes/encounter');
 const channelsRouter = require('./routes/channels');
 const findFriendsRouter = require('./routes/findFriends');
+const messageRouter = require('./routes/message');
 const hbs = require('hbs');
 const app = express();
 //TODO - Configure multer and everything you need to upload files
@@ -69,6 +70,7 @@ app.use('/authentication', authenticationRouter);
 app.use('/encounter', encounterRouter);
 app.use('/channels', channelsRouter);
 app.use('/user', findFriendsRouter);
+app.use('/message', messageRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

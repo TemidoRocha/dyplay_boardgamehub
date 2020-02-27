@@ -9,6 +9,7 @@ button,
   border-radius: 1em;
   margin-bottom: 1em;
   padding: 0 1em;
+  z-index: 51;
   font: inherit;
   color: black;
   font-weight: bolder;
@@ -23,6 +24,7 @@ body {
   position: relative; }
 
 .bodyMain {
+  margin-top: 60px;
   background-color: white;
   min-height: 700px; }
 
@@ -44,30 +46,27 @@ a {
 nav {
   display: flex;
   align-items: center;
-  background-color: lightblue;
+  justify-content: space-between;
+  background-color: #bfbfbf;
   width: 100%;
-  padding: 0 50px; }
-  nav a,
+  height: 60px;
+  padding: 0 0px;
+  position: fixed;
+  z-index: 50; }
+  nav div,
+  nav a {
+    width: 150px; }
+  nav div,
+  nav aside {
+    display: flex;
+    flex-direction: row; }
   nav button {
+    display: contents;
+    justify-content: flex-end;
     display: flex;
     margin-right: 2em;
-    margin: auto; }
-    nav a:not(:last-child),
-    nav button:not(:last-child) {
-      margin: 0 50px; }
-    nav a:not(:first-child),
-    nav button:not(:first-child) {
-      margin: 1em;
-      padding: 0px; }
-    nav a:first-child,
-    nav button:first-child {
-      margin-right: auto; }
-    nav a img,
-    nav button img {
-      align-self: flex-start;
-      height: 80px;
-      width: 150px;
-      margin: auto; }
+    margin: auto;
+    z-index: 45; }
 
 h1,
 h2,
@@ -94,6 +93,7 @@ form {
   flex-direction: column;
   padding-bottom: 10px; }
   .signUpMain button {
+    z-index: 51;
     margin: auto;
     padding: 10px 20px; }
   .signUpMain .imageSignUp {
