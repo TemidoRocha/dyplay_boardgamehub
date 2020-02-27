@@ -12,7 +12,7 @@
       </div>
       <div class="inputPicture">
         <label for="input-picture">Edit profile picture:<br></label>
-        <input type="file" accept="image/*" id="input-picture" value="{{user.picture}}" name="picture"/>
+        <input type="file" accept="image/*" id="input-picture" value={{user.picture}} name="picture"/>
       </div>
     </div>
     <div class="gameYouPlay">
@@ -26,7 +26,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="mapSignUp">
+    <div>
       {{>map}}
     </div>
     <div>
