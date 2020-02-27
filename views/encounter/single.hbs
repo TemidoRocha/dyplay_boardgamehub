@@ -1,7 +1,7 @@
 <h1>{{singleEvent.eventName}}</h1>
 
 <section class="sectionComments">
-
+<div class="channel background">
 <div class="map">
 <h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
 <h2>{{singleEvent.date}}</h2>
@@ -18,7 +18,7 @@
   <p>{{ name }}</p>
   {{/each}}  
 
-<div class="sectionComments">
+<div>
 <a href="/encounter/single/{{ singleEvent._id }}/join"><button class="asideBtn">  Join Event </button></a>
 <a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> edit event </button></a>
 <form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button class="asideBtn"> Leave Event </button></form>
@@ -39,13 +39,14 @@
   <button type="submit">ADD</button>
   </form>
 
-</div>  
+</div>
+</div>
 
-
+<div>
 <aside class="asidebar">
   {{>sidebar}}
 </aside>
-
+</div>
 </section> 
 
 
