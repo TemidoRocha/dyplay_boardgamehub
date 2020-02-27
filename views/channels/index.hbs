@@ -2,19 +2,17 @@
 <section class="sectionComments">
 
 
-  <div class="content">
+  <div class="content background">
 
     {{#each data}}
-    <aside class="channelProp">
-      <a href="/channels/{{_id}}">{{name}}</a>
-      {{timestamp}}
-    </aside>
+   <a style="text-decoration: none;" href="/channels/{{_id}}"><aside class="channelProp">{{name}}</aside></a>
+          
     {{/each}}
   </div>
 
   <div>
-    <aside>
-      <a href="/channels/create"><Button>Create a new channel</Button></a>
+    <aside class="asideBar">
+      <a href="/channels/create"><Button class="asideBtn">Create a new channel</Button></a>
      {{>sidebar}}
     </aside>
   </div>
