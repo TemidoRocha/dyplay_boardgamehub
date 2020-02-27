@@ -7,6 +7,9 @@ const Post = require('./../models/post');
 const Event = require('./../models/event');
 const gameList = require('./../variables');
 const User = require('./../models/user');
+const uploader = require('./../multer-configure.js');
+const passport = require('passport');
+
 
 router.get('/', (req, res, next) => {
   let postSide;
@@ -55,6 +58,7 @@ router.get('/profile/:id', routeGuard, (req, res, next) => {
     });
 });
 
+<<<<<<< HEAD
 router.get('/edit', routeGuard, (req, res, next) => {
   let postSide;
   let eventsSide;
@@ -76,5 +80,9 @@ router.get('/edit', routeGuard, (req, res, next) => {
 router.post('/edit', routeGuard, (req, res, next) => {
   res.redirect('/user');
 });
+=======
+
+
+>>>>>>> a95d9d5ff77eec60836b5d6e40d7e040e5575a89
 
 module.exports = router;

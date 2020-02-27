@@ -2,7 +2,7 @@
 <h4>Trending Posts</h4>
 {{#each postSide}}
 <div class="sidebarLinkBackground">
-<a class="sidebarLinks" href="/channels/{{channel._id}}/{{_id}}">{{title}}</a><br>
+<a class="sidebarLinks" href="/channels/{{channel._id}}/{{_id}}"><div>{{title}}</div></a>
 </div>
 
 
@@ -11,7 +11,7 @@
 <h4>New encounters</h4>
 {{#each eventsSide}}
 <div class="sidebarLinkBackground">
-<a class="sidebarLinks" href="/encounter/single/{{_id}}">{{eventName}}</a><br>
+<a class="sidebarLinks" href="/encounter/single/{{_id}}"><div>{{eventName}}</div></a>
 </div>
 {{/each}}
 </div>

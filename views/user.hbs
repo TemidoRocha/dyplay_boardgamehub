@@ -1,13 +1,13 @@
 <h1>Welcome {{user.name}}!</h1>
 <img src="{{user.picture}}" alt="profile picture">
-<h2>Your favorite games:</h2>
+<h2>Favorite games:</h2>
 <p>{{user.games}}.</p>
 <h3>About you:</h3>
 <p>{{user.description}}</p>
 <h3>Players near you:</h3>
 <div id="sample-map"></div>
 <br>
-<form action="/edit" method="GET"><button>Manage Your Account</button></form>
+<form action="/authentication/edit" method="GET"><button>Manage Your Account</button></form>
 <form action="/authentication/deleteAccount" method="POST"><button>Delete Account</button></form>
 
 <aside class="asideBar">
@@ -41,11 +41,11 @@
     {{#each data}}
     for (let userSingle of list) {
       const marker =  new window.google.maps.Marker({ position: {
-        lat: {{ location.coordinates.[0] }},
-        lng: {{ location.coordinates.[1] }}
+        lat: {{location.coordinates.[0]}},
+        lng: {{location.coordinates.[1]}}
       }, 
       map, 
-      title: '{{name}}, Jogos preferidos: {{games}}.'
+      title: '{{name}}, Favorite games: {{games}}.'
       })
     marker.addListener('click', () => {
         window.location = `message/{{_id}}`;

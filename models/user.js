@@ -15,7 +15,7 @@ const schema = new mongoose.Schema(
 		googleId: String,
 		email: {
 			type: String,
-			required: true,
+			required: [true, "can't be blank"],
 			lowercase: true,
 			trim: true,
 			unique: true
@@ -31,7 +31,7 @@ const schema = new mongoose.Schema(
 			type: {
 				type: String,
 				default: 'Point',
-				required: true
+				required: [true, "can't be blank"]
 			},
 			coordinates: [
 				{
@@ -44,7 +44,7 @@ const schema = new mongoose.Schema(
 		picture: [
 			{
 				type: String,
-				require: true
+				required: [true, "you need a photo"]
 			}
 		],
 		games: [
