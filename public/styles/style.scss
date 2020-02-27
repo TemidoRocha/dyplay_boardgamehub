@@ -12,6 +12,7 @@ $fullgrey: hsla(0, 0, 80%, 1);
 }
 
 body {
+  z-index: 1;
   nav {
     display: flex;
     flex-direction: row;
@@ -59,6 +60,9 @@ body {
       }
     }
   }
+  div {
+    z-index: 99999;
+  }
 
   footer {
     background-color: $fullgrey;
@@ -103,4 +107,22 @@ body {
 }
 .channelImg {
   width: 50px;
+}
+
+.mapSignUp {
+  margin: 0px;
+  max-width: 1200px;
+  align-self: center;
+}
+
+.LatLng {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#sample-map {
+  width: 1000px;
+  height: 500px;
 }
