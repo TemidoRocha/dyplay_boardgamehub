@@ -9,6 +9,6 @@ module.exports = (req, res, next) => {
   } else {
     const error = new Error('AUTHENTICATION_REQUIRED');
     error.status = 401;
-    next(error);
+    res.render('error/error401');
   }
 };
