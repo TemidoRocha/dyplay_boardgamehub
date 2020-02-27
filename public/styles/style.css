@@ -8,7 +8,8 @@ body {
   z-index: 1;
   margin-top: 0;
   margin-left: 0;
-  align-items: center; }
+  align-items: center;
+  width: 100%; }
   body h1 {
     text-align: center;
     color: #ff33ff; }
@@ -92,7 +93,8 @@ h3 {
   align-items: top;
   margin: 2em;
   margin-right: 0;
-  margin-left: 0; }
+  margin-left: 0;
+  width: 100%; }
 
 .content {
   display: flex;
@@ -101,7 +103,7 @@ h3 {
   justify-self: center;
   align-items: top;
   padding-right: 3em;
-  flex-grow: 1; }
+  width: 180vh; }
 
 .channelDesc {
   display: flex;
