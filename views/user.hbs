@@ -1,7 +1,8 @@
-<h1>User Profile</h1>
-<h2>Jogos Preferidos:</h2>
+<h1>Welcome {{user.name}}!</h1>
+<img src="{{user.picture}}" alt="profile picture">
+<h2>Your favorite games:</h2>
 <p>{{user.games}}.</p>
-<p>Olá! Esses são os jogadores próximos a você:</p>
+<h3>Players near you:</h3>
 <div id="sample-map"></div>
 
 <script>
@@ -45,7 +46,6 @@
     {{/each}}
 
   }
-
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async defer>
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
+  defer></script>
