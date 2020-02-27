@@ -1,12 +1,17 @@
-<section class="content">
+<h1>Welcome {{user.name}}</h1>
 
+
+<section class="sectionComments">
+<div>
+<h4> Events near you </h4>
+<div class="content">
 {{#if user}}
-<h4> Location of All events </H4>
+
 <div class="map" id="sample-map"></div>
 
 {{else}}
-<div class="bodyIndex">
-  <div class="imageSignUp"><img src="/images/dy play one color.png" alt="logo"></div>
+<div>
+  <div><img class="indexImg" src="/images/dy play one color.png" alt="logo"></div>
   <h2>Welcome to DYPlay</h2>
   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In natus consequuntur similique sit debitis perferendis
     quos repellendus doloribus aliquid. Quos dignissimos eveniet rerum officia aut perspiciatis minima magnam veritatis
@@ -27,8 +32,10 @@
   </p>
 
 </div>
-{{/if}}
 
+{{/if}}
+</div>
+</div>
 <aside>
 {{>sidebar}}
 </aside>
