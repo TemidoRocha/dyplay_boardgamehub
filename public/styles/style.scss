@@ -3,7 +3,7 @@ $grey: hsla(0, 0, 10%, 1);
 $fullgrey: hsla(0, 0, 70%, 1);
 $titlesGrey: hsla(0, 0, 80%, 1);
 $roxo: rgb(170, 7, 170);
- * {
+* {
   box-sizing: border-box;
   font-family: $font-sans;
 }
@@ -47,7 +47,8 @@ body {
         align-self: center;
         padding: 0 10px;
         text-decoration: none;
-        color: rgb(128, 0, 128);
+        color: $roxo;
+        font-weight: bolder;
       }
       a:hover {
         text-decoration: none;
