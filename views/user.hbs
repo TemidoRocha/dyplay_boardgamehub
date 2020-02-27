@@ -1,4 +1,6 @@
 <h1>User Profile</h1>
+<h2>Jogos Preferidos:</h2>
+<p>{{user.games}}.</p>
 <p>Olá! Esses são os jogadores próximos a você:</p>
 <div id="sample-map"></div>
 
@@ -33,7 +35,7 @@
         lng: {{ location.coordinates.[1] }}
       }, 
       map, 
-      title: '{{name}}'
+      title: '{{name}}, Jogos preferidos: {{games}}.'
       })
     marker.addListener('click', () => {
         window.location = `message/{{_id}}`;
