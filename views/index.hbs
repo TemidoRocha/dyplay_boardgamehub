@@ -1,7 +1,8 @@
+<section>
 
 {{#if user}}
 <h4> Location of All events </H4>
-<div id="sample-map"></div>
+<div class="map" id="sample-map"></div>
 
 {{else}}
 <div class="bodyIndex">
@@ -67,3 +68,4 @@
   </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
   defer></script>
+  </section>

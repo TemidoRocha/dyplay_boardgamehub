@@ -1,0 +1,37 @@
+<h1>Edit</h1>
+<p>Edit you profile:</p>
+  <form action="/user" method="POST" enctype="multipart/form-data">
+    <div class="formMain">
+      <div class="signUpName">
+        <label for="input-name">Edit name</label>
+        <input type="text" id="input-name" name="name" placeholder="Your Name" value={{user.name}} />
+        <label for="input-email">Edit e-mail</label>
+        <input type="email" id="input-email" name="email" placeholder="Your Email" value={{user.email}} />
+        <label for="input-password">Edit password</label>
+        <input type="password" name="password" id="input-password" placeholder="Confirm your Password" />
+      </div>
+      <div class="inputPicture">
+        <label for="input-picture">Edit profile picture:<br></label>
+        <input type="file" accept="image/*" id="input-picture" value={{user.picture}} name="picture"/>
+      </div>
+    </div>
+    <div class="gameYouPlay">
+      <h3>Game You Play</h3>
+      <div class="listGamesSignUp">
+        {{#each gameList as |item|}}
+        <div class="formInline">
+          <input class="form-check-input" name="{{item}}" type="checkbox" id="inlineCheckbox">
+          <label class="form-check-label" for="inlineCheckbox">{{item}}</label>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div>
+      {{>map}}
+    </div>
+    <div>
+    <label for="inputDescription">About you:</label>
+    <textarea name="description" id="inputDescription" cols="30" rows="10" value="{{user.description}}"></textarea>
+    </div>
+    <button>Confirm</button>
+  </form>
