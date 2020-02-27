@@ -9,9 +9,10 @@ const Channel = require('./../models/channel');
 const Comments = require('./../models/comments');
 const uploader = require('./../multer-configure.js');
 const Event = require('./../models/event');
+const routeGuard = require('./../middleware/route-guard');
 
 //comments routes
-router.get('/:channel_id/delete', (req, res, next) => {
+router.get('/:channel_id/delete', routeGuard, (req, res, next) => {
   const { channel_id } = req.params;
   Channel.findOneAndDelete({
     _id: channel_id,
@@ -24,7 +25,7 @@ router.get('/:channel_id/delete', (req, res, next) => {
       next(error);
     });
 });
-router.post('/:channel_id/:post_id/comment', (req, res, next) => {
+router.post('/:channel_id/:post_id/comment', routeGuard, (req, res, next) => {
   const { channel_id, post_id } = req.params;
   const { content } = req.body;
 
@@ -48,7 +49,7 @@ router.post('/:channel_id/:post_id/comment', (req, res, next) => {
       next(error);
     });
 });
-router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
+router.get('/:channel_id/:post_id/:comment_id/delete', routeGuard, (req, res, next) => {
   const { comment_id, channel_id, post_id } = req.params;
 
   Comments.findByIdAndDelete({
@@ -57,7 +58,6 @@ router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
   })
     .then(() => {
       res.redirect(`/channels/${channel_id}/${post_id}`);
-      
     })
     .catch(error => {
       next(error);
@@ -66,7 +66,7 @@ router.get('/:channel_id/:post_id/:comment_id/delete', (req, res, next) => {
 
 // posts routes
 
-router.get('/:channel_id/create_post', (req, res, next) => {
+router.get('/:channel_id/create_post', routeGuard, (req, res, next) => {
   let postSide;
   let eventsSide;
   Post.find()
@@ -84,31 +84,36 @@ router.get('/:channel_id/create_post', (req, res, next) => {
     });
 });
 
-router.post('/:channel_id/create_post', uploader.single('picture'), (req, res, next) => {
-  const { title, description } = req.body;
-  const { channel_id } = req.params;
+router.post(
+  '/:channel_id/create_post',
+  routeGuard,
+  uploader.single('picture'),
+  (req, res, next) => {
+    const { title, description } = req.body;
+    const { channel_id } = req.params;
 
-  let url;
+    let url;
 
-  if (req.file) {
-    url = req.file.url;
-  }
+    if (req.file) {
+      url = req.file.url;
+    }
 
-  Post.create({
-    title,
-    description,
-    channel: channel_id,
-    author: req.user._id,
-    picture: url
-  })
-    .then(post => {
-      res.redirect(`/channels/${channel_id}/${post._id}`);
+    Post.create({
+      title,
+      description,
+      channel: channel_id,
+      author: req.user._id,
+      picture: url
     })
-    .catch(error => {
-      next(error);
-    });
-});
-router.get('/:channel_id/edit', (req, res, next) => {
+      .then(post => {
+        res.redirect(`/channels/${channel_id}/${post._id}`);
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+);
+router.get('/:channel_id/edit', routeGuard, (req, res, next) => {
   const { channel_id } = req.params;
   let postSide;
   let eventsSide;
@@ -140,7 +145,7 @@ router.get('/:channel_id/edit', (req, res, next) => {
     });
 });
 
-router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) => {
+router.post('/:channel_id/edit', routeGuard, uploader.single('picture'), (req, res, next) => {
   const { channel_id } = req.params;
   const { name, description } = req.body;
   let url;
@@ -171,7 +176,7 @@ router.post('/:channel_id/edit', uploader.single('picture'), (req, res, next) =>
     });
 });
 
-router.get('/:channel_id/:post_id/delete', (req, res, next) => {
+router.get('/:channel_id/:post_id/delete', routeGuard, (req, res, next) => {
   const { post_id, channel_id } = req.params;
 
   Post.findOneAndDelete({
@@ -186,7 +191,7 @@ router.get('/:channel_id/:post_id/delete', (req, res, next) => {
     });
 });
 
-router.get('/:channel_id/:post_id/edit', (req, res, next) => {
+router.get('/:channel_id/:post_id/edit', routeGuard, (req, res, next) => {
   const { post_id } = req.params;
   let postSide;
   let eventsSide;
@@ -218,34 +223,39 @@ router.get('/:channel_id/:post_id/edit', (req, res, next) => {
     });
 });
 
-router.post('/:channel_id/:post_id/edit', uploader.single('picture'), (req, res, next) => {
-  const { channel_id, post_id } = req.params;
-  const { title, description } = req.body;
-  let url;
+router.post(
+  '/:channel_id/:post_id/edit',
+  routeGuard,
+  uploader.single('picture'),
+  (req, res, next) => {
+    const { channel_id, post_id } = req.params;
+    const { title, description } = req.body;
+    let url;
 
-  if (req.file) {
-    url = req.file.url;
-  }
-
-  Post.findOneAndUpdate(
-    {
-      _id: post_id,
-      author: req.user._id
-    },
-    {
-      title,
-      description,
-      picture: url
+    if (req.file) {
+      url = req.file.url;
     }
-  )
-    .then(() => {
-      res.redirect(`/channels/${channel_id}/${post_id}`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-router.get('/:channel_id/:post_id', (req, res, next) => {
+
+    Post.findOneAndUpdate(
+      {
+        _id: post_id,
+        author: req.user._id
+      },
+      {
+        title,
+        description,
+        picture: url
+      }
+    )
+      .then(() => {
+        res.redirect(`/channels/${channel_id}/${post_id}`);
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+);
+router.get('/:channel_id/:post_id', routeGuard, (req, res, next) => {
   const { post_id } = req.params;
   const user = req.user._id;
   let sameUser;
@@ -283,7 +293,7 @@ router.get('/:channel_id/:post_id', (req, res, next) => {
     });
 });
 // channel routes
-router.get('/', (req, res, next) => {
+router.get('/', routeGuard, (req, res, next) => {
   let postSide;
   let eventsSide;
   Post.find()
@@ -307,7 +317,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/create', (req, res, next) => {
+router.get('/create', routeGuard, (req, res, next) => {
   let postSide;
   let eventsSide;
   Post.find()
@@ -326,7 +336,7 @@ router.get('/create', (req, res, next) => {
     });
 });
 
-router.post('/create', uploader.single('picture'), (req, res, next) => {
+router.post('/create', routeGuard, uploader.single('picture'), (req, res, next) => {
   const author = req.user._id;
 
   const { name, description } = req.body;
@@ -350,7 +360,7 @@ router.post('/create', uploader.single('picture'), (req, res, next) => {
     });
 });
 
-router.get('/:channel_id', (req, res, next) => {
+router.get('/:channel_id', routeGuard, (req, res, next) => {
   const { channel_id } = req.params;
   const user = req.user._id;
   let sameUser;
