@@ -58,7 +58,6 @@ router.get('/profile/:id', routeGuard, (req, res, next) => {
     });
 });
 
-<<<<<<< HEAD
 router.get('/edit', routeGuard, (req, res, next) => {
   let postSide;
   let eventsSide;
@@ -80,9 +79,5 @@ router.get('/edit', routeGuard, (req, res, next) => {
 router.post('/edit', routeGuard, (req, res, next) => {
   res.redirect('/user');
 });
-=======
-
-
->>>>>>> a95d9d5ff77eec60836b5d6e40d7e040e5575a89
 
 module.exports = router;
