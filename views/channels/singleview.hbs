@@ -1,5 +1,5 @@
 <h1>
-  Channel single view
+  {{channel.name}}
 </h1>
 
 <section class="sectionComments">
@@ -7,28 +7,26 @@
 
 <aside class= "channelDesc">
 {{#with channel}}
-<aside style="background-image:url({{picture}}); height: 500px; background-repeat: no-repeat; background-size: cover; ">
+<aside style="background-image:url({{picture}}); height: 300px; background-repeat: no-repeat; background-size: cover; justify-content: center; ">
 <div class="inImage">
-<h2>{{name}}</h2><br>
 <h4>{{description}}</h4>
+</aside>
+{{/with}}
+<div>
+{{#if sameUser}}
+<a href="/channels/{{channel._id}}/delete"><button class="deleteBtn">Delete Channel</button></a>
+<a href="/channels/{{channel._id}}/edit"><Button class="editBtn">Edit channel</Button></a>
+{{/if}}
 </div>
 </aside>
 
-{{/with}}
-{{#if sameUser}}
-<a href="/channels/{{channel._id}}/delete"><button>DELETE Channel</button></a>
-<a href="/channels/{{channel._id}}/edit"><Button>Edit channel</Button></a>
-{{/if}}
-
-</aside>
-
-<h1> In here will come the posts from this Channel</h1>
+<h1>Posts</h1>
 
 
 {{#each posts}}
-<aside class="channelProp">
-<a href="/channels/{{channel._id}}/{{_id}}">{{title}}</a>
-</aside>
+
+<a style="text-decoration: none;" href="/channels/{{channel._id}}/{{_id}}"><aside class="channelProp">{{title}}</aside></a>
+
 {{/each}}
 
 </div>
