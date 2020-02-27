@@ -31,6 +31,20 @@ router.post(
 	})
 );
 
+router.get('/edit', routeGuard, (req, res, next) => {
+	console.log(req.user);
+	res.render('edit', { gameList });
+});
+
+router.post('/edit',
+  uploader.single('picture'),
+	passport.authenticate('edit', {
+		successRedirect: '/',
+		failureRedirect: 'edit'
+	})
+);
+
+
 router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
 router.get(
 	'/google-callback',
@@ -53,17 +67,6 @@ router.post(
 	})
 );
 
-router.get('/edit', (req, res, next) => {
-	res.render('edit', { gameList });
-});
-router.post(
-	'/edit',
-	uploader.single('picture'),
-	passport.authenticate('edit', {
-		successRedirect: '/',
-		failureRedirect: 'edit'
-	})
-);
 
 router.post('/sign-out', (req, res, next) => {
 	req.logout();
