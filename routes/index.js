@@ -47,4 +47,8 @@ router.get('/edit', routeGuard, (req, res, next) => {
 	res.render('edit', { gameList });
 });
 
+router.post('/edit', routeGuard, (req, res, next) => {
+	res.redirect('/user');
+});
+
 module.exports = router;

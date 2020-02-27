@@ -3,11 +3,14 @@
 
 <section class="sectionComments">
 <div>
-<h4> Events near you </h4>
-<div class="content">
-{{#if user}}
 
-<div class="map" id="sample-map"></div>
+<div class="content">
+  
+{{#if user}}
+<div class="map">
+<h4> Events near you </h4>
+<div id="sample-map"></div>
+</div>
 
 {{else}}
 <div>
@@ -36,7 +39,7 @@
 {{/if}}
 </div>
 </div>
-<aside>
+<aside class="asideBar">
 {{>sidebar}}
 </aside>
 
