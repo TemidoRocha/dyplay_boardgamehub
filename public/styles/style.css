@@ -39,7 +39,8 @@ body {
         align-self: center;
         padding: 0 10px;
         text-decoration: none;
-        color: purple; }
+        color: #aa07aa;
+        font-weight: bolder; }
       body nav aside a:hover {
         text-decoration: none;
         color: purple;
