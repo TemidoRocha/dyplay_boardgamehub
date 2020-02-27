@@ -2,7 +2,7 @@ $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 10%, 1);
 $fullgrey: hsla(0, 0, 70%, 0.11);
 $titlesGrey: hsla(0, 0, 80%, 1);
-$roxo: rgb(170, 7, 170);
+$roxo: #ff33ff;
 * {
   box-sizing: border-box;
   font-family: $font-sans;
@@ -17,7 +17,7 @@ body {
   align-items: center;
   h1 {
     text-align: center;
-    color: rgb(128, 0, 128);
+    color: $roxo;
   }
 
   nav {
@@ -68,7 +68,7 @@ body {
       button:hover {
         transform: scale(0.9) perspective(1px);
         transition-timing-function: ease-out;
-        color: rgb(128, 0, 128);
+        color: $roxo;
       }
     }
   }
@@ -152,16 +152,24 @@ h3 {
 .channelProp:hover {
   transform: scale(1.05) perspective(1px);
   transition-timing-function: ease-out;
-  color: rgb(128, 0, 128);
+  color: $roxo;
   text-decoration: none;
 }
 .inImage {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 40px;
-	padding: 40px;
-  background-color: rgba(26, 26, 26, 0.815);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+	background-color: rgba(26, 26, 26, 0.815);
+	width: 96%;
+	height: 85%;
+  h2 {
+    word-break: break-word;
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
 }
 .channelImg {
   width: 50px;
@@ -221,7 +229,7 @@ h3 {
 .sidebarLinks:hover {
   word-break: break-word;
   text-decoration: none;
-  color: purple;
+  color: $roxo;
 }
 .asideBtn {
   background: none;
@@ -237,7 +245,7 @@ h3 {
 .asideBtn:hover {
   transform: scale(1) perspective(1px);
   transition-timing-function: ease-out;
-  color: rgb(128, 0, 128);
+  color: $roxo;
 }
 .indexImg {
   width: 600px;
@@ -249,5 +257,45 @@ h3 {
   padding: 2em;
   border-radius: 0 20px 20px 0;
   margin-right: 50px;
-  margin-left: 0;
+	margin-left: 0;
+	flex-grow: 1;
 }
+
+.deleteBtn{
+	background: none;
+	color: red;
+  border: 5px solid red;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px;
+
+}
+.deleteBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: red;
+}
+
+.editBtn{
+	background: none;
+	color: $roxo;
+  border: 5px solid $roxo;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px;
+
+}
+.editBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: $roxo;
+}
+
+
+
