@@ -4,9 +4,7 @@
 <br />
 <span><strong>Email</strong>: {{user.email}}</span>
 <img src="{{user.picture}}" height="30px" width="30px" alt="profile picture">
-<h1>
-  {{ user.location.coordinates.[1] }}
-</h1>
+<div id="sample-map"></div>
 
 
 
@@ -28,9 +26,12 @@
               lat: {{user.location.coordinates.[0]}}, 
               lng: {{user.location.coordinates.[1]}}
             },
-            map
+            map,
+            title: '{{user.name}}'
           });
       }
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async
+<script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
   defer></script>
+
+  
