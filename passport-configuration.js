@@ -21,6 +21,7 @@ passport.deserializeUser((id, callback) => {
 });
 
 const uploader = require('./multer-configure.js');
+const gameList = require('./variables.js');
 
 passport.use(
 	'sign-up',
@@ -30,7 +31,15 @@ passport.use(
 			passReqToCallback: true
 		},
 		(req, a, b, callback) => {
-			const { name, password, email, lat, lng, games } = req.body;
+			const { name, password, email, lat, lng } = req.body;
+			let games = [];
+
+			for (let selectedGame in req.body) {
+				const index = gameList.indexOf(selectedGame);
+
+				index >= 0 ? games.push(selectedGame) : '';
+			}
+
 			const location = { coordinates: [lat, lng] };
 			let picture;
 			req.file.url ? (picture = req.file.url) : (picture = null);
