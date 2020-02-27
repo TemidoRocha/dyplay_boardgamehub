@@ -150,7 +150,7 @@ h3 {
 }
 
 .channelProp:hover {
-  transform: scale(1.05) perspective(1px);
+  transform: scale(1.03) perspective(1px);
   transition-timing-function: ease-out;
   color: $roxo;
   text-decoration: none;
@@ -162,9 +162,10 @@ h3 {
   flex-direction: column;
   margin: 20px;
   padding: 20px;
-	background-color: rgba(26, 26, 26, 0.815);
-	width: 96%;
-	height: 85%;
+  background-color: hsla(0, 0, 70%, 0.31);
+  width: 96%;
+  height: 85%;
+  border-radius: 20px;
   h2 {
     word-break: break-word;
     font-size: 3em;
@@ -257,13 +258,13 @@ h3 {
   padding: 2em;
   border-radius: 0 20px 20px 0;
   margin-right: 50px;
-	margin-left: 0;
-	flex-grow: 1;
+  margin-left: 0;
+  flex-grow: 1;
 }
 
-.deleteBtn{
-	background: none;
-	color: red;
+.deleteBtn {
+  background: none;
+  color: red;
   border: 5px solid red;
   border-radius: 15px;
   padding: 5;
@@ -271,7 +272,6 @@ h3 {
   outline: inherit;
   font-size: 0.5em;
   margin-bottom: 25px;
-
 }
 .deleteBtn:hover {
   transform: scale(1.2) perspective(1px);
@@ -279,9 +279,9 @@ h3 {
   color: red;
 }
 
-.editBtn{
-	background: none;
-	color: $roxo;
+.editBtn {
+  background: none;
+  color: $roxo;
   border: 5px solid $roxo;
   border-radius: 15px;
   padding: 5;
@@ -289,7 +289,6 @@ h3 {
   outline: inherit;
   font-size: 0.5em;
   margin-bottom: 25px;
-
 }
 .editBtn:hover {
   transform: scale(1.2) perspective(1px);
@@ -297,5 +296,39 @@ h3 {
   color: $roxo;
 }
 
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  background-color: $fullgrey;
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  word-break: break-word;
 
+  p {
+    font-size: 1.5em;
+  }
+}
 
+.aAuthor {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  text-decoration: none;
+  color: $roxo;
+  font-weight: bolder;
+}
+.aAuthor {
+  text-decoration: none;
+  color: rgb(128, 0, 128);
+}
+
+.commentArea {
+  width: 100%;
+  background-color: $fullgrey;
+}
+.commentForm {
+  margin-top: 40px;
+  margin-bottom: 0;
+}

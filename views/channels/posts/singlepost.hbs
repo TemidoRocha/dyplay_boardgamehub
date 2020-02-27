@@ -1,35 +1,46 @@
 <h1>
-  This is the single post view
+  {{post.title}}
 </h1>
 <section class="sectionComments">
 
+<div class="channel background">
 
-<div class="channel">
+<aside class="channelDesc">
 {{#with post}}
-<aside style="background-image:url({{picture}})">
-{{title}}
-{{description}}
-{{#if picture}}
-<img class="channelImg" src="{{picture}}" alt="{{title}}">
-{{/if}}
+<aside style="background-image:url({{picture}});height: 300px; background-repeat: no-repeat; background-size: cover; justify-content: center;">
+<div class="inImage">
+<h4>{{description}}</h4>
 </aside>
 {{/with}}
+<div>
 {{#if sameUser}}
-<a href="/channels/{{post.channel._id}}/{{post._id}}/delete"><button>DELETE POST</button></a>
-<a href="/channels/{{post.channel._id}}/{{post._id}}/edit"><Button>Edit Post</Button></a>
+<a href="/channels/{{post.channel._id}}/{{post._id}}/delete"><button class="deleteBtn">Delete post</button></a>
+<a href="/channels/{{post.channel._id}}/{{post._id}}/edit"><button class="editBtn">Edit Post</button></a>
 {{/if}}
-  <h4>Comments</h4>
+</div>
+</aside>
+  <div>
+  <h3>Comments</h3>
+  
   {{#each comments}}
+    <div class="commentBox">
     {{>comment}}
+    </div>
     {{#if ../sameUser}}
-    <a href="/channels/{{channel._id}}/{{post._id}}/{{_id}}/delete"><button>DELETE COMMENT</button></a>
+    <a href="/channels/{{channel._id}}/{{post._id}}/{{_id}}/delete"><button class="deleteBtn">Delete comment</button></a>
   {{/if}}
-  {{/each}}
-  <h4>Add a Comment</h4>
+    {{/each}}
+  
+
+  <h4 class="commentForm">Add a Comment:</h4>
   {{> commentform}}
+  
+  </div>
 </div>
 
- <aside>
+<div>
+ <aside class="asideBar">
   {{>sidebar}}
 </aside>
+</div>
 </section>

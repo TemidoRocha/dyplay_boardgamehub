@@ -124,7 +124,7 @@ h3 {
   text-decoration: none; }
 
 .channelProp:hover {
-  transform: scale(1.05) perspective(1px);
+  transform: scale(1.03) perspective(1px);
   transition-timing-function: ease-out;
   color: #ff33ff;
   text-decoration: none; }
@@ -136,9 +136,10 @@ h3 {
   flex-direction: column;
   margin: 20px;
   padding: 20px;
-  background-color: rgba(26, 26, 26, 0.815);
+  background-color: rgba(179, 179, 179, 0.31);
   width: 96%;
-  height: 85%; }
+  height: 85%;
+  border-radius: 20px; }
   .inImage h2 {
     word-break: break-word;
     font-size: 3em;
@@ -259,5 +260,36 @@ h3 {
   transform: scale(1.2) perspective(1px);
   transition-timing-function: ease-out;
   color: #ff33ff; }
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(179, 179, 179, 0.11);
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  word-break: break-word; }
+  .commentBox p {
+    font-size: 1.5em; }
+
+.aAuthor {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  text-decoration: none;
+  color: #ff33ff;
+  font-weight: bolder; }
+
+.aAuthor {
+  text-decoration: none;
+  color: purple; }
+
+.commentArea {
+  width: 100%;
+  background-color: rgba(179, 179, 179, 0.11); }
+
+.commentForm {
+  margin-top: 40px;
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */
