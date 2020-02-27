@@ -1,34 +1,35 @@
-<header class='formEdit'>
+<header >
   <h2>Add new Event</h2>
 </header>
 
-<form action="/encounter/create" method="POST"class='formEdit'>
-  <button type="submit" class="btn btn-primary"> Submit </button>
-  <div class="form-group">
+<form action="/encounter/create" method="POST">
+  <button type="submit"> Submit </button>
+  <div>
     <label for="eventName"> Event Name </label>
-    <input type="text" name='eventName' id='eventName' placeholder="insert the event name" required class="form-control">
+    <input type="text" name='eventName' id='eventName' placeholder="insert the event name" required>
   </div>
 
-  <div class="form-group">
+  <div>
     {{>map}}
   </div>
   
-  <div class="form-group">
+  <div>
     <label for="date"> Event Date </label>
-    <input type="datetime-local" name='date' id='date' required class="form-control">
+    <input type="datetime-local" name='date' id='date' required>
   </div>
 
-  <div class="form-group">
+  <div>
     <label for="numberOfPlayer"> Number of Players </label>
-    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="2" class="form-control">
+    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="2">
   </div>
 
-  <div class="form-group">
+  <div>
     <label for="gameList"> Select your Game </label>
-    <select type="text" name='gameList' id='gameList' required class="form-control">
+    <select type="text" name='gameList' id='gameList' required>
       {{#each gameList as |item|}}
       <option value="{{item}}">{{item}}</option>
       {{/each}}
+    </select>
   </div>
 
 </form>

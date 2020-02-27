@@ -1,23 +1,21 @@
-<a href="/encounter/create">Create encounter</a>
 
-<ul class="list-group-flush">
 
+
+<section class="sectionComments">
+
+<div class="content">
 {{#each encounters}}
 <a href="/encounter/single/{{ _id }}">
-<div style="margin-bottom: 2em;">
-
-<li class="list-group-item"> eventName: {{eventName}}</li>
-<li class="list-group-item">location: latitude: {{location.coordinates.[1]}}, longitude: {{location.coordinates.[0]}}</li>
-<li class="list-group-item">date: {{date}}</li>
-<li class="list-group-item">numberOfPlayer: {{numberOfPlayer}}</li>
-
-
-</div>
-</a>
+<aside class="channelProp">
+eventName: {{eventName}}</a>, date: {{date}} ,numberOfPlayer: {{numberOfPlayer}}
+</aside>
 {{/each}}
-</ul>
+</div>
 
-<aside>
+
+<aside class="asidebar">
+  <a href="/encounter/create" ><button>Create encounter</button></a>
   {{>sidebar}}
 </aside>
 
+</section>
