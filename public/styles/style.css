@@ -114,14 +114,8 @@ h3 {
 
 .channelProp {
   margin: 1em;
-<<<<<<< HEAD
   padding: 1em;
   border: 2px solid grey;
-  border-radius: 15px; }
-=======
-  margin-left: 0;
-  padding: 0.5em;
-  border: 4px solid #ff33ff;
   border-radius: 15px;
   color: white;
   width: 100%;
@@ -131,7 +125,7 @@ h3 {
 .channelProp:hover {
   transform: scale(1.03) perspective(1px);
   transition-timing-function: ease-out;
-  color: #ff33ff;
+  color: #aa07aa;
   text-decoration: none; }
 
 .inImage {
@@ -149,7 +143,6 @@ h3 {
     word-break: break-word;
     font-size: 3em;
     margin-bottom: 20px; }
->>>>>>> 1ab2c11581e250be4a1b36e880be614b20a0bf98
 
 .channelImg {
   width: 50px; }
@@ -204,6 +197,66 @@ h3 {
   text-decoration: none;
   color: purple; }
 
+.asideBtn {
+  background: none;
+  color: grey;
+  border: 5px solid #aa07aa;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 1.5em;
+  margin-bottom: 25px; }
+
+.asideBtn:hover {
+  transform: scale(1) perspective(1px);
+  transition-timing-function: ease-out;
+  color: #aa07aa; }
+
+.indexImg {
+  width: 600px;
+  justify-content: center; }
+
+.background {
+  background-color: #1a1a1a;
+  padding: 2em;
+  border-radius: 0 20px 20px 0;
+  margin-right: 50px;
+  margin-left: 0;
+  flex-grow: 1; }
+
+.deleteBtn {
+  background: none;
+  color: red;
+  border: 5px solid red;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px; }
+
+.deleteBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: red; }
+
+.editBtn {
+  background: none;
+  color: #aa07aa;
+  border: 5px solid #aa07aa;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px; }
+
+.editBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: #aa07aa; }
+
 .commentBox {
   display: flex;
   flex-direction: column;
@@ -220,7 +273,7 @@ h3 {
   flex-direction: row;
   align-self: center;
   text-decoration: none;
-  color: #ff33ff;
+  color: #aa07aa;
   font-weight: bolder; }
 
 .aAuthor {
