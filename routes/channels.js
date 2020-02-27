@@ -293,7 +293,7 @@ router.get('/:channel_id/:post_id', routeGuard, (req, res, next) => {
     });
 });
 // channel routes
-router.get('/', routeGuard, (req, res, next) => {
+router.get('/', (req, res, next) => {
   let postSide;
   let eventsSide;
   Post.find()
