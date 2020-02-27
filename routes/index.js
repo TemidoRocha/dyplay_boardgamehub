@@ -45,19 +45,6 @@ router.get('/profile/:id', routeGuard, (req, res, next) => {
 	res.render('userPublic');
 });
 
-// router.get('/authentication/edit', routeGuard, (req, res, next) => {
-// 	console.log(req.user);
-// 	res.render('edit', { gameList });
-// });
-
-// router.post('/authentication/edit', routeGuard, (req, res, next) => {
-//   uploader.single('picture'),
-// 	passport.authenticate('edit', {
-// 		successRedirect: '/',
-// 		failureRedirect: 'edit'
-// 	})
-// });
-
 
 
 
