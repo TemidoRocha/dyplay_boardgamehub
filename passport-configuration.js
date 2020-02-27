@@ -31,7 +31,7 @@ passport.use(
 			passReqToCallback: true
 		},
 		(req, a, b, callback) => {
-			const { name, password, email, lat, lng } = req.body;
+			const { name, password, email, lat, lng, description } = req.body;
 			let games = [];
 
 			for (let selectedGame in req.body) {
@@ -54,6 +54,7 @@ passport.use(
 						picture,
 						location,
 						games,
+						description,
 						passwordHash: hash
 					});
 				})
