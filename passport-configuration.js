@@ -92,47 +92,65 @@ passport.use(
 		}
 	)
 );
+
 passport.use(
 	'edit',
-	new LocalStrategy(
-		{
-			usernameField: 'email',
-			passReqToCallback: true
-		},
-		(req, a, b, callback) => {
-			const { name, password, email, lat, lng, description } = req.body;
-			let games = [];
-
-			for (let selectedGame in req.body) {
-				const index = gameList.indexOf(selectedGame);
-
-				index >= 0 ? games.push(selectedGame) : '';
-			}
-
-			const location = { coordinates: [lat, lng] };
-			let picture;
-			req.file.url ? (picture = req.file.url) : (picture = null);
-
-			//console.log(req.file);
-			bcryptjs
-				.hash(password, 10)
-				.then(hash => {
-					return User.create({
-						name,
-						email,
-						picture,
-						location,
-						games,
-						description,
-						passwordHash: hash
+		new LocalStrategy(
+			{
+				usernameField: 'email',
+				passReqToCallback: true
+			},
+			(req, a, b, callback) => {
+				const { name, password, email, lat, lng, description } = req.body;
+				let games = [];
+	
+				for (let selectedGame in req.body) {
+					const index = gameList.indexOf(selectedGame);
+	
+					index >= 0 ? games.push(selectedGame) : '';
+				}
+	
+				const location = { coordinates: [lat, lng] };
+				let picture;
+				req.file.url ? (picture = req.file.url) : (picture = null);
+	
+				bcryptjs
+					.hash(password, 10)
+					.then(hash => {
+						return User.create({
+							name,
+							email,
+							picture,
+							location,
+							games,
+							description,
+							passwordHash: hash
+						});
+					})
+					.then(user => {
+						transporter
+							.sendMail({
+								from: `DypPlay BoarGameHub <${process.env.EMAIL}>`,
+								to: user.email,
+								subject: 'New profile',
+								// text: 'Hello world!'
+								html: 'You change some information in our site'
+							})
+							.then(result => {
+								console.log(result);
+							})
+							.catch(error => {
+								console.log(error);
+							});
+						callback(null, user);
+					})
+					.catch(error => {
+						console.log(error);
+						callback(error);
 					});
-				})
-				.catch(error => {
-					callback(error);
-				});
-		}
-	)
-);
+			}
+		)
+	);
 
 passport.use(
 	'sign-in',
