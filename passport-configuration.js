@@ -34,15 +34,15 @@ const transporter = nodemailer.createTransport({
 });
 
 passport.use(
-	'sign-up',
-	new LocalStrategy(
-		{
-			usernameField: 'email',
-			passReqToCallback: true
-		},
-		(req, a, b, callback) => {
-			const { name, password, email, lat, lng, description } = req.body;
-			let games = [];
+  'sign-up',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passReqToCallback: true
+    },
+    (req, a, b, callback) => {
+      const { name, password, email, lat, lng, description } = req.body;
+      let games = [];
 
       for (let selectedGame in req.body) {
         const index = gameList.indexOf(selectedGame);
@@ -63,15 +63,15 @@ passport.use(
             email,
             picture,
             location,
-						games,
-						description,
+            games,
+            description,
             passwordHash: hash
           });
         })
         .then(user => {
           transporter
             .sendMail({
-              from: `Jan20 Test <${process.env.EMAIL}>`,
+              from: `DypPlay BoarGameHub <${process.env.EMAIL}>`,
               to: user.email,
               subject: 'Welcome to DyPlay',
               // text: 'Hello world!'
