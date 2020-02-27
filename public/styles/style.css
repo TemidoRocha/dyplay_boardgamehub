@@ -11,7 +11,7 @@ body {
   align-items: center; }
   body h1 {
     text-align: center;
-    color: purple; }
+    color: #ff33ff; }
   body nav {
     margin-top: 0;
     z-index: 50;
@@ -39,7 +39,7 @@ body {
         align-self: center;
         padding: 0 10px;
         text-decoration: none;
-        color: #aa07aa;
+        color: #ff33ff;
         font-weight: bolder; }
       body nav aside a:hover {
         text-decoration: none;
@@ -57,7 +57,7 @@ body {
       body nav aside button:hover {
         transform: scale(0.9) perspective(1px);
         transition-timing-function: ease-out;
-        color: purple; }
+        color: #ff33ff; }
   body footer {
     padding-top: 10px;
     background-color: #1a1a1a;
@@ -68,7 +68,8 @@ body {
       width: 15px; }
 
 .names {
-  font-size: 0.7em; }
+  font-size: 0.7em;
+  list-style-type: none; }
 
 h1 {
   padding: 0.5em;
@@ -78,10 +79,6 @@ h1 {
 h3 {
   align-items: left;
   text-align: left; }
-
-.indexImg {
-  width: 600px;
-  justify-content: center; }
 
 .indexText {
   align-items: center;
@@ -94,7 +91,8 @@ h3 {
   justify-content: space-between;
   align-items: top;
   margin: 2em;
-  margin-right: 0; }
+  margin-right: 0;
+  margin-left: 0; }
 
 .content {
   display: flex;
@@ -102,7 +100,8 @@ h3 {
   justify-content: center;
   justify-self: center;
   align-items: top;
-  padding-right: 3em; }
+  padding-right: 3em;
+  flex-grow: 1; }
 
 .channelDesc {
   display: flex;
@@ -110,12 +109,14 @@ h3 {
   justify-content: center;
   justify-self: center;
   align-self: center;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  height: 500px; }
 
 .channelProp {
   margin: 1em;
-  padding: 1em;
-  border: 2px solid grey;
+  margin-left: 0;
+  padding: 0.5em;
+  border: 4px solid #ff33ff;
   border-radius: 15px;
   color: white;
   width: 100%;
@@ -125,7 +126,7 @@ h3 {
 .channelProp:hover {
   transform: scale(1.03) perspective(1px);
   transition-timing-function: ease-out;
-  color: #aa07aa;
+  color: #ff33ff;
   text-decoration: none; }
 
 .inImage {
@@ -151,7 +152,8 @@ h3 {
   margin: 0px;
   max-width: 1100px;
   align-self: center;
-  z-index: 40; }
+  z-index: 40;
+  flex-grow: 1; }
 
 .LatLng {
   display: flex;
@@ -165,12 +167,14 @@ h3 {
   height: 500px;
   z-index: 40;
   border: 30px;
-  border-radius: 20px; }
+  border-radius: 20px;
+  flex-grow: 1; }
 
 .map {
   padding: 30px;
   border-radius: 20px;
-  background-color: #1a1a1a; }
+  background-color: #1a1a1a;
+  flex-grow: 1; }
 
 .asideBar {
   min-width: 250px;
@@ -188,19 +192,19 @@ h3 {
   border-radius: 10px; }
 
 .sidebarLinks {
-  color: #aa07aa;
+  color: #ff33ff;
   font-size: 1em;
   font-weight: bolder; }
 
 .sidebarLinks:hover {
   word-break: break-word;
   text-decoration: none;
-  color: purple; }
+  color: #ff33ff; }
 
 .asideBtn {
   background: none;
   color: grey;
-  border: 5px solid #aa07aa;
+  border: 5px solid #ff33ff;
   border-radius: 15px;
   padding: 5;
   font-style: none;
@@ -211,7 +215,7 @@ h3 {
 .asideBtn:hover {
   transform: scale(1) perspective(1px);
   transition-timing-function: ease-out;
-  color: #aa07aa; }
+  color: #ff33ff; }
 
 .indexImg {
   width: 600px;
@@ -243,8 +247,8 @@ h3 {
 
 .editBtn {
   background: none;
-  color: #aa07aa;
-  border: 5px solid #aa07aa;
+  color: #ff33ff;
+  border: 5px solid #ff33ff;
   border-radius: 15px;
   padding: 5;
   font-style: none;
@@ -255,7 +259,7 @@ h3 {
 .editBtn:hover {
   transform: scale(1.2) perspective(1px);
   transition-timing-function: ease-out;
-  color: #aa07aa; }
+  color: #ff33ff; }
 
 .commentBox {
   display: flex;
@@ -273,7 +277,7 @@ h3 {
   flex-direction: row;
   align-self: center;
   text-decoration: none;
-  color: #aa07aa;
+  color: #ff33ff;
   font-weight: bolder; }
 
 .aAuthor {

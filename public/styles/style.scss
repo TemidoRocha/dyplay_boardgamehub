@@ -2,7 +2,7 @@ $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 10%, 1);
 $fullgrey: hsla(0, 0, 70%, 0.11);
 $titlesGrey: hsla(0, 0, 80%, 1);
-$roxo: rgb(170, 7, 170);
+$roxo: #ff33ff;
 * {
   box-sizing: border-box;
   font-family: $font-sans;
@@ -17,7 +17,7 @@ body {
   align-items: center;
   h1 {
     text-align: center;
-    color: rgb(128, 0, 128);
+    color: $roxo;
   }
 
   nav {
@@ -68,7 +68,7 @@ body {
       button:hover {
         transform: scale(0.9) perspective(1px);
         transition-timing-function: ease-out;
-        color: rgb(128, 0, 128);
+        color: $roxo;
       }
     }
   }
@@ -89,6 +89,7 @@ body {
 }
 .names {
   font-size: 0.7em;
+  list-style-type: none;
 }
 
 h1 {
@@ -101,10 +102,7 @@ h3 {
   align-items: left;
   text-align: left;
 }
-.indexImg {
-  width: 600px;
-  justify-content: center;
-}
+
 .indexText {
   align-items: center;
   justify-content: center;
@@ -118,6 +116,7 @@ h3 {
   align-items: top;
   margin: 2em;
   margin-right: 0;
+  margin-left: 0;
 }
 .content {
   display: flex;
@@ -126,6 +125,7 @@ h3 {
   justify-self: center;
   align-items: top;
   padding-right: 3em;
+  flex-grow: 1;
 }
 .channelDesc {
   display: flex;
@@ -134,12 +134,43 @@ h3 {
   justify-self: center;
   align-self: center;
   font-size: 1.5em;
+  height: 500px;
 }
+
 .channelProp {
   margin: 1em;
-  padding: 1em;
-  border: 2px solid grey;
+  margin-left: 0;
+  padding: 0.5em;
+  border: 4px solid $roxo;
   border-radius: 15px;
+  color: white;
+  width: 100%;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.channelProp:hover {
+  transform: scale(1.03) perspective(1px);
+  transition-timing-function: ease-out;
+  color: $roxo;
+  text-decoration: none;
+}
+.inImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  background-color: hsla(0, 0, 70%, 0.31);
+  width: 96%;
+  height: 85%;
+  border-radius: 20px;
+  h2 {
+    word-break: break-word;
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
 }
 .channelImg {
   width: 50px;
@@ -151,6 +182,7 @@ h3 {
   max-width: 1100px;
   align-self: center;
   z-index: 40;
+  flex-grow: 1;
 }
 
 .LatLng {
@@ -167,11 +199,13 @@ h3 {
   z-index: 40;
   border: 30px;
   border-radius: 20px;
+  flex-grow: 1;
 }
 .map {
   padding: 30px;
   border-radius: 20px;
   background-color: $grey;
+  flex-grow: 1;
 }
 .asideBar {
   min-width: 250px;
@@ -196,7 +230,105 @@ h3 {
 .sidebarLinks:hover {
   word-break: break-word;
   text-decoration: none;
-  color: purple;
+  color: $roxo;
+}
+.asideBtn {
+  background: none;
+  color: grey;
+  border: 5px solid $roxo;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 1.5em;
+  margin-bottom: 25px;
+}
+.asideBtn:hover {
+  transform: scale(1) perspective(1px);
+  transition-timing-function: ease-out;
+  color: $roxo;
+}
+.indexImg {
+  width: 600px;
+  justify-content: center;
 }
 
+.background {
+  background-color: $grey;
+  padding: 2em;
+  border-radius: 0 20px 20px 0;
+  margin-right: 50px;
+  margin-left: 0;
+  flex-grow: 1;
+}
 
+.deleteBtn {
+  background: none;
+  color: red;
+  border: 5px solid red;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px;
+}
+.deleteBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: red;
+}
+
+.editBtn {
+  background: none;
+  color: $roxo;
+  border: 5px solid $roxo;
+  border-radius: 15px;
+  padding: 5;
+  font-style: none;
+  outline: inherit;
+  font-size: 0.5em;
+  margin-bottom: 25px;
+}
+.editBtn:hover {
+  transform: scale(1.2) perspective(1px);
+  transition-timing-function: ease-out;
+  color: $roxo;
+}
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  background-color: $fullgrey;
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  word-break: break-word;
+
+  p {
+    font-size: 1.5em;
+  }
+}
+
+.aAuthor {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  text-decoration: none;
+  color: $roxo;
+  font-weight: bolder;
+}
+.aAuthor {
+  text-decoration: none;
+  color: rgb(128, 0, 128);
+}
+
+.commentArea {
+  width: 100%;
+  background-color: $fullgrey;
+}
+.commentForm {
+  margin-top: 40px;
+  margin-bottom: 0;
+}
