@@ -39,7 +39,7 @@ router.get('/profile/:id', routeGuard, (req, res, next) => {
 	res.render('userPublic');
 });
 
-router.get('/private', routeGuard, (req, res, next) => {
+router.get('/edit', routeGuard, (req, res, next) => {
 	res.render('private');
 });
 
