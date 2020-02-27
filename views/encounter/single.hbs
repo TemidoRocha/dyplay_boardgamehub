@@ -1,65 +1,58 @@
+<h1>{{singleEvent.eventName}}</h1>
 
-<ul>
-  <li>eventName: {{singleEvent.eventName}} </li>
-  <li>host: {{singleEvent.host.name}} </li>
-  <li>Location:
-    <br>
-    <div id="sample-map"></div>
-  </li>
+<section class="sectionComments">
 
-  <li>date: {{singleEvent.date}} </li>
-  <li>numberOfPlayer: {{singleEvent.numberOfPlayer}} </li>
-  
-  <li>Players List: 
-    <br>
-    {{#each singleEvent.waitingList}}
-    {{ name }} <br>
-    {{/each}}</li>  
-  <li>Waiting List: 
-    <br>
-    {{#each singleEvent.players}}
-    {{ name }} <br>
-    {{/each}}</li>  
+<div class="map">
+<h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
+<h2>{{singleEvent.date}}</h2><br>
+<div id="sample-map"></div>
+<br>
 
-  <a href="/encounter/single/{{ singleEvent._id }}/join" > Join Event </a></li>
-  <form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button> Leave Event </button></form>
+<h5>Players List:</h5>
+  {{#each singleEvent.waitingList}}
+    <p>{{ name }}</p>
+  {{/each}}  
+<h5>Waiting List:</h5>
+  {{#each singleEvent.players}}
+  <p>{{ name }}</p>
+  {{/each}}  
 
-  <li>game: {{singleEvent.gameList}} </li>
-  <li></li><br></li>
-  <li><a href="/encounter/single/{{ singleEvent._id }}/edit" > edit event </a></li>
-  <li><form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button> delete event </button></form></li>
-</ul>
+<a href="/encounter/single/{{ singleEvent._id }}/join" > Join Event </a>
+<form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button class="asideBtn"> Leave Event </button></form>
 
 
-<section>
+<a href="/encounter/single/{{ singleEvent._id }}/edit" > edit event </a>
+<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button> delete event </button></form>
+
+
+
+
   <h4>Comments</h4>
-  <div>
-    <div>
-      {{#each singleEvent.comments}}
-            <div>
-              <p>{{this.comment}}</p>
-              <h6>{{this.player}}</h6>
-              <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button> delete comment </button></form>
-            </div>
-      {{/each}}
-    </div>
-  </div>
+    
+    {{#each singleEvent.comments}}
+      <p>{{this.comment}}</p>
+      <h6>{{this.player}}</h6>
+      <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button> delete comment </button></form>
+    {{/each}}
 
+</div>
 
   <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
   <h5> Add a Comment {{user.name}}</h5>
-   <div>
-      <label for="comment">Comment:</label>
-      <textarea type="text" name="comment" placeholder="Please write your comment here..."></textarea>
-    </div>
-
-    <button type="submit">ADD</button>
+  <label for="comment">Comment:</label>
+  <textarea type="text" name="comment" placeholder="Please write your comment here..."></textarea>
+  <button type="submit">ADD</button>
   </form>
-</section>
-<aside>
+
+  <div>
+
+ {{!-- end of the map class --}}
+
+<aside class="asidebar">
   {{>sidebar}}
 </aside>
 
+</section> 
 
   <script>
     const $sampleMap = document.getElementById('sample-map');
