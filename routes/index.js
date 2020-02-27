@@ -48,7 +48,7 @@ router.get('/edit', routeGuard, (req, res, next) => {
 });
 
 router.post('/edit', routeGuard, (req, res, next) => {
-	res.redirect('/profile/:id');
+	res.redirect('/user');
 });
 
 module.exports = router;
