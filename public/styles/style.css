@@ -59,9 +59,11 @@ body {
         transition-timing-function: ease-out;
         color: purple; }
   body footer {
+    padding-top: 10px;
     background-color: #1a1a1a;
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    justify-content: space-evenly; }
     body footer a img {
       width: 15px; }
 
@@ -70,6 +72,7 @@ body {
 
 h1 {
   padding: 0.5em;
+  font-size: 4em;
   align-items: center; }
 
 h3 {
@@ -79,6 +82,11 @@ h3 {
 .indexImg {
   width: 600px;
   justify-content: center; }
+
+.indexText {
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
 
 .sectionComments {
   display: flex;
@@ -144,5 +152,23 @@ h3 {
   padding: 2em;
   border-radius: 20px 0 0 20px;
   margin-left: 0em; }
+
+.sidebarLinkBackground {
+  background-color: rgba(179, 179, 179, 0.11);
+  width: 100%;
+  height: 100%px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px; }
+
+.sidebarLinks {
+  color: #aa07aa;
+  font-size: 1em;
+  font-weight: bolder; }
+
+.sidebarLinks:hover {
+  word-break: break-word;
+  text-decoration: none;
+  color: purple; }
 
 /*# sourceMappingURL=style.css.map */
