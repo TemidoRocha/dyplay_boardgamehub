@@ -18,11 +18,11 @@
       </div>
     </div>
     <div class="gameYouPlay">
-      <h2>Game You Play</h2>
+      <h3>Game You Play</h3>
       <div class="listGamesSignUp">
         {{#each gameList as |item|}}
         <div class="formInline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="option1">
+          <input class="form-check-input" name="{{item}}" type="checkbox" id="inlineCheckbox">
           <label class="form-check-label" for="inlineCheckbox">{{item}}</label>
         </div>
         {{/each}}
@@ -30,6 +30,10 @@
     </div>
     <div class="mapSignUp">
       {{>map}}
+    </div>
+    <div>
+    <label for="inputDescription">About you:</label>
+    <textarea name="description" id="inputDescription" cols="30" rows="10"></textarea>
     </div>
     <button>Sign Up</button>
   </form>

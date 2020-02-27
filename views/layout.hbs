@@ -18,13 +18,13 @@
     <a href="/channels"> Channels </a>
     <a href="/encounter"> Encounter </a>
     {{#if user}}
-    <a href="/private">{{user.name}}'s Profile</a>
+    <a href="/user">{{user.name}}'s Profile</a>
     <a><form action="/authentication/sign-out" method="POST">
       <button> Log Out</button>
     </form> </a>
     
     {{else}}
-    <a href="/authentication/google">Log In With Google</a>
+   
     <a href="/authentication/sign-in">Log In</a>
     <a href="/authentication/sign-up">Sign Up</a>
     {{/if}}
@@ -44,8 +44,8 @@
         <li>Ricardo Azevedo</li>
       </ul>
     </div>
-    <a href="#">Copyright © 2020</a>
-    <a href="#">Contact us</a>
+    <div></div><a href="#">Copyright © 2020</a></div>
+    <div><a href="#">Contact us</a></div>
     
     <div>
       <h6>About Us</h6>

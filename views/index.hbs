@@ -54,12 +54,16 @@
 
     {{#each events}}
     for (let locationEvent of list) {
-      new window.google.maps.Marker({ position: {
+      const marker = new window.google.maps.Marker({ position: {
         lat: {{ location.coordinates.[0] }},
         lng: {{ location.coordinates.[1] }}
       }, map, title: '{{eventName}}, at {{date}} with {{numberOfPlayer}} players' })
+      marker.addListener('click', () => {
+        window.location = `/encounter/single/{{_id}}`;
+      })
     }
     {{/each}}
     }
   </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
+  defer></script>
