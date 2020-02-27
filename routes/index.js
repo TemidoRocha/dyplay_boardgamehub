@@ -6,11 +6,13 @@ const routeGuard = require('./../middleware/route-guard');
 const Post = require('./../models/post');
 const Event = require('./../models/event');
 const gameList = require('./../variables');
+const User = require('./../models/user');
 
 router.get('/', (req, res, next) => {
 	let postSide;
 	let events;
 	let eventsSide;
+
 	Post.find()
 		.sort({ timestamp: 'descending' })
 		.limit(2)
@@ -41,7 +43,8 @@ router.get('/profile/:id', routeGuard, (req, res, next) => {
 });
 
 router.get('/edit', routeGuard, (req, res, next) => {
-	res.render('edit');
+	console.log(req.user);
+	res.render('edit', { gameList });
 });
 
 module.exports = router;
