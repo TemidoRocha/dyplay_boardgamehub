@@ -34,17 +34,6 @@ const transporter = nodemailer.createTransport({
 });
 
 passport.use(
-<<<<<<< HEAD
-  'sign-up',
-  new LocalStrategy(
-    {
-      usernameField: 'email',
-      passReqToCallback: true
-    },
-    (req, a, b, callback) => {
-      const { name, password, email, lat, lng } = req.body;
-      let games = [];
-=======
 	'sign-up',
 	new LocalStrategy(
 		{
@@ -54,7 +43,6 @@ passport.use(
 		(req, a, b, callback) => {
 			const { name, password, email, lat, lng, description } = req.body;
 			let games = [];
->>>>>>> 2bb69391f11cf419d92536bc79632969717d7fbc
 
       for (let selectedGame in req.body) {
         const index = gameList.indexOf(selectedGame);
@@ -66,7 +54,6 @@ passport.use(
       let picture;
       req.file.url ? (picture = req.file.url) : (picture = null);
 
-<<<<<<< HEAD
       //console.log(req.file);
       bcryptjs
         .hash(password, 10)
@@ -76,7 +63,8 @@ passport.use(
             email,
             picture,
             location,
-            games,
+						games,
+						description,
             passwordHash: hash
           });
         })
@@ -103,31 +91,6 @@ passport.use(
         });
     }
   )
-=======
-			//console.log(req.file);
-			bcryptjs
-				.hash(password, 10)
-				.then(hash => {
-					return User.create({
-						name,
-						email,
-						picture,
-						location,
-						games,
-						description,
-						passwordHash: hash
-					});
-				})
-				.then(user => {
-					callback(null, user);
-				})
-				.catch(error => {
-					console.log(error);
-					callback(error);
-				});
-		}
-	)
->>>>>>> 2bb69391f11cf419d92536bc79632969717d7fbc
 );
 
 passport.use(
