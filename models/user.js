@@ -7,15 +7,19 @@ const schema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			trim: true,
-			required: true
+			lowercase: true,
+			unique: true,
+			required: [true, "can't be blank"],
+			match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
+			index: true
 		},
 		googleId: String,
 		email: {
 			type: String,
 			required: true,
 			lowercase: true,
-			trim: true
+			trim: true,
+			unique: true
 		},
 		passwordHash: {
 			type: String
@@ -40,7 +44,8 @@ const schema = new mongoose.Schema(
 		},
 		picture: [
 			{
-				type: String
+				type: String,
+				require: true
 			}
 		],
 		games: [
