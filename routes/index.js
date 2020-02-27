@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
 	Post.find()
 		.sort({ timestamp: 'descending' })
-		.limit(2)
+		.limit(4)
 		.then(documents => {
 			postSide = documents;
 			return Event.find();
@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 		.then(() => {
 			return Event.find()
 				.sort({ creationDate: 'descending' })
-				.limit(3);
+				.limit(5);
 		})
 		.then(document => {
 			eventsSide = document;
