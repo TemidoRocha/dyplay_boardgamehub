@@ -1,9 +1,9 @@
-<div class="signUpMain">
-  <div class="imageSignUp"><img src="/images/dy play one color.png" alt="logo"></div>
+<div>
+  <div><img src="/images/dy play one color.png" alt="logo"></div>
 
   <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
-    <div class="formMain">
-      <div class="signUpName">
+    <div>
+      <div>
         <label for="input-name">Name</label>
         <input type="text" id="input-name" name="name" placeholder="Your Name" />
         <label for="input-email">Email</label>
@@ -11,23 +11,23 @@
         <label for="input-password">Password</label>
         <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
       </div>
-      <div class="inputPicture">
+      <div>
         <label for="input-picture">Profile picture:<br></label>
         <input type="file" accept="image/*" id="input-picture" name="picture" />
       </div>
     </div>
-    <div class="gameYouPlay">
+    <div>
       <h3>Game You Play</h3>
-      <div class="listGamesSignUp">
+      <div >
         {{#each gameList as |item|}}
-        <div class="formInline">
-          <input class="form-check-input" name="{{item}}" type="checkbox" id="inlineCheckbox">
-          <label class="form-check-label" for="inlineCheckbox">{{item}}</label>
+        <div >
+          <input name="{{item}}" type="checkbox" id="inlineCheckbox">
+          <label for="inlineCheckbox">{{item}}</label>
         </div>
         {{/each}}
       </div>
     </div>
-    <div class="mapSignUp">
+    <div>
       {{>map}}
     </div>
     <div>
@@ -36,3 +36,4 @@
     </div>
     <button>Sign Up</button>
   </form>
+  </div>
