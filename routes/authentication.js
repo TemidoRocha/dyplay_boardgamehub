@@ -4,6 +4,18 @@ const { Router } = require('express');
 const router = new Router();
 const uploader = require('./../multer-configure.js');
 const gameList = require('./../variables');
+const routeGuard = require('./../middleware/route-guard');
+const User = require('./../models/user');
+
+//for the nodemailer
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  }
+});
 
 const passport = require('passport');
 
@@ -46,6 +58,22 @@ router.post('/sign-out', (req, res, next) => {
   res.redirect('/');
 });
 
-
+router.post('/deleteAccount', routeGuard, (req, res, next) => {
+  transporter
+    .sendMail({
+      from: `DypPlay BoarGameHub <${process.env.EMAIL}>`,
+      to: req.user.email,
+      subject: 'DyPlay says Goodbye',
+      // text: 'Hello world!'
+      html: 'DyPlays says farewell! We hope this is not a goodbye!'
+    })
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  User.deleteOne({ _id: req.user._id }).then(() => res.redirect('/'));
+});
 
 module.exports = router;
