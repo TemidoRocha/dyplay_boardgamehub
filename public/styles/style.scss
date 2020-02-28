@@ -134,7 +134,17 @@ h3 {
   justify-self: center;
   align-self: center;
   font-size: 1.5em;
-  height: 500px;
+  text-align: justify;
+  align-items: center;
+  align-content: center;
+
+  img {
+    margin-bottom: 50px;
+    margin-left: 15px;
+    align-content: center;
+    max-width: 1050px;
+    max-height: 500px;
+  }
 }
 
 .channelProp {
@@ -166,9 +176,9 @@ h3 {
   width: 96%;
   height: 85%;
   border-radius: 20px;
-  h2 {
+  h4 {
     word-break: break-word;
-    font-size: 3em;
+    font-size: 1.5em;
     margin-bottom: 20px;
   }
 }
@@ -259,6 +269,7 @@ h3 {
   margin-right: 50px;
   margin-left: 0;
   flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .deleteBtn {
@@ -344,33 +355,33 @@ h3 {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  
+
   img {
     justify-items: center;
     width: 300px;
   }
 }
-.form{
+.form {
   display: flex;
   flex-direction: column;
 
-  input{
+  input {
     width: 100%;
     background-color: $fullgrey;
     color: white;
   }
-  textarea{
+  textarea {
     width: 100%;
     background-color: $fullgrey;
     color: white;
   }
-  label{
+  label {
     margin-top: 30px;
     padding-top: 10px;
     color: $roxo;
     font-size: 1.5em;
   }
-  button{
+  button {
     margin-top: 30px;
     background: inherit;
     color: $roxo;
@@ -382,12 +393,16 @@ h3 {
     font-size: 1em;
     margin-bottom: 25px;
   }
-  button:hover{
+  button:hover {
     transform: scale(1.05) perspective(1px);
-  transition-timing-function: ease-out;
-  color: $roxo;
+    transition-timing-function: ease-out;
+    color: $roxo;
   }
-
 }
-
-
+.configuration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+  align-items: center;
+}
