@@ -243,7 +243,7 @@ h3 {
   color: red; }
 
 .editBtn {
-  background: none;
+  background: inherit;
   color: #ff33ff;
   border: 5px solid #ff33ff;
   border-radius: 15px;
