@@ -1,38 +1,24 @@
-<h1>Welcome {{user.name}}'s profile!</h1>
-<img src="{{user.picture}}" alt="profile picture">
-<h2>Favorite games:</h2>
-<p>{{user.games}}.</p>
-<h3>About:</h3>
-<p>{{user.description}}</p>
-<h3>Players location:</h3>
-<div id="sample-map"></div>
+<section class="sectionComments">
+
+  <div class="content">
+    <h1>{{user.name}}'s Profile</h1>
+
+    <div class="map sectionComments">
+      <img src="{{user.picture}}" alt="profile picture" style="max-width: 40%; margin: 2.5% auto">
+    </div>
+
+    <div class="map sectionComments">
+      <div>
+        <h3>Favorite games:</h3>
+        <p>{{user.games}}.</p>
+        <h3>About you:</h3>
+        <p>{{user.description}}</p>
+      </div>
+    </div>
+
+  </div>
 
 <aside class="asideBar">
   {{> sidebar}}
 </aside>
-
-<script>
-      const $sampleMap = document.getElementById('sample-map');
-
-
-      function initMap() {
-        const map = new window.google.maps.Map($sampleMap, {
-          center: {
-              lat: {{user.location.coordinates.[0]}}, 
-              lng: {{user.location.coordinates.[1]}}
-            },
-          zoom: 12
-        });
-
-        const marker = new window.google.maps.Marker({
-            position: {
-              lat: {{user.location.coordinates.[0]}}, 
-              lng: {{user.location.coordinates.[1]}}
-            },
-            map,
-            title: '{{user.name}}'
-          });
-      }
-    </script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
-  defer></script>
+</section>

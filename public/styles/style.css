@@ -151,7 +151,6 @@ h3 {
   margin: 0px;
   max-width: 1100px;
   align-self: center;
-  z-index: 40;
   flex-grow: 1; }
 
 .LatLng {
@@ -164,10 +163,15 @@ h3 {
 #sample-map {
   width: 900px;
   height: 500px;
+<<<<<<< HEAD
   z-index: 40;
   border: 30px;
   border-radius: 20px;
   flex-grow: 1; }
+=======
+  flex-grow: 1;
+  border-radius: 20px; }
+>>>>>>> e39b326b0f9a0bf805d6d81e323c033f2885c468
 
 .map {
   padding: 30px;
@@ -176,7 +180,7 @@ h3 {
   flex-grow: 1; }
 
 .asideBar {
-  min-width: 250px;
+  width: 250px;
   background-color: #1a1a1a;
   padding: 2em;
   border-radius: 20px 0 0 20px;
@@ -259,5 +263,45 @@ h3 {
   transform: scale(1.2) perspective(1px);
   transition-timing-function: ease-out;
   color: #ff33ff; }
+<<<<<<< HEAD
+=======
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(179, 179, 179, 0.11);
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  word-break: break-word; }
+  .commentBox p {
+    font-size: 1.5em; }
+
+.aAuthor {
+  display: flex;
+  flex-direction: row;
+  align-self: left;
+  text-decoration: none;
+  color: #ff33ff;
+  font-weight: bolder; }
+
+.aAuthor:hover {
+  text-align: left;
+  text-decoration: none;
+  color: purple; }
+
+.commentArea {
+  width: 100%;
+  background-color: rgba(179, 179, 179, 0.11);
+  color: white; }
+
+.commentForm {
+  margin-top: 40px;
+  margin-bottom: 0; }
+>>>>>>> e39b326b0f9a0bf805d6d81e323c033f2885c468
+
+.join {
+  display: flex;
+  flex-direction: row; }
 
 /*# sourceMappingURL=style.css.map */
