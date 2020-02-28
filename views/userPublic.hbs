@@ -1,19 +1,22 @@
 <section class="sectionComments">
 
   <div class="content">
+    <h1>{{user.name}}'s Profile</h1>
 
-    <div class="map sectionComments" style="margin: 5% auto;>
-      <img src="{{user.picture}}" alt="profile picture" style="max-width: 40%; margin-right: 2%">
+    <div class="map sectionComments">
+      <img src="{{user.picture}}" alt="profile picture" style="max-width: 40%; margin: 2.5% auto">
     </div>
 
-    <div class="map sectionComments" style="margin-bottom: 5%;  justify-content: space-around;">
-      <h3>Favorite games:</h3>
-      <p>{{user.games}}.</p>
-      <h3>About you:</h3>
-      <p>{{user.description}}</p>
+    <div class="map sectionComments">
+      <div>
+        <h3>Favorite games:</h3>
+        <p>{{user.games}}.</p>
+        <h3>About you:</h3>
+        <p>{{user.description}}</p>
+      </div>
     </div>
 
-    </div>
+  </div>
 
 <aside class="asideBar">
   {{> sidebar}}
