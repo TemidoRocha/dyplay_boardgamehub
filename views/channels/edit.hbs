@@ -1,19 +1,21 @@
 <h1>
-This is the channel edit page
-
+Edit {{data.name}}
 </h1>
-
+<section class="sectionComments">
+  <div class="content background">
 {{#with data}}
-<form method="POST" enctype="multipart/form-data">
+<form class="form" method="POST" enctype="multipart/form-data">
   <label for="input-name">Channel Name</label>
   <input type="text" name="name" id="input-name" value="{{name}}">
   <label for="description">Desciption</label>
   <textarea name="description" id="description">{{description}}</textarea>
   <label for="picture">Picture</label>
-  <input type="file" name="picture" id="picture" accept="image/*" multiple />
+  <input style="font-size:1em"class="asideBtn commentArea" type="file" name="picture" id="picture" accept="image/*" multiple />
   <button>Edit Channel</button>
 </form>   
 {{/with}}
-<aside>
+</div>
+<aside class="asideBar">
   {{>sidebar}}
 </aside>
+</section>

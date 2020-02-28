@@ -344,8 +344,50 @@ h3 {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  
   img {
     justify-items: center;
     width: 300px;
   }
 }
+.form{
+  display: flex;
+  flex-direction: column;
+
+  input{
+    width: 100%;
+    background-color: $fullgrey;
+    color: white;
+  }
+  textarea{
+    width: 100%;
+    background-color: $fullgrey;
+    color: white;
+  }
+  label{
+    margin-top: 30px;
+    padding-top: 10px;
+    color: $roxo;
+    font-size: 1.5em;
+  }
+  button{
+    margin-top: 30px;
+    background: inherit;
+    color: $roxo;
+    border: 5px solid $roxo;
+    border-radius: 15px;
+    padding: 5;
+    font-style: none;
+    outline: inherit;
+    font-size: 1em;
+    margin-bottom: 25px;
+  }
+  button:hover{
+    transform: scale(1.05) perspective(1px);
+  transition-timing-function: ease-out;
+  color: $roxo;
+  }
+
+}
+
+
