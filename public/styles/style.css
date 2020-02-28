@@ -124,7 +124,7 @@ h3 {
   text-decoration: none; }
 
 .channelProp:hover {
-  transform: scale(1.05) perspective(1px);
+  transform: scale(1.03) perspective(1px);
   transition-timing-function: ease-out;
   color: #ff33ff;
   text-decoration: none; }
@@ -136,9 +136,10 @@ h3 {
   flex-direction: column;
   margin: 20px;
   padding: 20px;
-  background-color: rgba(26, 26, 26, 0.815);
+  background-color: rgba(179, 179, 179, 0.31);
   width: 96%;
-  height: 85%; }
+  height: 85%;
+  border-radius: 20px; }
   .inImage h2 {
     word-break: break-word;
     font-size: 3em;
@@ -163,15 +164,8 @@ h3 {
 #sample-map {
   width: 900px;
   height: 500px;
-<<<<<<< HEAD
-  z-index: 40;
-  border: 30px;
-  border-radius: 20px;
-  flex-grow: 1; }
-=======
   flex-grow: 1;
   border-radius: 20px; }
->>>>>>> e39b326b0f9a0bf805d6d81e323c033f2885c468
 
 .map {
   padding: 30px;
@@ -263,8 +257,6 @@ h3 {
   transform: scale(1.2) perspective(1px);
   transition-timing-function: ease-out;
   color: #ff33ff; }
-<<<<<<< HEAD
-=======
 
 .commentBox {
   display: flex;
@@ -298,10 +290,20 @@ h3 {
 .commentForm {
   margin-top: 40px;
   margin-bottom: 0; }
->>>>>>> e39b326b0f9a0bf805d6d81e323c033f2885c468
 
 .join {
   display: flex;
   flex-direction: row; }
+
+.error {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center; }
+  .error img {
+    justify-items: center;
+    width: 300px; }
 
 /*# sourceMappingURL=style.css.map */
