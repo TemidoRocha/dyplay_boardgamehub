@@ -7,7 +7,6 @@ const schema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			lowercase: true,
 			unique: true,
 			required: [true, "can't be blank"],
 			index: true
@@ -44,7 +43,7 @@ const schema = new mongoose.Schema(
 		picture: [
 			{
 				type: String,
-				required: [true, "you need a photo"]
+				required: [true, 'you need a photo']
 			}
 		],
 		games: [
