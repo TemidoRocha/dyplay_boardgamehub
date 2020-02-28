@@ -1,41 +1,62 @@
-<div>
-  <div><img src="/images/dy play one color.png" alt="logo"></div>
-  <a href="/authentication/google">Log In With Google</a>
+<section class="sectionComments">
+
+<div class='content'>
+  <div class="indexText"><img class="indexImg" src="/images/dy play one color.png" alt="logo"></div>
+<div class="map">
+<h2>Create Your Account</h2>
+  <div style="margin: 2.5% auto;">
+  <a href="/authentication/google"><button style="margin-bottom: 1.5%; font-size: large" class="editBtn">Sign-up With Google</button></a>
+  </div>
+
   <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
     <div>
       <div>
-        <label for="input-name">Name</label>
-        <input type="text" id="input-name" name="name" placeholder="Your Name" />
-        <label for="input-email">Email</label>
-        <input type="email" id="input-email" name="email" placeholder="Your Email" />
-        <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
+        <label for="input-name" class="aAuthor">Name</label>
+        <input type="text" class="commentArea" id="input-name" name="name" placeholder="Your Name" style="margin-bottom: 1.5%;"/>
+        <label for="input-email"class="aAuthor">Email</label>
+        <input type="email" class="commentArea"id="input-email" name="email" placeholder="Your Email" style="margin-bottom: 1.5%;"/>
+        <label for="input-password" class="aAuthor">Password</label>
+        <input type="password" class="commentArea" name="password" id="input-password" placeholder="A Strong Password" style="margin-bottom: 1.5%;"/>
       </div>
       <div>
-        <label for="input-picture">Profile picture:<br></label>
-        <input type="file" accept="image/*" id="input-picture" name="picture" required="true" />
+        <label for="input-picture" class="aAuthor">Profile picture:<br></label>
+        <input type="file" class="commentArea" accept="image/*" id="input-picture" name="picture" required="true" class="editBtn" style="font-size: 0.8em; margin-bottom: 1.5%;"/>
       </div>
     </div>
-    <div>
-      <h3>Game You Play</h3>
-      <div>
-        {{#each gameList as |item|}}
-        <div>
-          <input name="{{item}}" type="checkbox" id="inlineCheckbox">
-          <label for="inlineCheckbox">{{item}}</label>
+    
+    <div class="gameYouPlay commentBox" style="margin-bottom: 2.5%;">
+    <h4>Game You Play</h4>
+    <div class="input-group mb-3">
+      {{#each gameList as |item|}}
+      <div class="input-group-prepend" style="margin: 1.5%;">
+        <div class="editBtn" style="font-size: 1em;">
+        <input name="{{item}}" type="checkbox" id="inlineCheckbox">
+        <label class="form-check-label" for="inlineCheckbox" >{{item}}</label>
         </div>
-        {{/each}}
       </div>
+      {{/each}}
     </div>
-    <div>
-      {{>map}}
-    </div>
-    <div>
-      <label for="inputDescription">About you:</label>
-      <textarea name="description" id="inputDescription" cols="30" rows="10"></textarea>
-    </div>
-    <button>Sign Up</button>
-  </form>
+  </div>
 
-  <a href="/authentication/google">Log-in with google</a>
+  <div class="map commentBox" style="margin: 2.5% 0%;">
+    <h4>Place Your Location</h4>
+    <div style="margin: 0% auto;">
+    {{>map}}
+    </div>
+  </div>
+
+
+  <div class='commentBox'>
+    <label class="aAuthor"  for="inputDescription">About you:</label>
+    <textarea class="commentArea" name="description" id="inputDescription" cols="30" rows="10"
+      required="true" placeholder="Write soething nice about you..."></textarea>
+  </div>
+  <div class="commentBox">
+  <button style="font-size: 1em;" class="asideBtn"> Submit </button>
+  </div>
+</form>
+
+ 
 </div>
+
+</section>
