@@ -3,8 +3,10 @@
 <section class="sectionComments">
   <div class="channel background">
       <div class="map">
-        <h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}}</h2></h2><br> 
-        <h2>{{singleEvent.numberOfPlayer}} players || {{singleEvent.date}}</h2>
+        {{#with singleEvent}}
+        <h2>{{gameList}} || Host: {{host.name}}</h2></h2><br> 
+        <h2>{{numberOfPlayer}} players || {{date  "dddd, DD - MMM - YYYY HH:mm"}}</h2>
+        {{/with}}
         <br>
         <div id="sample-map"></div>
         <br>

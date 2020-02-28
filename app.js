@@ -21,6 +21,10 @@ const findFriendsRouter = require('./routes/findFriends');
 const messageRouter = require('./routes/message');
 const hbs = require('hbs');
 const app = express();
+
+//in order to transform the date  -- one package installed, the rest is at the hbs files
+hbs.registerHelper('date', require('helper-date'));
+
 //TODO - Configure multer and everything you need to upload files
 hbs.registerPartials(join(__dirname, 'views/partials'));
 app.set('views', join(__dirname, 'views'));

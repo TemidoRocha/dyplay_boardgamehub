@@ -182,11 +182,7 @@ router.post('/single/:id/edit', routeGuard, (req, res, next) => {
     },
     { runValidators: true }
   )
-    .then(event => {
-      Event.findById(id)
-        .populate('host')
-        .then(() => res.redirect(`/encounter/single/${id}`));
-    })
+    .then(event => res.redirect(`/encounter/single/${id}`))
     .catch(error => {
       console.log(error);
       next(error);
