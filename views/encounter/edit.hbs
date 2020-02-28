@@ -1,46 +1,47 @@
-<section>
-
-
 <header>
-  <h2>Edit Event</h2>
+  <h1>Edit Event</h1>
 </header>
 
+<section class="sectionComments">
+  <div class="channel background">
 
-<form action="/encounter/single/{{ _id }}/edit" method="POST">
-  <h3>Host: {{singleEvent.host.name}}</h3>
-  <div>
-    <label for="eventName"> Event Name </label>
-    <input type="text" name='eventName' id='eventName' value="{{singleEvent.eventName}}" required >
-  </div>
+    <form action="/encounter/single/{{ singleEvent._id }}/edit" method="POST">
+      <h3>Host: {{singleEvent.host.name}}</h3>
+      <div class="content" style="margin-bottom: 2.5%;">
+        <label class="aAuthor" for="eventName"> Event Name </label>
+        <input class="commentArea" type="text" name='eventName' id='eventName' value="{{singleEvent.eventName}}" required >
+      </div>
 
-  <div>
-    {{>map}}
-  </div>
-  
-  <div>
-    <label for="date"> Event Date </label>
-    <input type="datetime-local" name='date' id='date' required value="date">
-  </div>
+      <div>
+        {{>map}}
+      </div>
+      
+      <div style="margin-bottom: 2.5%;">
+        <label class="aAuthor" for="date"> Event Date </label>
+        <input class="commentArea" type="datetime-local" name='date' id='date' required value="date">
+      </div>
 
-  <div>
-    <label for="numberOfPlayer"> Number of Players </label>
-    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="{{singleEvent.numberOfPlayer}}">
-  </div>
+      <div style="margin-bottom: 2.5%;">
+        <label class="aAuthor" for="numberOfPlayer"> Number of Players </label>
+        <input class="commentArea" type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="{{singleEvent.numberOfPlayer}}">
+      </div>
 
-  <div>
-    <label for="gameList"> Select your Game </label>
-    <select type="text" name='gameList' id='gameList' required>
-      {{#each singleEvent.total as |item|}}
-      <option value="{{item}}">{{item}}</option>
-      {{/each}}
-      </select>
-  </div>
-  <div>
-    <button type="submit"> Submit </button>
-  </div>
-</form>
+      <div style="margin-bottom: 2.5%;">
+        <label class="aAuthor" for="gameList"> Select your Game </label>
+        <select class="commentArea" type="text" name='gameList' id='gameList' required>
+          {{#each singleEvent.total as |item|}}
+          <option style="background-color: rgb(26,26,26);" value="{{item}}">{{item}}</option>
+          {{/each}}
+          </select>
+      </div>
+      <div class="channel background">
+        <button style="font-size: 1em;" class="map asideBtn" type="submit"> Submit </button>
+      </div>
+    </form>
+</div>
 
 <aside class="asideBar">
   {{>sidebar}}
 </aside>
+
 </section>
