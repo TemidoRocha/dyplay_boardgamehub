@@ -213,6 +213,7 @@ router.get('/:channel_id/:post_id/edit', routeGuard, (req, res, next) => {
     })
     .then(post => {
       if (post) {
+        console.log(post);
         res.render('channels/posts/edit', { post, postSide, eventsSide });
       } else {
         next(new Error('NOT_FOUND'));
