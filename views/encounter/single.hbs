@@ -25,7 +25,7 @@
           <h2>Comments</h2>
           {{#each singleEvent.comments}}
           <div class="commentBox" style="margin-bottom: 2.5%;">
-            <a href="#">{{this.player}}</a>
+            <a href="#" class="aAuthor">{{this.player}}</a>
             <p>{{this.comment}}</p>
           </div>
           <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> Delete comment </button></form>
