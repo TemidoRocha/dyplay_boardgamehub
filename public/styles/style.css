@@ -152,7 +152,6 @@ h3 {
   margin: 0px;
   max-width: 1100px;
   align-self: center;
-  z-index: 40;
   flex-grow: 1; }
 
 .LatLng {
@@ -165,10 +164,8 @@ h3 {
 #sample-map {
   width: 900px;
   height: 500px;
-  z-index: 40;
-  border: 30px;
-  border-radius: 20px;
-  flex-grow: 1; }
+  flex-grow: 1;
+  border-radius: 20px; }
 
 .map {
   padding: 30px;
@@ -177,7 +174,7 @@ h3 {
   flex-grow: 1; }
 
 .asideBar {
-  min-width: 250px;
+  width: 250px;
   background-color: #1a1a1a;
   padding: 2em;
   border-radius: 20px 0 0 20px;
@@ -275,12 +272,13 @@ h3 {
 .aAuthor {
   display: flex;
   flex-direction: row;
-  align-self: center;
+  align-self: left;
   text-decoration: none;
   color: #ff33ff;
   font-weight: bolder; }
 
-.aAuthor {
+.aAuthor:hover {
+  text-align: left;
   text-decoration: none;
   color: purple; }
 
@@ -291,5 +289,9 @@ h3 {
 .commentForm {
   margin-top: 40px;
   margin-bottom: 0; }
+
+.join {
+  display: flex;
+  flex-direction: row; }
 
 /*# sourceMappingURL=style.css.map */
