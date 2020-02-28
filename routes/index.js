@@ -88,7 +88,32 @@ router.get('/edit', routeGuard, (req, res, next) => {
 });
 
 router.post('/edit', routeGuard, (req, res, next) => {
-	res.redirect('/user');
+	const userId = req.user._id;
+	const { username, bio } = req.body;
+	if (req.file == null || undefined) {
+		User.findByIdAndUpdate(userId, {
+			username,
+			bio
+		})
+			.then(() => {
+				res.redirect('/');
+			})
+			.catch(error => {
+				next(error);
+			});
+	} else {
+		const { url } = req.file;
+		User.findByIdAndUpdate(userId, {
+			username,
+			bio,
+			picture: url
+		})
+			.then(() => {
+				res.redirect('/');
+			})
+			.catch(error => {
+				next(error);
+			});
+	}
 });
-
 module.exports = router;
