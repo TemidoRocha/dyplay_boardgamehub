@@ -2,6 +2,7 @@
 
 <section class="sectionComments">
 <div class="channel background">
+<div>  
 <div class="map">
 <h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
 <h2>{{singleEvent.date}}</h2>
@@ -20,36 +21,34 @@
 
 <div>
 <a href="/encounter/single/{{ singleEvent._id }}/join"><button class="asideBtn">  Join Event </button></a>
-<a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> edit event </button></a>
-<form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button class="asideBtn"> Leave Event </button></form>
-<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button class="asideBtn"> delete event </button></form>
+<a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> Edit event </button></a>
+<form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button style="font-size: 1em" class="deleteBtn"> Leave Event </button></form>
+<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button style="font-size: 1em"class="deleteBtn"> Delete event </button></form>
 </div>
+
 
 <h2>Comments</h2>
   {{#each singleEvent.comments}}
-    <p>{{this.comment}}</p>
-    <h6>{{this.player}}</h6>
-    <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> delete comment </button></form>
+  <div class="commentBox">
+  <a class='aAuthor' href="/profile/{{this._id}}">{{this.player}}</a>
+  <p>{{this.comment}}</p>
+  </div>
+  <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> Delete comment </button></form>
   {{/each}}
 
   <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
-  <h5> Add a Comment {{user.name}}</h5>
-  <label for="comment">Comment:</label>
-  <textarea type="text" name="comment" placeholder="Please write your comment here..."></textarea>
-  <button type="submit">ADD</button>
+  <h5> Add a Comment:</h5>
+  <label for="comment"></label>
+  <textarea class="commentArea" type="text" name="comment" placeholder="Please write your comment here..."></textarea>
+  <button style="font-size: 1em" class="editBtn" type="submit">Submit Comment</button>
   </form>
-
 </div>
 </div>
 
-<div>
-<aside class="asidebar">
-  {{>sidebar}}
-</aside>
-</div>
+
 </section> 
 
-
+<div>
   <script>
     const $sampleMap = document.getElementById('sample-map');
     function initMap() {
