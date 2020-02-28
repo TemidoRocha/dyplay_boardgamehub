@@ -1,18 +1,25 @@
 <div  class="sectionComments">
   <div class="content">
     <div class="indexText"><img class="indexImg" src="/images/dy play one color.png" alt="logo"></div>
-        <div style="max-width: 75%; margin: 0% auto;">
-        <form action="/authentication/sign-in" method="POST">
-          <label for="input-email"class="aAuthor">Email</label>
-          <input class="commentArea" type="email" id="input-email" name="email" placeholder="Your Email" style="margin: 2.5%;" />
-          <label class="aAuthor" for="input-password">Password</label>
-          <input class="commentArea" type="password" name="password" id="input-password" style="margin-bottom: 3%;" placeholder="A Strong Password" />
-          <button style="margin-bottom: 2.5%; font-size: large" class="editBtn">Sign In</button>
-        </form>
-        </div>
+        
+        <div class="channel background" style="margin: 0% 30% 5% 30%;">
+          <form action="/authentication/sign-in" method="POST">
 
-        <div style="margin: 2.5% auto;">
-          <a href="/authentication/google"><button style="margin-bottom: 1.5%; font-size: large" class="editBtn">Log In With Google</button></a>
+          <div style="margin: 2.5% auto;">
+            <label for="input-email"class="aAuthor">Email</label>
+            <input class="commentArea" type="email" id="input-email" name="email" placeholder="Your Email" />
+          </div>
+
+          <div style="margin: 2.5% auto;">
+            <label class="aAuthor" for="input-password">Password</label>
+            <input class="commentArea" type="password" name="password" id="input-password" placeholder="A Strong Password" />
+          </div>
+            <button style="margin-bottom: 2.5%; font-size: large" class="editBtn">Sign In</button>
+          </form>
+
+          <div style="margin: 2.5% auto;">
+            <a href="/authentication/google"><button style="margin-bottom: 1.5%; font-size: large" class="editBtn">Log In With Google</button></a>
+          </div>
         </div>
       </div>
     </div>
