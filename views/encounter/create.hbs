@@ -1,39 +1,48 @@
 <header >
-  <h2>Add new Event</h2>
+  <h1>Add new Event</h1>
 </header>
+<section class="sectionComments">
+<div class="channel background">
 
-<form action="/encounter/create" method="POST">
-  
-  <div>
-    <label for="eventName"> Event Name </label>
-    <input type="text" name='eventName' id='eventName' placeholder="insert the event name" required>
-  </div>
+  <form action="/encounter/create" method="POST">
+    
+    <div class="content" style="margin-bottom: 2.5%;">
+      <label for="eventName"  class="aAuthor"> Event Name </label>
+      <input type="text"  class="commentArea" name='eventName' id='eventName' placeholder="insert the event name" required>
+    </div>
 
-  <div>
-    {{>map}}
-  </div>
-  
-  <div>
-    <label for="date"> Event Date </label>
-    <input type="datetime-local" name='date' id='date' required>
-  </div>
+    <div class="map">
+      <h3>Place your event location</h3>
+      {{>map}}
+    </div>
+    
+    <div style="margin-bottom: 2.5%;">
+      <label class="aAuthor" for="date"> Event Date </label>
+      <input class="commentArea" type="datetime-local" name='date' id='date' required>
+    </div>
 
-  <div>
-    <label for="numberOfPlayer"> Number of Players </label>
-    <input type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="2">
-  </div>
+    <div style="margin-bottom: 2.5%;">
+      <label class="aAuthor" for="numberOfPlayer"> Number of Players </label>
+      <input class="commentArea" type="number" name='numberOfPlayer' id='numberOfPlayer' min="2" required value="2">
+    </div>
 
-  <div>
-    <label for="gameList"> Select your Game </label>
-    <select type="text" name='gameList' id='gameList' required>
-      {{#each gameList as |item|}}
-      <option value="{{item}}">{{item}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <button type="submit"> Submit </button>
-</form>
+    <div style="margin-bottom: 2.5%;">
+      <label class="aAuthor" for="gameList"> Select your Game </label>
+      <select class="commentArea" type="text" name='gameList' id='gameList' required>
+        {{#each gameList as |item|}}
+        <option style="background-color: rgb(26,26,26);" value="{{item}}">{{item}}</option>
+        {{/each}}
+      </select>
+    </div>
 
-<aside>
+    <div class="channel background">
+      <button style="font-size: 1em;" class="asideBtn" type="submit"> Submit </button>
+    </div>
+  </form>
+</div>
+
+<aside class="asideBar">
   {{>sidebar}}
 </aside>
+
+</section>
