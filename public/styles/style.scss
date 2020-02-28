@@ -181,7 +181,7 @@ h3 {
   margin: 0px;
   max-width: 1100px;
   align-self: center;
-  
+
   flex-grow: 1;
 }
 
@@ -196,10 +196,9 @@ h3 {
 #sample-map {
   width: 900px;
   height: 500px;
-	flex-grow: 1;
-  
+  flex-grow: 1;
+
   border-radius: 20px;
-  
 }
 .map {
   padding: 30px;
@@ -212,8 +211,7 @@ h3 {
   background-color: $grey;
   padding: 2em;
   border-radius: 20px 0 0 20px;
-	margin-left: 0em;
-	
+  margin-left: 0em;
 }
 .sidebarLinkBackground {
   background-color: $fullgrey;
@@ -329,12 +327,13 @@ h3 {
 .commentArea {
   width: 100%;
   background-color: $fullgrey;
+  color: white;
 }
 .commentForm {
   margin-top: 40px;
   margin-bottom: 0;
 }
-.join{
-	display: flex;
-	flex-direction: row;
+.join {
+  display: flex;
+  flex-direction: row;
 }

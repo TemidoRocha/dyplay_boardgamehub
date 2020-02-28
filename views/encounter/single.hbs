@@ -1,71 +1,69 @@
 <h1>{{singleEvent.eventName}}</h1>
 
 <section class="sectionComments">
-<div class="channel background">
-<div>  
-<div class="map">
-<h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
-<h2>{{singleEvent.date}}</h2>
-<br>
-<div id="sample-map"></div>
-<br>
+  <div class="channel background">
+      <div class="map">
+        <h2>{{singleEvent.gameList}} || Host: {{singleEvent.host.name}} | {{singleEvent.numberOfPlayer}} players</h2></h2><br> 
+        <h2>{{singleEvent.date}}</h2>
+        <br>
+        <div id="sample-map"></div>
+        <br>
 
-<h5>Players List:</h5>
-  {{#each singleEvent.waitingList}}
-    <p>{{ name }}</p>
-  {{/each}}  
-<h5>Waiting List:</h5>
-  {{#each singleEvent.players}}
-  <p>{{ name }}</p>
-  {{/each}}  
+        <h5>Players List:</h5>
+        {{#each singleEvent.waitingList}}
+          <p>{{ name }}</p>
+        {{/each}}  
+        <h5>Waiting List:</h5>
+        {{#each singleEvent.players}}
+        <p>{{ name }}</p>
+        {{/each}}  
 
-<div>
-<a href="/encounter/single/{{ singleEvent._id }}/join"><button class="asideBtn">  Join Event </button></a>
-<a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> Edit event </button></a>
-<form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button style="font-size: 1em" class="deleteBtn"> Leave Event </button></form>
-<form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button style="font-size: 1em"class="deleteBtn"> Delete event </button></form>
-</div>
-
-
-<h2>Comments</h2>
-  {{#each singleEvent.comments}}
-  <div class="commentBox">
-  <a class='aAuthor' href="/profile/{{this._id}}">{{this.player}}</a>
-  <p>{{this.comment}}</p>
-  </div>
-  <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> Delete comment </button></form>
-  {{/each}}
-
-  <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
-  <h5> Add a Comment:</h5>
-  <label for="comment"></label>
-  <textarea class="commentArea" type="text" name="comment" placeholder="Please write your comment here..."></textarea>
-  <button style="font-size: 1em" class="editBtn" type="submit">Submit Comment</button>
-  </form>
-</div>
-</div>
+        <div>
+          <a href="/encounter/single/{{ singleEvent._id }}/join"><button class="asideBtn">  Join Event </button></a>
+          <a href="/encounter/single/{{ singleEvent._id }}/edit"><button class="asideBtn"> Edit event </button></a>
+          <form action="/encounter/single/{{ singleEvent._id }}/deletePlayer" method="POST"><button style="font-size: 1em" class="deleteBtn"> Leave Event </button></form>
+          <form action="/encounter/single/{{ singleEvent._id }}/delete" method="POST"><button style="font-size: 1em"class="deleteBtn"> Delete event </button></form>
+        </div>
 
 
-</section> 
+          <h2>Comments</h2>
+          {{#each singleEvent.comments}}
+          <div class="commentBox">
+            <a class='aAuthor' href="/profile/{{this._id}}">{{this.player}}</a>
+            <p>{{this.comment}}</p>
+          </div>
+          <form action="/encounter/single/{{ id }}/deleteComment" method="POST"><button class="deleteBtn"> Delete comment </button></form>
+        {{/each}}
 
-<div>
-  <script>
-    const $sampleMap = document.getElementById('sample-map');
-    function initMap() {
-      const map = new window.google.maps.Map($sampleMap, {
-        center: {
-            lat: {{singleEvent.location.coordinates.[0]}}, 
-            lng: {{singleEvent.location.coordinates.[1]}}
-          },
-        zoom: 12
+        <form action="/encounter/single/addComment?event_id={{ singleEvent._id }}" method="post">
+        <h5> Add a Comment:</h5>
+        <label for="comment"></label>
+        <textarea class="commentArea" type="text" name="comment" placeholder="Please write your comment here..."></textarea>
+        <button style="font-size: 1em" class="editBtn" type="submit">Submit Comment</button>
+        </form>
+      </div>
+    </div>
+
+  </section> 
+
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: {
+          lat: {{singleEvent.location.coordinates.[0]}}, 
+          lng: {{singleEvent.location.coordinates.[1]}}
+        },
+      zoom: 12
+    });
+    const marker = new window.google.maps.Marker({
+        position: {
+          lat: {{singleEvent.location.coordinates.[0]}}, 
+          lng: {{singleEvent.location.coordinates.[1]}}
+        },
+        map
       });
-      const marker = new window.google.maps.Marker({
-          position: {
-            lat: {{singleEvent.location.coordinates.[0]}}, 
-            lng: {{singleEvent.location.coordinates.[1]}}
-          },
-          map
-        });
-    }
-  </script>
+  }
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8&callback=initMap" async defer></script>

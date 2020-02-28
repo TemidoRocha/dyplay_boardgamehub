@@ -284,7 +284,8 @@ h3 {
 
 .commentArea {
   width: 100%;
-  background-color: rgba(179, 179, 179, 0.11); }
+  background-color: rgba(179, 179, 179, 0.11);
+  color: white; }
 
 .commentForm {
   margin-top: 40px;
