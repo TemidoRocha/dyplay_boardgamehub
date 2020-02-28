@@ -16,9 +16,38 @@
       </div>
     </div>
 
+    <div class="map">
+      <h3>{{userdata.name}} location:</h3>
+      <div id="sample-map"></div>
+    </div>
+
   </div>
 
   <aside class="asideBar">
     {{>sidebar}}
   </aside>
 </section>
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: {
+        lat: {{userdata.location.coordinates.[0]}},
+        lng: {{userdata.location.coordinates.[1]}}
+          },
+  zoom: 12
+      });
+      
+      const marker =  new window.google.maps.Marker({ position: {
+        lat: {{userdata.location.coordinates.[0]}},
+        lng: {{userdata.location.coordinates.[1]}}
+      }, 
+      map, 
+      title: '{{userdata.name}}, Favorite games: {{userdata.games}}.'
+      })
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{process.env.GOOGLE_MAPS_API_KEY}}&callback=initMap" async
+  defer></script>
