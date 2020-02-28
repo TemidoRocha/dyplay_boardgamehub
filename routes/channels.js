@@ -206,7 +206,7 @@ router.get('/:channel_id/:post_id/edit', routeGuard, (req, res, next) => {
     })
     .then(something => {
       eventsSide = something;
-      Post.findOne({
+      return Post.findOne({
         _id: post_id,
         author: req.user._id
       });
